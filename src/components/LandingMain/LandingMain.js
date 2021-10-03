@@ -4,7 +4,13 @@ import Button from '@mui/material/Button';
 import landingImg from '../../assets/landing-img.png';
 export default function LandingHeader(props) {
 
-    return (<Grid container spacing={2}>
+    return (
+    <Grid container 
+        spacing={2}
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        >
         <Grid item xs={5}>
             <h1>New to Investing ?</h1>
             <ul>

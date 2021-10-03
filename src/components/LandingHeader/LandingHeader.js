@@ -5,13 +5,14 @@ import Button from '@mui/material/Button';
 
 export default function LandingHeader(props) {
 
-    return (<Grid container spacing={2}>
-        <Grid item xs={8}>
+    return (
+        <Grid
+            container 
+            direction="row" 
+            alignItems="center" 
+            justifyContent="space-between"
+        >
             <img src={logo} alt="Fantasy Portfolio League" srcset="" />
-        </Grid>
-        <Grid item xs={4}>
             <Button>Login / Signup</Button>
-        </Grid>
-    </Grid>);
-
+        </Grid>);
 }

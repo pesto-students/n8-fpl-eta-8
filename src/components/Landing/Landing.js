@@ -1,17 +1,16 @@
 import React from "react";
 import LandingHeader from "../LandingHeader/LandingHeader";
 import LandingMain from "../LandingMain/LandingMain";
+import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 export default function Landing() {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <LandingHeader></LandingHeader>
-      </Grid>
-      <Grid item xs={12}>
-        <LandingMain></LandingMain>
-      </Grid>
-    </Grid>
+    <Container>
+        <Grid container direction="column" alignItems="center">
+          <LandingHeader></LandingHeader>
+          <LandingMain></LandingMain>
+        </Grid>
+    </Container>
   );
 }
