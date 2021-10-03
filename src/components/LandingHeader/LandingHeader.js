@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
+import Logo from '../Logo/logo';
 import Grid from '@mui/material/Grid';
 import FplButton from '../FplButton/FplButton';
 import star from '../../assets/star.svg';
@@ -12,7 +12,7 @@ export default function LandingHeader(props) {
             alignItems="center" 
             justifyContent="space-between"
         >
-            <img src={logo} alt="Fantasy Portfolio League" srcset="" />
+            <Logo></Logo>
             <FplButton label="Sign in / Sign up" hasIcon='false' icon={star} ></FplButton>
         
         </Grid>);
