@@ -1,27 +1,35 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import "./App.css";
+import styled from "styled-components";
 import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
+import backgroundImage from "./assets/Background.png";
 
 function App() {
+  const MainWrapper = styled.div`
+    background: #ffffff url(${backgroundImage}) no-repeat;
+    background-size: cover;
+    min-height: 600px;
+
+    @media (min-width: 768px) {
+      min-height: 1000px;
+    }
+  `;
   return (
-    <div className="App">
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </div>
+    <MainWrapper>
+      <Switch>
+        <Route exact path="/">
+          <Landing />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </Switch>
+    </MainWrapper>
   );
 }
 
