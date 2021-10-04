@@ -2,8 +2,8 @@ import React from 'react';
 import Logo from '../Logo/logo';
 import Grid from '@mui/material/Grid';
 import FplButton from '../FplButton/FplButton';
-import star from '../../assets/star.svg';
 import { makeStyles } from '@mui/styles';
+
 
 const useStyles = makeStyles({
     root:{
@@ -26,7 +26,7 @@ export default function LandingHeader(props) {
             className={classes.root}
         >
             <Logo></Logo>
-            <FplButton label="Sign in / Sign up" hasIcon='false' icon={star} ></FplButton>
+            <FplButton label="Sign in / Sign up" hasIcon='true' icon="star" ></FplButton>
         
         </Grid>);
 }

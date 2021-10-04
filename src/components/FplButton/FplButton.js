@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { withStyles } from '@mui/styles';
+import { makeStyles, withStyles } from '@mui/styles';
+import Icon from '@mui/material/Icon';
 
 const SpecialButton = withStyles({
     root: {
@@ -44,23 +45,29 @@ const BlueButton = withStyles({
     },
 })(props => <Button {...props} />);
 
+const useStyle = makeStyles({
+    icon:{
+        padding:'.2rem'
+    }
+});
 
 
 export default function FplButton(props) {
+    const classes = useStyle();
     const { hasIcon, label, icon, type } = props
 
     switch (type) {
 
         case 'black': {
             if (hasIcon) {
-                return (<BlackButton> <img src={icon} alt=""/> {label}</BlackButton>);
+                return (<BlackButton> <Icon fontSize="small" className={classes.icon}>{icon}</Icon> {label}</BlackButton>);
             } else {
                 return (<BlackButton>{label}</BlackButton>);
             }
         }
         case 'blue': {
             if (hasIcon) {
-                return (<BlueButton> <img src={icon} alt="" /> {label}</BlueButton>);
+                return (<BlueButton> <Icon fontSize="small" className={classes.icon}>{icon}</Icon> {label}</BlueButton>);
             } else {
                 return (<BlueButton>{label}</BlueButton>);
             }
@@ -68,7 +75,7 @@ export default function FplButton(props) {
         default:
         case 'special':
             if (hasIcon) {
-                return (<SpecialButton> <img src={icon} alt="" /> {label}</SpecialButton>);
+                return (<SpecialButton> <Icon fontSize="small" className={classes.icon}>{icon}</Icon> {label}</SpecialButton>);
             } else {
                 return (<SpecialButton>{label}</SpecialButton>);
             }
