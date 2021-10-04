@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import landingImg from '../../assets/landing-img.png';
 import landingMainBg from '../../assets/landing-main-bg.svg';
@@ -12,20 +11,28 @@ const useStyles = makeStyles({
     bgImage: {
         zIndex: -9,
         position: 'absolute',
-        top: '20vh',
-        left:'-32vw'
+        top: '22vh',
+        left:'-30vw'
     },
     container: {
         display:'flex',
-        justifyContent:'space-around'
+        alignContent:'space-evenly',
     },
     textSection: {
-        marginLeft: '-30vw',
+        marginLeft: '-28vw',
+        alignSelf:'center',
+        color:'#fff'
     },
+    textSectionButton:{
+        textTransform:'none',
+        color:'#fff',
+        fontWeight:400,
+        padding:'1rem 0'
+    },    
     imageSection: {
-        marginRight: '-30vw',
-    }
-});
+        marginRight: '-32vw',
+        alignSelf:'center',
+    }});
 
 export default function LandingMain(props) {
 
@@ -41,10 +48,10 @@ export default function LandingMain(props) {
                         <li>Analyse Stocks to make right decsion</li>
                         <li>Submit your portfolio and win rewards</li>
                     </ul>
-                    <Button>Get Started</Button>
+                    <Button className={classes.textSectionButton}>Get Started</Button>
                 </div>
                 <div className={classes.imageSection}>
-                    <img src={landingImg} alt="" srcset="" />
+                    <img src={landingImg} alt="" srcset=""/>
                 </div>
             </div>
         </div>
