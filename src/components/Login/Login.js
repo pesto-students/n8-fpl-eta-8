@@ -116,7 +116,7 @@ export default function Login() {
         <Logo />
         <Title>Fantasy Portfolio League</Title>
       </HeaderContainer>
-      <DesignedCard sx={{ maxWidth: 350 }}>
+      <DesignedCard variant="outlined" sx={{ maxWidth: 350 }}>
         <CardContent>
           <LoginHeader>Login / Sign Up</LoginHeader>
           <GoogleLoginButton
