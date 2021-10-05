@@ -8,8 +8,8 @@ export default function Landing() {
   return (
     <Container>
         <Grid container direction="column" alignItems="center">
-          <LandingHeader></LandingHeader>
-          <LandingMain></LandingMain>
+          <LandingHeader/>
+          <LandingMain/>
         </Grid>
     </Container>
   );
