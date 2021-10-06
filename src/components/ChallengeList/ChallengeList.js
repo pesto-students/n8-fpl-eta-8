@@ -3,13 +3,14 @@ import React from "react";
 // React Components 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-
+import { Typography } from "@mui/material";
 // styling 
 import { useStyles } from "./styles";
 
 // custom components
 import SensexChart from "./SensexChart";
 import ChallengeFilter from "./ChallengeFilter";
+import ChallengeCard from "./ChallengeCard";
 
 export default function ChallengeList() {
 
@@ -30,7 +31,34 @@ export default function ChallengeList() {
                     <Grid item xs={0} md={3}>
                     </Grid>
                     <Grid item xs={12} md={9}>
-                        challenge list
+                        <Typography variant="h4" className={classes.challengeListTitle}>Pick your challenge</Typography>
+                        
+                        <Grid container direction="row" spacing={3} className={classes.challengeList}>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                            <Grid item xs="12" md="12" lg="6">
+                                <ChallengeCard/>
+                            </Grid>
+                        </Grid>                        
                     </Grid>
                 </Grid>
             </Grid>

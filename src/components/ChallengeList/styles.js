@@ -5,10 +5,16 @@ export const useStyles = makeStyles({
         padding:".75rem"
     },
     sensexChartCard:{
-        height:'60vh',
+        height:'45vh',
         padding:'.25rem'
     },
     challengeFilterCard:{
         padding:'1rem',
+    },
+    challengeList:{
+        padding:'1rem'
+    },
+    challengeListTitle:{
+        padding:'1rem'
     },
 });
