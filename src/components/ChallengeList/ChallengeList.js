@@ -6,7 +6,10 @@ import Grid from '@mui/material/Grid';
 
 // styling 
 import { useStyles } from "./styles";
+
+// custom components
 import SensexChart from "./SensexChart";
+import ChallengeFilter from "./ChallengeFilter";
 
 export default function ChallengeList() {
 
@@ -14,10 +17,10 @@ export default function ChallengeList() {
 
     return (
         <Container>
-            <Grid container direction="column" alignItems="center">
-                <Grid container direction="row" justifyContent="space-between" >
+            <Grid container direction="column">
+                <Grid container direction="row" justifyContent="space-between" className={classes.root} spacing={5}>
                     <Grid item xs={12} md={3}>
-                        Filter Challenges 
+                        <ChallengeFilter/>
                     </Grid>
                     <Grid item xs={12} md={9}>
                         <SensexChart/>
@@ -25,7 +28,6 @@ export default function ChallengeList() {
                 </Grid>
                 <Grid container direction="row" >
                     <Grid item xs={0} md={3}>
-                        empty
                     </Grid>
                     <Grid item xs={12} md={9}>
                         challenge list
