@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
+
 import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
-import Home from "./components/Home/Home";
+import ChallengeList from "./components/ChallengeList/ChallengeList";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/home">
-            <Home />
+            <ChallengeList />
           </Route>
         </Switch>
       </div>
