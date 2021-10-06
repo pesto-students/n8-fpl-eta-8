@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 
 // styling 
 import { useStyles } from "./styles";
+import SensexChart from "./SensexChart";
 
 export default function ChallengeList() {
 
@@ -19,7 +20,7 @@ export default function ChallengeList() {
                         Filter Challenges 
                     </Grid>
                     <Grid item xs={12} md={9}>
-                        BSE sensex data here
+                        <SensexChart/>
                     </Grid>
                 </Grid>
                 <Grid container direction="row" >
