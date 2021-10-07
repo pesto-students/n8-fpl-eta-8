@@ -18,6 +18,8 @@ export const useStyles = makeStyles({
     },
     challengeListTitle: {
         padding: '0rem 1rem',
-        paddingTop: "1.5rem"
+        paddingTop: "1.5rem",
+        position: "sticky",
+        top: "5.5rem",
     },
 });

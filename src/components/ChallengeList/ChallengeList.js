@@ -72,15 +72,16 @@ export default function ChallengeList(props) {
             <Toolbar id="back-to-top-anchor" />
             <Container className={classes.root}>
                 <Grid container direction="row" spacing={5}>
-                    <Grid item xs={12} md={3} elevation={10}>
+                    <Grid item xs={12} lg={3} md={12} elevation={10}>
                         <ChallengeFilter />
                     </Grid>
-                    <Grid item xs={12} md={9}>
-                        <Grid container direction="column" >
+                    <Grid item xs={12} lg={9} md={12}>
+                        <Grid container direction="column">
                             <Grid item xs={12}>
                                 <SensexChart />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} elevation={10}>
+
                                 <Typography variant="h4" className={classes.challengeListTitle}>Pick your challenge</Typography>
                                 <Grid container direction="row" spacing={3} className={classes.challengeList}>
                                     <Grid item xs="12" md="12" lg="6">
