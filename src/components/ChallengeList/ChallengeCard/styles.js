@@ -2,10 +2,10 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
     root:{
-        padding:'1.5rem'
+        padding:'1.5rem 2rem'
     },
     challengeDetails:{
-        marginBottom:"1rem"
+        marginBottom:"2rem"
     },
     cardButton:{
         justifyContent:'start'
