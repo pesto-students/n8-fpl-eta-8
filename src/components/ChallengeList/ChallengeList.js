@@ -1,6 +1,6 @@
 import React from "react";
 
-// React Components 
+// mui components & hooks
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Typography } from "@mui/material";
@@ -12,7 +12,6 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
-
 
 // styling 
 import { useStyles } from "./styles";
@@ -67,50 +66,47 @@ export default function ChallengeList(props) {
             <CssBaseline />
             <AppBar>
                 <Toolbar>
-                    <Logo light/>
+                    <Logo light />
                 </Toolbar>
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
             <Container className={classes.root}>
-                <Grid container direction="column">
-                    <Grid container direction="row" justifyContent="space-between" spacing={5}>
-                        <Grid item xs={12} md={3}>
-                            <ChallengeFilter />
-                        </Grid>
-                        <Grid item xs={12} md={9}>
-                            <SensexChart />
-                        </Grid>
+                <Grid container direction="row" spacing={5}>
+                    <Grid item xs={12} md={3} elevation={10}>
+                        <ChallengeFilter />
                     </Grid>
-                    <Grid container direction="row" >
-                        <Grid item xs={0} md={3}>
-                        </Grid>
-                        <Grid item xs={12} md={9}>
-                            <Typography variant="h4" className={classes.challengeListTitle}>Pick your challenge</Typography>
-
-                            <Grid container direction="row" spacing={3} className={classes.challengeList}>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
-                                </Grid>
-                                <Grid item xs="12" md="12" lg="6">
-                                    <ChallengeCard />
+                    <Grid item xs={12} md={9}>
+                        <Grid container direction="column" >
+                            <Grid item xs={12}>
+                                <SensexChart />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant="h4" className={classes.challengeListTitle}>Pick your challenge</Typography>
+                                <Grid container direction="row" spacing={3} className={classes.challengeList}>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
+                                    <Grid item xs="12" md="12" lg="6">
+                                        <ChallengeCard />
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
