@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
     root:{
-        padding:".75rem"
+        padding:"1.75rem"
     },
     sensexChartCard:{
         height:'45vh',
@@ -15,6 +15,7 @@ export const useStyles = makeStyles({
         padding:'1rem'
     },
     challengeListTitle:{
-        padding:'1rem'
+        padding:'0rem 1rem',
+        paddingTop:"1.5rem"
     },
 });

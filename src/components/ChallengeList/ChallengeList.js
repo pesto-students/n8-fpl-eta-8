@@ -4,7 +4,6 @@ import React from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Typography } from "@mui/material";
-import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,8 +21,9 @@ import { useStyles } from "./styles";
 import SensexChart from "./SensexChart";
 import ChallengeFilter from "./ChallengeFilter";
 import ChallengeCard from "./ChallengeCard";
+import Logo from '../Logo/logo'
 
-//  auto Scroll to top
+// scroll to top
 function ScrollTop(props) {
     const { children, window } = props;
     const trigger = useScrollTrigger({
@@ -58,17 +58,6 @@ function ScrollTop(props) {
     );
 }
 
-
-ScrollTop.propTypes = {
-    children: PropTypes.element.isRequired,
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window: PropTypes.func,
-};
-
-
 export default function ChallengeList(props) {
 
     const classes = useStyles();
@@ -78,15 +67,13 @@ export default function ChallengeList(props) {
             <CssBaseline />
             <AppBar>
                 <Toolbar>
-                    <Typography variant="h6" component="div">
-                        Scroll to see button
-                    </Typography>
+                    <Logo light/>
                 </Toolbar>
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
-            <Container>
+            <Container className={classes.root}>
                 <Grid container direction="column">
-                    <Grid container direction="row" justifyContent="space-between" className={classes.root} spacing={5}>
+                    <Grid container direction="row" justifyContent="space-between" spacing={5}>
                         <Grid item xs={12} md={3}>
                             <ChallengeFilter />
                         </Grid>
