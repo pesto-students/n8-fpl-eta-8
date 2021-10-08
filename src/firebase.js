@@ -6,17 +6,19 @@ import {
   updateProfile,
   onAuthStateChanged,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const config = {
-  apiKey: "AIzaSyB_qcFMgQAEnkZeku79M8PDN38ZAWZYTcY",
-  authDomain: "test-project-6b206.firebaseapp.com",
-  databaseURL:
-    "https://test-project-6b206-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "test-project-6b206",
-  storageBucket: "test-project-6b206.appspot.com",
-  messagingSenderId: "651975928036",
+  apiKey: "AIzaSyDB1Rb-qZEOK1TCZlNjtcSRxxJZa7vm3W8",
+  authDomain: "upbeat-button-327904.firebaseapp.com",
+  projectId: "upbeat-button-327904",
+  storageBucket: "upbeat-button-327904.appspot.com",
+  messagingSenderId: "378435873818",
+  appId: "1:378435873818:web:fb66772e7154b0a0b7f5a3",
+  measurementId: "G-BEXQFLEJBV"
 };
 
 class Firebase {
@@ -24,9 +26,11 @@ class Firebase {
     const app = initializeApp(config);
     this.auth = getAuth(app);
     this.db = getFirestore(app);
+    this.provider = new GoogleAuthProvider();
+    this.provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+    this.auth.languageCode = "en";
 
-    // this.auth = app.auth();
-    // this.db = app.firestore();
+    
   }
 
   login(email, password) {
@@ -35,6 +39,10 @@ class Firebase {
 
   logout() {
     return signOut(this.auth);
+  }
+
+  loginGoogle() {
+    return signInWithPopup(this.auth, this.provider);
   }
 
   async register(name, email, password) {

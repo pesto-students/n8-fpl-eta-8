@@ -2,11 +2,11 @@ import React from "react";
 import { CardContent } from "@mui/material";
 import {
   DesignedCard,
-  GoogleLoginButton,
   EmailButton,
   StyledStarIcon,
   LoginTitle,
   StyledLink,
+  GoogleButton,
 } from "./LoginStlye";
 import LoginHeader from "../LoginHeader/LoginHeader";
 import { useRouteMatch, Route, Switch } from "react-router-dom";
@@ -15,13 +15,17 @@ import EmailLogin from "../EmailLogin/EmailLogin";
 import firebase from "../../firebase";
 
 export default function Login() {
-  const handleLogin = async (googleData) => {
-    console.log(googleData);
-    history.push("/home");
-  };
-
   const { url, path } = useRouteMatch();
   const history = useHistory();
+
+  async function googleLogin() {
+    try {
+      await firebase.loginGoogle();
+      history.push("/home");
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   return (
     <div>
@@ -31,15 +35,10 @@ export default function Login() {
           <Switch>
             <Route exact path={`${path}/`}>
               <LoginTitle>Login / Sign Up</LoginTitle>
-              <GoogleLoginButton
-                clientId="420988764707-agbr7km3iq0v01180saa7tjoi6sfcnh1.apps.googleusercontent.com"
-                onSuccess={() => handleLogin}
-                onFailure={() => handleLogin}
-                cookiePolicy={"single_host_origin"}
-              >
+              <GoogleButton onClick={googleLogin}>
                 <StyledStarIcon />
                 Google Sign in
-              </GoogleLoginButton>
+              </GoogleButton>
               <EmailButton variant="contained">
                 <StyledLink to={`${url}/email`}>
                   <StyledStarIcon />

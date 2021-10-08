@@ -5,6 +5,10 @@ import { Button } from "@mui/material";
 import firebase from "../../firebase";
 import { useHistory } from "react-router";
 
+const LoginButton = styled(Button)`
+  background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
+`;
+
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,10 +16,6 @@ export default function SignUp() {
   const [name, setName] = useState("");
 
   const history = useHistory();
-
-  const LoginButton = styled(Button)`
-    background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
-  `;
 
   async function onRegister() {
     try {

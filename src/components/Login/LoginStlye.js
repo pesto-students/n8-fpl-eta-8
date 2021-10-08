@@ -25,6 +25,7 @@ export const GoogleButton = styled(Button)`
   border-radius: 12px !important;
   display: block !important;
   margin: 0 auto !important;
+  color:#ffffff !important;
 `;
 
 export const GoogleLoginButton = styled(GoogleLogin)`
