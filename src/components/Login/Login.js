@@ -1,36 +1,56 @@
 import React from "react";
-import logo from "./assets/logo.svg";
 import { CardContent } from "@mui/material";
-import {DesignedCard, GoogleLoginButton, HeaderContainer, EmailButton, StyledStarIcon, Logo, Title, LoginHeader} from "./LoginStlye"
+import {
+  DesignedCard,
+  GoogleLoginButton,
+  EmailButton,
+  StyledStarIcon,
+  LoginTitle,
+  StyledLink,
+} from "./LoginStlye";
+import LoginHeader from "../LoginHeader/LoginHeader";
+import { useRouteMatch, Route, Switch } from "react-router-dom";
+import { useHistory } from "react-router";
+import EmailLogin from "../EmailLogin/EmailLogin";
+import firebase from "../../firebase";
 
 export default function Login() {
-  
-  Logo.defaultProps = {
-    src: logo,
-  };
-
   const handleLogin = async (googleData) => {
     console.log(googleData);
+    history.push("/home");
   };
+
+  const { url, path } = useRouteMatch();
+  const history = useHistory();
 
   return (
     <div>
-      <HeaderContainer>
-        <Logo />
-        <Title>Fantasy Portfolio League</Title>
-      </HeaderContainer>
+      <LoginHeader />
       <DesignedCard variant="outlined" sx={{ maxWidth: 350 }}>
         <CardContent>
-          <LoginHeader>Login / Sign Up</LoginHeader>
-          <GoogleLoginButton
-            clientId="420988764707-agbr7km3iq0v01180saa7tjoi6sfcnh1.apps.googleusercontent.com"
-            onSuccess={handleLogin}
-            onFailure={handleLogin}
-            cookiePolicy={"single_host_origin"}
-          >
-            <StyledStarIcon />Google Sign in
-          </GoogleLoginButton>
-          <EmailButton variant="contained"><StyledStarIcon />Email Sign in</EmailButton>
+          <Switch>
+            <Route exact path={`${path}/`}>
+              <LoginTitle>Login / Sign Up</LoginTitle>
+              <GoogleLoginButton
+                clientId="420988764707-agbr7km3iq0v01180saa7tjoi6sfcnh1.apps.googleusercontent.com"
+                onSuccess={() => handleLogin}
+                onFailure={() => handleLogin}
+                cookiePolicy={"single_host_origin"}
+              >
+                <StyledStarIcon />
+                Google Sign in
+              </GoogleLoginButton>
+              <EmailButton variant="contained">
+                <StyledLink to={`${url}/email`}>
+                  <StyledStarIcon />
+                  Email Sign in
+                </StyledLink>
+              </EmailButton>
+            </Route>
+            <Route path={`${path}/email`}>
+              <EmailLogin />
+            </Route>
+          </Switch>
         </CardContent>
       </DesignedCard>
     </div>

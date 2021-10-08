@@ -3,42 +3,7 @@ import { Button } from "@mui/material";
 import Card from "@mui/material/Card";
 import StarIcon from "@mui/icons-material/Star";
 import GoogleLogin from "react-google-login";
-export const HeaderContainer = styled.div`
-  text-align: left;
-  padding: 10px;
-
-  @media (min-width: 1024px) {
-    text-align: center;
-    padding-top: 154px;
-  }
-`;
-
-export const Title = styled.div`
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 64px;
-  color: #5d5fef;
-  padding-left: 10px;
-  display: inline-block;
-  vertical-align: top;
-
-  @media (min-width: 768px) {
-    font-size: 36px;
-    line-height: 82px;
-    padding-left: 14px;
-  }
-`;
-
-export const Logo = styled.img`
-  width: 38px;
-  height: 38px;
-  margin-top: 10px;
-
-  @media (min-width: 768px) {
-    width: 64px;
-    height: 64px;
-  }
-`;
+import { Link } from "react-router-dom";
 
 export const DesignedCard = styled(Card)`
   margin: 0 auto;
@@ -46,7 +11,7 @@ export const DesignedCard = styled(Card)`
   text-align: center;
 `;
 
-export const LoginHeader = styled.div`
+export const LoginTitle = styled.div`
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
@@ -86,4 +51,10 @@ export const StyledStarIcon = styled(StarIcon)`
 export const EmailButton = styled(GoogleButton)`
   background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
   margin-top: 12px !important;
+  text-decoration: none !important;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #ffffff;
 `;
