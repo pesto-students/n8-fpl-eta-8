@@ -26,7 +26,7 @@ const AutoCompleteStockSelector = styled(StockSelector)`
   width: auto !important;
 `;
 
-export default function StockPicker() {
+export default function StockPicker(props) {
   const [showSearch, setShowSearch] = useState(false);
   const [selectedStock, setSelectedStock] = useState("Pick Stocks");
   const [isStockSelected, setIsStockSelected] = useState(false);
@@ -38,16 +38,25 @@ export default function StockPicker() {
     color: ${isStockSelected ? "#000000" : "#96999c"};
     line-height: 40px;
     margin-bottom: 5px;
+    &:focus-within {
+      border: 2px solid #1f40f4;
+    }
   `;
 
   function showStockField() {
     setShowSearch(!showSearch);
   }
 
+  function deleteStock(){
+    showStockField();
+    props.getSelectedStocks(props.id, "");
+  }
+
   function selectStock(stockName) {
     setShowSearch(false);
     setSelectedStock(stockName);
     setIsStockSelected(true);
+    props.getSelectedStocks(props.id, stockName);
   }
 
   return (
@@ -56,7 +65,7 @@ export default function StockPicker() {
       {showSearch ? (
         <AutoCompleteStockSelector selectStock={selectStock} />
       ) : isStockSelected ? (
-        <DeletedStockButton onClick={showStockField} />
+        <DeletedStockButton onClick={deleteStock} />
       ) : (
         <AddStockButton onClick={showStockField} />
       )}
