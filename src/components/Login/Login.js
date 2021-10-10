@@ -20,38 +20,38 @@ export default function Login() {
 
   async function googleLogin() {
     try {
-      await firebase.loginGoogle();
-      history.push("/home");
-    } catch (error) {
-      alert(error.message);
-    }
+      await firebase.loginGoogle().then(({ user }) => { user.getIdToken().then((token) => {console.log(token)})});
+    history.push("/home");
+  } catch (error) {
+    alert(error.message);
   }
+}
 
-  return (
-    <div>
-      <LoginHeader />
-      <DesignedCard variant="outlined" sx={{ maxWidth: 350 }}>
-        <CardContent>
-          <Switch>
-            <Route exact path={`${path}/`}>
-              <LoginTitle>Login / Sign Up</LoginTitle>
-              <GoogleButton onClick={googleLogin}>
+return (
+  <div>
+    <LoginHeader />
+    <DesignedCard variant="outlined" sx={{ maxWidth: 350 }}>
+      <CardContent>
+        <Switch>
+          <Route exact path={`${path}/`}>
+            <LoginTitle>Login / Sign Up</LoginTitle>
+            <GoogleButton onClick={googleLogin}>
+              <StyledStarIcon />
+              Google Sign in
+            </GoogleButton>
+            <EmailButton variant="contained">
+              <StyledLink to={`${url}/email`}>
                 <StyledStarIcon />
-                Google Sign in
-              </GoogleButton>
-              <EmailButton variant="contained">
-                <StyledLink to={`${url}/email`}>
-                  <StyledStarIcon />
-                  Email Sign in
-                </StyledLink>
-              </EmailButton>
-            </Route>
-            <Route path={`${path}/email`}>
-              <EmailLogin />
-            </Route>
-          </Switch>
-        </CardContent>
-      </DesignedCard>
-    </div>
-  );
+                Email Sign in
+              </StyledLink>
+            </EmailButton>
+          </Route>
+          <Route path={`${path}/email`}>
+            <EmailLogin />
+          </Route>
+        </Switch>
+      </CardContent>
+    </DesignedCard>
+  </div>
+);
 }

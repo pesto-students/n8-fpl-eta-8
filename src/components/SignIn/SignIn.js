@@ -17,7 +17,7 @@ export default function SignIn() {
 
   async function login() {
     try {
-      await firebase.login(email, password);
+      await firebase.login(email, password).then(({ user }) => { console.log(user) });
       history.push("/home");
       firebase.getCurrentUsername();
     } catch (error) {
