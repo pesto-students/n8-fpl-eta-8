@@ -27,7 +27,7 @@ class Firebase {
     this.auth = getAuth(app);
     this.db = getFirestore(app);
     this.provider = new GoogleAuthProvider();
-    this.provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+    // this.provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
     this.auth.languageCode = "en";
 
     
