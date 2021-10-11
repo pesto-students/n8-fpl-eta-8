@@ -4,7 +4,6 @@ import React from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Typography } from "@mui/material";
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -20,7 +19,7 @@ import { useStyles } from "./styles";
 import SensexChart from "./SensexChart";
 import ChallengeFilter from "./ChallengeFilter";
 import ChallengeCard from "./ChallengeCard";
-import Logo from '../Logo/logo'
+import Header from "../Header/Header";
 
 // scroll to top
 function ScrollTop(props) {
@@ -64,11 +63,7 @@ export default function ChallengeList(props) {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar>
-                <Toolbar>
-                    <Logo light />
-                </Toolbar>
-            </AppBar>
+            <Header/>
             <Toolbar id="back-to-top-anchor" />
             <Container className={classes.root}>
                 <Grid container direction="row" spacing={5}>
