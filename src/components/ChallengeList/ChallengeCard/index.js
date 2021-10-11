@@ -7,15 +7,24 @@ import { Button } from '@mui/material'
 
 import { useStyles } from './styles'
 
-export default function ChallengeCard(){
+export default function ChallengeCard(props) {
     const classes = useStyles();
-    return(
+    const { name, id, startDate, endDate, status } = props.challenge;
+
+    let s_date = new Date(1970, 0, 1); 
+    s_date.setSeconds(startDate._seconds);
+
+    let e_date = new Date(1970, 0, 1); 
+    e_date.setSeconds(endDate._seconds);
+
+    console.log(JSON.stringify(props, 0, 2));
+    return (
         <Card variant="outlined" className={classes.root}>
             <div className={classes.challengeDetails}>
-            <Typography variant="h5">Max. Return IT Sector</Typography>
-            <Typography variant="h6">22nd. Sep. 2021 - 29th Sep. 2021</Typography>
+                <Typography variant="h5">{name}</Typography>
+                <Typography variant="h6">{s_date.toDateString()} - {e_date.toDateString()}</Typography>
             </div>
-            <Button color="primary" fullWidth="true" style={{justifyContent:'flex-start'}} variant="contained" >Create Portfolio</Button>
+            <Button color="primary" fullWidth="true" style={{ justifyContent: 'flex-start' }} variant="contained" >Create Portfolio</Button>
         </Card>
     );
 }

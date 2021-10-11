@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // mui components & hooks
 import Container from '@mui/material/Container';
@@ -60,6 +60,26 @@ function ScrollTop(props) {
 export default function ChallengeList(props) {
 
     const classes = useStyles();
+    const [challenges, setChallenges] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch data from REST API
+                const response = await fetch("http://localhost:8080/api/challenge/filter/STARTING_SOON");
+                if (response.status === 200) {
+                    // Extract json
+                    const rawData = await response.json();
+                    setChallenges(rawData);
+                } else {
+                    console.error(`Error ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error(`Error ${error}`);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <React.Fragment>
@@ -84,30 +104,17 @@ export default function ChallengeList(props) {
 
                                 <Typography variant="h4" className={classes.challengeListTitle}>Pick your challenge</Typography>
                                 <Grid container direction="row" spacing={3} className={classes.challengeList}>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
-                                    <Grid item xs="12" md="12" lg="6">
-                                        <ChallengeCard />
-                                    </Grid>
+                                    {
+                                    challenges.map((item, index) => {
+                                            return (
+                                                <Grid item xs="12" md="12" lg="6" key={index}>
+                                                    <ChallengeCard challenge={item}/>
+                                                </Grid>
+                                            );
+                                        })}
+                                        {/* {
+                                            JSON.stringify(challenges,0,4)
+                                        } */}
                                 </Grid>
                             </Grid>
                         </Grid>
