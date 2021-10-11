@@ -35,7 +35,7 @@ export default function Header() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar>
             <Toolbar className={classes.toolbar}>
                 <Logo light />
                 <div>
