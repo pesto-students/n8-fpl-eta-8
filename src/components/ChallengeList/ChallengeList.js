@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useRouteMatch } from "react-router";
+import { Route,  useRouteMatch } from "react-router";
 
 // mui components & hooks
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Box from "@mui/material/Box";
-import Fab from "@mui/material/Fab";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Zoom from "@mui/material/Zoom";
+import Toolbar from '@mui/material/Toolbar';
+import CssBaseline from '@mui/material/CssBaseline';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Zoom from '@mui/material/Zoom';
 
 // styling
 import { useStyles } from "./styles";
@@ -21,8 +20,8 @@ import { useStyles } from "./styles";
 import SensexChart from "./SensexChart";
 import ChallengeFilter from "./ChallengeFilter";
 import ChallengeCard from "./ChallengeCard";
-import Logo from "../Logo/logo";
 import Challenge from "../Challenge/Challenge";
+import Header from "../Header/Header";
 
 // scroll to top
 function ScrollTop(props) {
@@ -87,11 +86,7 @@ export default function ChallengeList(props) {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar>
-                <Toolbar>
-                    <Logo light />
-                </Toolbar>
-            </AppBar>
+            <Header/>
             <Toolbar id="back-to-top-anchor" />
             <Container className={classes.root}>
                 <Grid container direction="row" spacing={5}>
@@ -120,20 +115,15 @@ export default function ChallengeList(props) {
                         </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
           </Container>
           <ScrollTop {...props}>
             <Fab color="secondary" size="small" aria-label="scroll back to top">
               <KeyboardArrowUpIcon />
             </Fab>
           </ScrollTop>
-        </Route>
         <Route path={`${path}/challenge`}>
           <Challenge />
         </Route>
-      </Switch>
     </React.Fragment>
   );
 }
