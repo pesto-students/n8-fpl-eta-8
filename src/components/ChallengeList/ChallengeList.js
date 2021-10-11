@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useRouteMatch } from "react-router";
+import { Route, useRouteMatch } from "react-router";
 
 // mui components & hooks
 import Container from "@mui/material/Container";
@@ -120,20 +120,15 @@ export default function ChallengeList(props) {
                         </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
           </Container>
           <ScrollTop {...props}>
             <Fab color="secondary" size="small" aria-label="scroll back to top">
               <KeyboardArrowUpIcon />
             </Fab>
           </ScrollTop>
-        </Route>
         <Route path={`${path}/challenge`}>
           <Challenge />
         </Route>
-      </Switch>
     </React.Fragment>
   );
 }
