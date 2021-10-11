@@ -11,6 +11,9 @@ import { makeStyles } from '@mui/styles';
 // custom components
 import Logo from '../Logo/logo'
 
+// redux store
+import { useSelector } from 'react-redux';
+
 const useStyles = makeStyles({
     profileIcon: {},
     toolbar: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles({
 export default function Header() {
 
     const classes = useStyles();
-
+    const user = useSelector(state => state.user);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleMenu = (event) => {
@@ -34,13 +37,14 @@ export default function Header() {
         setAnchorEl(null);
     };
 
+
     return (
         <AppBar>
             <Toolbar className={classes.toolbar}>
                 <Logo light />
                 <div>
                     <Avatar
-                        alt="Neil Doshi"
+                        alt={user.name}
                         src="https://lh3.googleusercontent.com/a/AATXAJynsfX2I1dcAN4Jh4QT7oxPezlIretDoipIIYln=s96-c"
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
