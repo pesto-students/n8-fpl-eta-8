@@ -1,8 +1,10 @@
 import React from 'react'
 
-import { Card, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Card, Typography, Grid } from '@mui/material'
 
 import { useStyles } from '../LeaderBoard/styles'
+
+import LeaderBoardRow from './LeaderboardRow';
 
 export default function LeaderBoard(props) {
 
@@ -19,49 +21,92 @@ export default function LeaderBoard(props) {
                     className={classes.title}>
                     Leader Board
                 </Typography>
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 320 }}
-                        aria-label="table title"
-                    >
-                        <TableHead>
-                            <TableRow>
-                                <TableCell className={classes.tableTitle}>Participant</TableCell>
-                                <TableCell className={classes.tableTitle} align="right">Average Return</TableCell>
-                                <TableCell className={classes.tableTitle}>1 Day Change</TableCell>
-                                <TableCell className={classes.tableTitle}>1 Day Rank Change</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <div className={classes.tableRow}>
-                                <TableRow>
-                                    <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
-                                    <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
-                                    <TableCell className={classes.tableCell}>+ 9.4%</TableCell>
-                                    <TableCell className={classes.tableCell}>2 postion Up</TableCell>
-                                </TableRow>
-                            </div>
-                            <TableRow className={classes.tableRow}>
-                                <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
-                                <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
-                                <TableCell className={classes.tableCell}>+ 9.4%</TableCell>
-                                <TableCell className={classes.tableCell}>2 postion Up</TableCell>
-                            </TableRow>
-                            <TableRow className={classes.tableRow}>
-                                <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
-                                <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
-                                <TableCell className={classes.tableCell}>+ 9.4%</TableCell>
-                                <TableCell className={classes.tableCell}>2 postion Up</TableCell>
-                            </TableRow>
-                            <TableRow className={classes.tableRow}>
-                                <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
-                                <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
-                                <TableCell className={classes.tableCell}>+ 9.4%</TableCell>
-                                <TableCell className={classes.tableCell}>2 postion Up</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <Grid
+                    container
+                    direction="column"
+                >
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Participant"
+                            portfolio_return="Portfolio Return"
+                            _1_day_change="1 Day Change"
+                            _1_day_position_change="1 Day Position Change"
+                            isTitle={true} />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                        <LeaderBoardRow
+                            name="Tushar L"
+                            portfolio_return="24.54%"
+                            _1_day_change="+20.12%"
+                            _1_day_position_change="+5"
+                            isTitle={false}
+                            position="1" />
+                    </Grid>
+
+                </Grid>
             </Card>
         </>
     )
