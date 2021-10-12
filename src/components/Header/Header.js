@@ -45,7 +45,7 @@ export default function Header() {
                 <div>
                     <Avatar
                         alt={user.name}
-                        src="https://lh3.googleusercontent.com/a/AATXAJynsfX2I1dcAN4Jh4QT7oxPezlIretDoipIIYln=s96-c"
+                        src={user.profileImage}
                         aria-label="account of current user"
                         aria-controls="menu-appbar"
                         aria-haspopup="true"

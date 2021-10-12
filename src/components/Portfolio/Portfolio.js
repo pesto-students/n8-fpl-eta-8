@@ -1,6 +1,11 @@
 import { Button, Card, CardContent } from "@mui/material";
 import React, { useState } from "react";
 import styled from "styled-components";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import StockPicker from "../StockPicker/StockPicker";
 
 const PortfolioCard = styled(Card)`
@@ -26,12 +31,24 @@ const SubmitPortfolio = styled(Button)`
 const SubmitPortfolioDisabled = styled(SubmitPortfolio)`
   background: #fcddec !important;
 `;
+const GoBackButton = styled(SubmitPortfolio)`
+  background: rgba(206, 61, 41, 1) !important;
+`;
 
 const stocksSelected = [];
 const questionsNumber = 5;
 
 export default function Portfolio() {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function getSelectedStocks(index, selectedStock) {
     if (selectedStock !== "") {
@@ -52,7 +69,7 @@ export default function Portfolio() {
   }
 
   function submitPortfolio() {
-    let UserConfirmation = window.confirm("Sure to submit ? Once comfirmed porfolio cannot be changed.");
+    handleClose();
   }
 
   return (
@@ -64,7 +81,7 @@ export default function Portfolio() {
             <SubmitPortfolio
               variant="contained"
               size="small"
-              onClick={submitPortfolio}
+              onClick={handleClickOpen}
             >
               Submit
             </SubmitPortfolio>
@@ -80,6 +97,26 @@ export default function Portfolio() {
           );
         })}
       </CardContent>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle>{"Sure to submit?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Once comfirmed porfolio cannot be changed.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <SubmitPortfolio variant="contained" autoFocus onClick={submitPortfolio}>
+            Confirm Portfolio
+          </SubmitPortfolio>
+          <GoBackButton variant="contained" onClick={handleClose} autoFocus>
+            Go Back
+          </GoBackButton>
+        </DialogActions>
+      </Dialog>
     </PortfolioCard>
   );
 }
