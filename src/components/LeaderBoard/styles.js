@@ -17,10 +17,13 @@ export const useStyles = makeStyles({
     tableRow:{
         border:'2px solid #7F8081',
         borderRadius:'12px',
+        marginBottom:'.5rem',
+        display: 'table-row',
     },
     tableCell:{
         fontSize:'1rem',
-        borderBottom:'none'
+        borderBottom:'none',
+        padding:'.25rem .75rem',
     },
     
 

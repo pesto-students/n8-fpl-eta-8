@@ -33,12 +33,14 @@ export default function LeaderBoard(props) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow className={classes.tableRow}>
-                                <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
-                                <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
-                                <TableCell className={classes.tableCell}>+ 9.4%</TableCell>
-                                <TableCell className={classes.tableCell}>2 postion Up</TableCell>
-                            </TableRow>
+                            <div className={classes.tableRow}>
+                                <TableRow>
+                                    <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
+                                    <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
+                                    <TableCell className={classes.tableCell}>+ 9.4%</TableCell>
+                                    <TableCell className={classes.tableCell}>2 postion Up</TableCell>
+                                </TableRow>
+                            </div>
                             <TableRow className={classes.tableRow}>
                                 <TableCell className={classes.tableCell}>1. Tushar L.</TableCell>
                                 <TableCell className={classes.tableCell} align="right"> 05.67% </TableCell>
