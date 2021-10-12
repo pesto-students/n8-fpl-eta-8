@@ -14,13 +14,27 @@ import { useHistory } from "react-router";
 import EmailLogin from "../EmailLogin/EmailLogin";
 import firebase from "../../firebase";
 
+
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store-features/user";
+
+
 export default function Login() {
   const { url, path } = useRouteMatch();
   const history = useHistory();
 
+  const dispatch = useDispatch();
+
   async function googleLogin() {
     try {
-      await firebase.loginGoogle();
+      await firebase
+        .loginGoogle()
+        .then(({ user }) => {
+
+          dispatch(setUser({ email: user.email, name: user.displayName, profileImage: user.photoURL }));
+
+          user.getIdToken().then((token) => { })
+        });
       history.push("/home");
     } catch (error) {
       alert(error.message);

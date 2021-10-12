@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, useRouteMatch } from "react-router";
 
 // mui components & hooks
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Box from "@mui/material/Box";
-import Fab from "@mui/material/Fab";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Zoom from "@mui/material/Zoom";
+import Toolbar from '@mui/material/Toolbar';
+import CssBaseline from '@mui/material/CssBaseline';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Zoom from '@mui/material/Zoom';
 
 // styling
 import { useStyles } from "./styles";
@@ -21,8 +20,8 @@ import { useStyles } from "./styles";
 import SensexChart from "./SensexChart";
 import ChallengeFilter from "./ChallengeFilter";
 import ChallengeCard from "./ChallengeCard";
-import Logo from "../Logo/logo";
 import Challenge from "../Challenge/Challenge";
+import Header from "../Header/Header";
 
 // scroll to top
 function ScrollTop(props) {
@@ -60,18 +59,34 @@ function ScrollTop(props) {
 }
 
 export default function ChallengeList(props) {
-  const classes = useStyles();
 
+  const classes = useStyles();
+  const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from REST API
+        const response = await fetch("http://localhost:8080/api/challenge/filter/STARTING_SOON");
+        if (response.status === 200) {
+          // Extract json
+          const rawData = await response.json();
+          setChallenges(rawData);
+        } else {
+          console.error(`Error ${response.status} ${response.statusText}`);
+        }
+      } catch (error) {
+        console.error(`Error ${error}`);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar>
-        <Toolbar>
-          <Logo light />
-        </Toolbar>
-      </AppBar>
+      <Header />
       <Switch>
         <Route exact path={`${path}/`}>
           <Toolbar id="back-to-top-anchor" />
@@ -86,42 +101,17 @@ export default function ChallengeList(props) {
                     <SensexChart />
                   </Grid>
                   <Grid item xs={12} elevation={10}>
-                    <Typography
-                      variant="h4"
-                      className={classes.challengeListTitle}
-                    >
-                      Pick your challenge
-                    </Typography>
-                    <Grid
-                      container
-                      direction="row"
-                      spacing={3}
-                      className={classes.challengeList}
-                    >
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
-                      <Grid item xs="12" md="12" lg="6">
-                        <ChallengeCard />
-                      </Grid>
+
+                    <Typography variant="h4" className={classes.challengeListTitle}>Pick your challenge</Typography>
+                    <Grid container direction="row" spacing={3} className={classes.challengeList}>
+                      {
+                        challenges.map((item, index) => {
+                          return (
+                            <Grid item xs="12" md="12" lg="6" key={index}>
+                              <ChallengeCard challenge={item} />
+                            </Grid>
+                          );
+                        })}
                     </Grid>
                   </Grid>
                 </Grid>

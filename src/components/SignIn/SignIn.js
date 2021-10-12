@@ -1,9 +1,20 @@
 import React, { useState } from "react";
+
+// mui components
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+
+// to style the components
 import styled from "styled-components";
+
+// auth provider
 import firebase from "../../firebase";
+
+// managing routes on authentication
 import { useHistory } from "react-router";
+
+import {  useDispatch } from "react-redux";
+import { setUser } from "../../store-features/user";
 
 const LoginButton = styled(Button)`
   background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
@@ -13,15 +24,24 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const history = useHistory();
 
   async function login() {
     try {
-      await firebase.login(email, password);
-      history.push("/home");
+      await firebase
+        .login(email, password)
+        .then(({ user }) => {
+
+          dispatch(setUser({ email: user.email, name: user.displayName, profileImage: user.photoURL }));
+          history.push("/home");
+
+        });
+
       firebase.getCurrentUsername();
     } catch (error) {
-      alert(error.message);
+      console.log(error);
     }
   }
 

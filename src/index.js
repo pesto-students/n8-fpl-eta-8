@@ -6,6 +6,10 @@ import "./index.css";
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 
+// state store - redux 
+import store from './store';
+import { Provider } from 'react-redux';
+
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
@@ -22,11 +26,13 @@ Sentry.init({
 })
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
