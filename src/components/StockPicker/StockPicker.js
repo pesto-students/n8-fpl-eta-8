@@ -43,12 +43,9 @@ export default function StockPicker(props) {
     }
   `;
 
-  function showStockField() {
-    setShowSearch(!showSearch);
-  }
-
-  function deleteStock(){
-    showStockField();
+  function deleteStock() {
+    setIsStockSelected(false);
+    setSelectedStock("Pick Stocks");
     props.getSelectedStocks(props.id, "");
   }
 
@@ -61,13 +58,13 @@ export default function StockPicker(props) {
 
   return (
     <PickStock>
-      {showSearch ? null : selectedStock}
+      {!isStockSelected && showSearch ? null : selectedStock}
       {showSearch ? (
         <AutoCompleteStockSelector selectStock={selectStock} />
       ) : isStockSelected ? (
         <DeletedStockButton onClick={deleteStock} />
       ) : (
-        <AddStockButton onClick={showStockField} />
+        <AddStockButton onClick={() => setShowSearch(true)} />
       )}
     </PickStock>
   );

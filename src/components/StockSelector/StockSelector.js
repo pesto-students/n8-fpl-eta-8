@@ -9,6 +9,7 @@ const StockPickerTextBox = styled.input.attrs({
 })`
   border: none;
   font-size: 16px;
+  width: 100%;
   &:focus-visible {
     outline: 0px;
   }
@@ -71,7 +72,7 @@ export default function StockSelector(props) {
       .catch((error) => {
         console.log(error.message);
       });
-  }, 500);
+  }, 300);
 
   function searchStock(searchKeyword) {
     if (searchKeyword.length > 0) {
