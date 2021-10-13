@@ -12,12 +12,24 @@ export const useStyles = makeStyles({
     rowTitle:{
         fontWeight:'600',
         fontSize:'1.05rem',
-        borderBottom:'none',
     },
     tableRow:{
         border:'2px solid #7F8081',
         borderRadius:'12px',
-        padding:'.5rem !important',
-        lineHeight:"1"
+        paddingBottom:'.25rem'
     }, 
+    positionChange:{
+        display:'flex',
+        alignItems:'center'
+    },
+
+    up:{
+        color:'#07A287'
+    },
+    down:{
+        color:'#F43C3C'
+    },
+    noChange:{
+        color:"#0C77F8"
+    }
 });

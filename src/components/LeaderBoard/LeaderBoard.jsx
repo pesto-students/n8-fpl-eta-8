@@ -38,7 +38,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -47,7 +47,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={0}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -56,7 +56,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={-5}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -65,7 +65,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -74,7 +74,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -83,7 +83,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -92,7 +92,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
                     </Grid>
@@ -101,7 +101,7 @@ export default function LeaderBoard(props) {
                             name="Tushar L"
                             portfolio_return="24.54%"
                             _1_day_change="+20.12%"
-                            _1_day_position_change="+5"
+                            _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
                     </Grid>

@@ -1,21 +1,38 @@
 import React from 'react'
 
+// mui components
 import { Typography, Grid } from '@mui/material'
+
+// mui icons
+import CodeIcon from '@mui/icons-material/Code';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { useStyles } from './styles'
 
 export default function LeaderBoardRow(props) {
 
     const classes = useStyles();
-    const { 
-        name, 
-        portfolio_return, 
-        _1_day_change, 
-        _1_day_position_change, 
+    const {
+        name,
+        portfolio_return,
+        _1_day_change,
+        _1_day_position_change,
         isTitle,
-         position } = props;
+        position } = props;
 
-    console.log(`Props ${JSON.stringify(props, 0, 2)}`)
+    let icon = () => { return (<CodeIcon className={classes.noChange}/>) }
+    if (_1_day_position_change > 0) {
+        icon = (text) => { return (<ExpandLessIcon className={classes.up}/>) }
+    } else if (_1_day_position_change < 0) {
+        icon = (text) => { return (<ExpandMoreIcon className={classes.down}/>) }
+    }
+
+    let positionChangeText = `no change`;
+    if (_1_day_position_change > 0) positionChangeText = ` by ${_1_day_position_change} positions`;
+    else if (_1_day_position_change < 0) positionChangeText = ` by ${(_1_day_position_change * -1)} positions`;
+
+
 
     return (
         <Grid
@@ -23,8 +40,8 @@ export default function LeaderBoardRow(props) {
             spacing={1}
             direction="row"
             justifyContent="center"
-            alignItems="center"
-            className={!isTitle && classes.tableRow} 
+            alignItems="flex-start"
+            className={!isTitle && classes.tableRow}
         >
             <Grid
                 item
@@ -33,7 +50,7 @@ export default function LeaderBoardRow(props) {
                     variant="p"
                     className={isTitle ? classes.rowTitle : null}
                 >
-                    {isTitle ?'':position+'.'} {name}
+                    {isTitle ? '' : position + '.'} {name}
                 </Typography>
             </Grid>
             <Grid
@@ -51,17 +68,18 @@ export default function LeaderBoardRow(props) {
                 <Typography
                     variant="p"
                     className={isTitle ? classes.rowTitle : null}
-
                 >{_1_day_change}
                 </Typography>
             </Grid>
             <Grid
                 item
-                xs={3} lg={3}>
-                <Typography
+                xs={3} lg={3}
+                className={classes.positionChange}>
+                {!isTitle && icon()}
+                &nbsp;<Typography
                     variant="p"
                     className={isTitle ? classes.rowTitle : null}
-                >{_1_day_position_change}
+                >{isTitle ? _1_day_position_change : positionChangeText}
                 </Typography>
             </Grid>
         </Grid>
