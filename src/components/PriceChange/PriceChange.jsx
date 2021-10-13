@@ -5,7 +5,14 @@ import { Chip } from '@mui/material'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
+import { styled } from '@mui/styles';
 
+
+const ArrowUpChip = styled(Chip)`color:'#07A287'`;
+const ArrowDownChip = styled(Chip)`color:'#F43C3C'`;
+const PauseChip = styled(Chip)`color:'#0C77F8'`;
+
+// TODO fix this component, need colors here
 
 export default function PriceChange(props) {
 
@@ -15,20 +22,30 @@ export default function PriceChange(props) {
         console.log(`direction ${direction}`)
         switch (direction) {
             case 'up':
-                return <ArrowCircleUpIcon />
+                return (
+                    <ArrowUpChip
+                        label={text}
+                        icon={<ArrowCircleUpIcon />}
+                    />
+                )
             case 'down':
-                return <ArrowCircleDownIcon />
+                return (
+                    <ArrowDownChip
+                        label={text}
+                        icon={<ArrowCircleDownIcon />}
+                    />
+                )
             case 'pause':
-                return <PauseCircleIcon />
+                return (
+                    <PauseChip
+                        label={text}
+                        icon={<PauseCircleIcon />}
+                    />
+                )
             default:
                 return ""
         }
     }
 
-    return (
-        <Chip
-            label={text}
-            icon={directionIcon(direction)}
-        />
-    )
+    return directionIcon(direction)
 }
