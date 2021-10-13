@@ -37,7 +37,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="00.00%"
                             _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
@@ -46,7 +46,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="-20.12%"
                             _1_day_position_change={0}
                             isTitle={false}
                             position="1" />
@@ -55,7 +55,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="20.12%"
                             _1_day_position_change={-5}
                             isTitle={false}
                             position="1" />
@@ -64,7 +64,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="20.12%"
                             _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
@@ -73,7 +73,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="20.12%"
                             _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
@@ -82,7 +82,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="20.12%"
                             _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
@@ -91,7 +91,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="20.12%"
                             _1_day_position_change={5}
                             isTitle={false}
                             position="1" />
@@ -100,7 +100,7 @@ export default function LeaderBoard(props) {
                         <LeaderBoardRow
                             name="Tushar L"
                             portfolio_return="24.54%"
-                            _1_day_change="+20.12%"
+                            _1_day_change="20.12%"
                             _1_day_position_change={5}
                             isTitle={false}
                             position="1" />

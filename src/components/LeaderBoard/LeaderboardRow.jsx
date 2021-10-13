@@ -10,6 +10,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { useStyles } from './styles'
 
+import PriceChange from '../PriceChange/PriceChange';
+
 export default function LeaderBoardRow(props) {
 
     const classes = useStyles();
@@ -21,18 +23,26 @@ export default function LeaderBoardRow(props) {
         isTitle,
         position } = props;
 
-    let icon = () => { return (<CodeIcon className={classes.noChange}/>) }
+    let icon = () => { return (<CodeIcon className={classes.noChange} />) }
     if (_1_day_position_change > 0) {
-        icon = (text) => { return (<ExpandLessIcon className={classes.up}/>) }
+        icon = (text) => { return (<ExpandLessIcon className={classes.up} />) }
     } else if (_1_day_position_change < 0) {
-        icon = (text) => { return (<ExpandMoreIcon className={classes.down}/>) }
+        icon = (text) => { return (<ExpandMoreIcon className={classes.down} />) }
+    }
+
+    const direction = (_1_day_change) => {
+
+        if (parseInt(_1_day_change) > 0)
+            return 'up';
+        else if (parseInt(_1_day_change) < 0)
+            return 'down';
+
+        return 'pause';
     }
 
     let positionChangeText = `no change`;
     if (_1_day_position_change > 0) positionChangeText = ` by ${_1_day_position_change} positions`;
     else if (_1_day_position_change < 0) positionChangeText = ` by ${(_1_day_position_change * -1)} positions`;
-
-
 
     return (
         <Grid
@@ -68,7 +78,9 @@ export default function LeaderBoardRow(props) {
                 <Typography
                     variant="p"
                     className={isTitle ? classes.rowTitle : null}
-                >{_1_day_change}
+                >{isTitle ?
+                    _1_day_change :
+                    <PriceChange text={_1_day_change} direction={direction(_1_day_change)} />}
                 </Typography>
             </Grid>
             <Grid
