@@ -19,7 +19,14 @@ export default function ChallengeStatus(props) {
   const { status, startDate, endDate } = props;
   const classes = useStyles(props);
 
-  const [challengeStatus, setChallengeStatus] = useState({ titleText: '', percentage: 0, duration: 0 });
+  const [challengeStatus, setChallengeStatus] =
+    useState(
+      {
+        titleText: '',
+        percentage: 0,
+        duration: 0,
+        buttonText:''
+      });
 
   useEffect(() => {
 
@@ -37,20 +44,23 @@ export default function ChallengeStatus(props) {
         setChallengeStatus({
           percentage: ((endsIn / duration) * 100),
           titleText: 'The Challenge Ends in',
-          duration: `${Math.floor(endsIn)} day`
+          duration: `${Math.floor(endsIn)} day`,
+          buttonText:'awards'
         }); break;
       case 'NOT_LIVE':
         const startsIn = (sDate - currentDate) / oneDay;
         setChallengeStatus({
           percentage: ((endsIn / duration) * 100),
           titleText: 'The Challenge Starts in',
-          duration: `${Math.floor(startsIn)} day`
+          duration: `${Math.floor(startsIn)} day`,
+          buttonText:'challenge rules'
         }); break;
       case "CLOSED":
         setChallengeStatus({
           percentage: 0,
           titleText: '',
-          duration: ``
+          duration: ``,
+          buttonText:'Claim Rewards'
         }); break;
       default:
         return 0;
@@ -97,7 +107,7 @@ export default function ChallengeStatus(props) {
             sx={{
               color: 'white',
               borderColor: 'white'
-            }}>Challenge Rules</Button>
+            }}>{challengeStatus.buttonText}</Button>
         </Grid>
       </Grid>
     </Card>
