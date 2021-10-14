@@ -11,9 +11,17 @@ import 'react-circular-progressbar/dist/styles.css'
 
 import { useStyles } from './styles'
 
-export default function ChallengeStatus() {
-  const percentage = 66;
-  const classes = useStyles();
+export default function ChallengeStatus(props) {
+
+
+  const { status, startDate, endDate } = props;
+
+  const classes = useStyles(props);
+
+  const percentage = (startDate, endDate) => {
+
+  }
+
   return (
     <Card
       variant="outlined"
@@ -52,7 +60,7 @@ export default function ChallengeStatus() {
             variant="outlined"
             sx={{
               color: 'white',
-              borderColor:'white'
+              borderColor: 'white'
             }}>Challenge Rules</Button>
         </Grid>
       </Grid>

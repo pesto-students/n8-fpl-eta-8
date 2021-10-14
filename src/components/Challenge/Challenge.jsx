@@ -49,10 +49,13 @@ export default function Challenge() {
                 direction="row"
                 spacing={2}>
                 <Grid item xs={12} md={10} lg={9}>
-                  <Portfolio />
+                  <Portfolio challengeId={challenge.id} />
                 </Grid>
                 <Grid item xs={12} md={2} lg={3}>
-                  <ChallengeStatus challenge={challenge} />
+                  <ChallengeStatus
+                    status={challenge.status}
+                    startDate={challenge.startDate}
+                    endDate={challenge.endDate} />
                 </Grid>
                 <Grid item xs={12} md={12} lg={12}>
                   <LeaderBoard />
