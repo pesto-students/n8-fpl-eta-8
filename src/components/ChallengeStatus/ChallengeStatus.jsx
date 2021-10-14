@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 // mui 
 import Card from '@mui/material/Card'
@@ -9,30 +9,54 @@ import Button from '@mui/material/Button'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
+import { Timestamp } from 'firebase/firestore'
+
 import { useStyles } from './styles'
 
 export default function ChallengeStatus(props) {
 
 
   const { status, startDate, endDate } = props;
-
-  const titleText = (status) => {
-    switch (status) {
-      case "NOT_LIVE":
-        return 'The Challenge Starts in'
-      case "LIVE":
-        return 'The Challenge Ends in'
-      case "CLOSED":
-      default:
-        return ''
-    }
-  }
-
   const classes = useStyles(props);
 
-  const percentage = (startDate, endDate) => {
+  const [challengeStatus, setChallengeStatus] = useState({ titleText: '', percentage: 0, duration: 0 });
 
-  }
+  useEffect(() => {
+
+    const currentDate = new Date();
+
+    const oneDay = (1000 * 60 * 60 * 24) //milliseconds in a day
+    const sDate = new Timestamp(startDate._seconds, startDate._nanoseconds).toDate();
+    const eDate = new Timestamp(endDate._seconds, endDate._nanoseconds).toDate();
+
+    const duration = (eDate - sDate) / oneDay;
+
+    switch (status) {
+      case 'LIVE':
+        const endsIn = (eDate - currentDate) / oneDay;
+        setChallengeStatus({
+          percentage: ((endsIn / duration) * 100),
+          titleText: 'The Challenge Ends in',
+          duration: `${Math.floor(endsIn)} day`
+        }); break;
+      case 'NOT_LIVE':
+        const startsIn = (sDate - currentDate) / oneDay;
+        setChallengeStatus({
+          percentage: ((endsIn / duration) * 100),
+          titleText: 'The Challenge Starts in',
+          duration: `${Math.floor(startsIn)} day`
+        }); break;
+      case "CLOSED":
+        setChallengeStatus({
+          percentage: 0,
+          titleText: '',
+          duration: ``
+        }); break;
+      default:
+        return 0;
+    }
+  }, [startDate, endDate, status, challengeStatus]);
+
 
   return (
     <Card
@@ -48,13 +72,13 @@ export default function ChallengeStatus(props) {
           <Typography
             variant="p"
             className={classes.text1}>
-            {titleText(status)}
+            {challengeStatus.titleText}
           </Typography>
         </Grid>
         <Grid item>
           <CircularProgressbar
-            value={percentage}
-            text={`12 days`}
+            value={challengeStatus.percentage}
+            text={challengeStatus.duration}
             strokeWidth='9'
             styles={buildStyles({
               textSize: '1rem',
