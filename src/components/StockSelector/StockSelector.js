@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { debounce } from "../common";
+import { Link } from "react-router-dom";
 
 const StockPickerTextBox = styled.input.attrs({
   type: "text",
@@ -47,6 +48,10 @@ const AddStock = styled(ViewStock)`
   margin-left: 10px !important;
   color: #1f41f7 !important;
 `;
+const StyledViewStock = styled(Link)`
+  text-decoration: none !important;
+  color: #ef5da8 !important;
+`;
 
 export default function StockSelector(props) {
   const [searchedStockList, setSearchedStockList] = useState([]);
@@ -83,8 +88,6 @@ export default function StockSelector(props) {
     }
   }
 
-  function viewStock() {}
-
   function addStock(selectedStock) {
     props.selectStock(selectedStock);
     setSearchedStockList(false);
@@ -107,9 +110,10 @@ export default function StockSelector(props) {
                   <ViewStock
                     size="small"
                     variant="outlined"
-                    onClick={viewStock}
                   >
-                    View Stock
+                    <StyledViewStock to={`/home/stock:${item["1. symbol"]}`}>
+                      View Stock
+                    </StyledViewStock>
                   </ViewStock>
                   <AddStock
                     size="small"

@@ -9,7 +9,7 @@ import { useStyles } from "./styles";
 import { Link, useRouteMatch } from "react-router-dom";
 
 export default function ChallengeCard(props) {
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
   const classes = useStyles();
   const { name, id, startDate, endDate, status } = props.challenge;
 
@@ -28,7 +28,7 @@ export default function ChallengeCard(props) {
           {s_date.toDateString()} - {e_date.toDateString()}
         </Typography>
       </div>
-      <Link to={`${url}/challenge:${id}`}>
+      <Link className={classes.styledLink} to={`${url}/challenge:${id}`}>
         <Button
           color="primary"
           fullWidth="true"
