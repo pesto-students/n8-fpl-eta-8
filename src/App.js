@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
 
+// router management
+import { Route, Switch } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+
+// page components
 import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import ChallengeList from "./components/ChallengeList/ChallengeList";
+import Challenge from "./components/Challenge/Challenge";
+
+// firebase setup
 import firebase from "./firebase";
-import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 
 function App() {
@@ -31,15 +37,10 @@ function App() {
   return firebaseInitialized !== false ? (
     <div>
       <Switch>
-        <Route exact path="/">
-          <Landing />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/home">
-        <ChallengeList />
-        </Route>
+        <Route exact path="/" component={Landing} />
+        <Route path="/login" component={Login} />
+        <Route path="/home" component={ChallengeList} />
+        <Route path="/challenge/:challengeId" component={Challenge} />
       </Switch>
     </div>
   ) : (
