@@ -10,4 +10,7 @@ export const useStyles = makeStyles({
     cardButton:{
         justifyContent:'start'
     },
+    styledLink:{
+        textDecoration:"none"
+    }
 });
