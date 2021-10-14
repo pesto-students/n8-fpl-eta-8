@@ -22,6 +22,7 @@ import ChallengeFilter from "./ChallengeFilter";
 import ChallengeCard from "./ChallengeCard/ChallengeCard";
 import Challenge from "../Challenge/Challenge";
 import Header from "../Header/Header";
+import StockDetails from "../StockDetails/StockDetails";
 
 // scroll to top
 function ScrollTop(props) {
@@ -135,6 +136,9 @@ export default function ChallengeList(props) {
         </Route>
         <Route path={`${path}/challenge:id`}>
           <Challenge />
+        </Route>
+        <Route path={`${path}/stock:id`}>
+          <StockDetails/>
         </Route>
       </Switch>
     </React.Fragment>
