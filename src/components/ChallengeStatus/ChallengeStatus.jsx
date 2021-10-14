@@ -16,6 +16,18 @@ export default function ChallengeStatus(props) {
 
   const { status, startDate, endDate } = props;
 
+  const titleText = (status) => {
+    switch (status) {
+      case "NOT_LIVE":
+        return 'The Challenge Starts in'
+      case "LIVE":
+        return 'The Challenge Ends in'
+      case "CLOSED":
+      default:
+        return ''
+    }
+  }
+
   const classes = useStyles(props);
 
   const percentage = (startDate, endDate) => {
@@ -36,7 +48,7 @@ export default function ChallengeStatus(props) {
           <Typography
             variant="p"
             className={classes.text1}>
-            The Challenge Starts in
+            {titleText(status)}
           </Typography>
         </Grid>
         <Grid item>
