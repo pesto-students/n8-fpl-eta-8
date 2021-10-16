@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 
 // mui
 import Card from "@mui/material/Card";
@@ -9,11 +9,65 @@ import Button from "@mui/material/Button";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import { useStyles } from "./styles";
+import { Timestamp } from 'firebase/firestore'
 
-export default function ChallengeStatus() {
-  const percentage = 66;
-  const classes = useStyles();
+import { useStyles } from './styles'
+
+export default function ChallengeStatus(props) {
+
+
+  const { status, startDate, endDate } = props;
+  const classes = useStyles(props);
+
+  const [challengeStatus, setChallengeStatus] =
+    useState(
+      {
+        titleText: '',
+        percentage: 0,
+        duration: 0,
+        buttonText:''
+      });
+
+  useEffect(() => {
+
+    const currentDate = new Date();
+
+    const oneDay = (1000 * 60 * 60 * 24) //milliseconds in a day
+    const sDate = new Timestamp(startDate._seconds, startDate._nanoseconds).toDate();
+    const eDate = new Timestamp(endDate._seconds, endDate._nanoseconds).toDate();
+
+    const duration = (eDate - sDate) / oneDay;
+
+    switch (status) {
+      case 'LIVE':
+        const endsIn = (eDate - currentDate) / oneDay;
+        setChallengeStatus({
+          percentage: ((endsIn / duration) * 100),
+          titleText: 'The Challenge Ends in',
+          duration: `${Math.floor(endsIn)} day`,
+          buttonText:'awards'
+        }); break;
+      case 'NOT_LIVE':
+        const startsIn = (sDate - currentDate) / oneDay;
+        setChallengeStatus({
+          percentage: ((endsIn / duration) * 100),
+          titleText: 'The Challenge Starts in',
+          duration: `${Math.floor(startsIn)} day`,
+          buttonText:'challenge rules'
+        }); break;
+      case "CLOSED":
+        setChallengeStatus({
+          percentage: 0,
+          titleText: '',
+          duration: ``,
+          buttonText:'Claim Rewards'
+        }); break;
+      default:
+        return 0;
+    }
+  }, [startDate, endDate, status, challengeStatus]);
+
+
   return (
     <Card variant="outlined" className={classes.root}>
       <Grid
@@ -25,15 +79,17 @@ export default function ChallengeStatus() {
         className={classes.content}
       >
         <Grid item>
-          <Typography variant="p" className={classes.text1}>
-            The Challenge Starts in
+          <Typography
+            variant="p"
+            className={classes.text1}>
+            {challengeStatus.titleText}
           </Typography>
         </Grid>
         <Grid item>
           <CircularProgressbar
-            value={percentage}
-            text={`12 days`}
-            strokeWidth="9"
+            value={challengeStatus.percentage}
+            text={challengeStatus.duration}
+            strokeWidth='9'
             styles={buildStyles({
               textSize: "1rem",
               pathTransitionDuration: 0.5,
@@ -49,12 +105,9 @@ export default function ChallengeStatus() {
           <Button
             variant="outlined"
             sx={{
-              color: "white",
-              borderColor: "white",
-            }}
-          >
-            Challenge Rules
-          </Button>
+              color: 'white',
+              borderColor: 'white'
+            }}>{challengeStatus.buttonText}</Button>
         </Grid>
       </Grid>
     </Card>

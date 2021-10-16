@@ -69,7 +69,7 @@ export default function ChallengeList(props) {
       try {
         // Fetch data from REST API
         const response = await fetch(
-          "http://localhost:8080/api/challenge/filter/STARTING_SOON"
+          "http://localhost:8080/api/challenge/all"
         );
         if (response.status === 200) {
           // Extract json
