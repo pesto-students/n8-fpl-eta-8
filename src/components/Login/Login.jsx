@@ -14,10 +14,8 @@ import { useHistory } from "react-router";
 import EmailLogin from "../EmailLogin/EmailLogin";
 import firebase from "../../firebase";
 
-
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store-features/user";
-
 
 export default function Login() {
   const { url, path } = useRouteMatch();
@@ -27,17 +25,39 @@ export default function Login() {
 
   async function googleLogin() {
     try {
-      await firebase
-        .loginGoogle()
-        .then(({ user }) => {
+      await firebase.loginGoogle().then(({ user }) => {
+        dispatch(
+          setUser({
+            email: user.email,
+            name: user.displayName,
+            profileImage: user.photoURL,
+          })
+        );
 
-          dispatch(setUser({ email: user.email, name: user.displayName, profileImage: user.photoURL }));
-
-          user.getIdToken().then((token) => { })
-        });
+        user.getIdToken().then((token) => {});
+      });
       history.push("/home");
     } catch (error) {
       alert(error.message);
+    }
+  }
+
+  async function demoLogin() {
+    try {
+      await firebase.login("demo@presto.com", "demopresto").then(({ user }) => {
+        dispatch(
+          setUser({
+            email: user.email,
+            name: user.displayName,
+            profileImage: user.photoURL,
+          })
+        );
+        history.push("/home");
+      });
+
+      firebase.getCurrentUsername();
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -58,6 +78,9 @@ export default function Login() {
                   <StyledStarIcon />
                   Email Sign in
                 </StyledLink>
+              </EmailButton>
+              <EmailButton variant="contained" onClick={demoLogin}>
+                Demo
               </EmailButton>
             </Route>
             <Route path={`${path}/email`}>

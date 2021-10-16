@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-// mui 
-import Card from '@mui/material/Card'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+// mui
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
-import 'react-circular-progressbar/dist/styles.css'
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 import { Timestamp } from 'firebase/firestore'
 
@@ -69,15 +69,15 @@ export default function ChallengeStatus(props) {
 
 
   return (
-    <Card
-      variant="outlined"
-      className={classes.root} >
-      <Grid container
+    <Card variant="outlined" className={classes.root}>
+      <Grid
+        container
         spacing={2}
         direction="column"
         alignItems="center"
         justifyContent="center"
-        className={classes.content}>
+        className={classes.content}
+      >
         <Grid item>
           <Typography
             variant="p"
@@ -91,12 +91,12 @@ export default function ChallengeStatus(props) {
             text={challengeStatus.duration}
             strokeWidth='9'
             styles={buildStyles({
-              textSize: '1rem',
+              textSize: "1rem",
               pathTransitionDuration: 0.5,
               pathColor: `white`,
-              textColor: 'white',
-              trailColor: '#FFFFFF66',
-              backgroundColor: '#3e98c7',
+              textColor: "white",
+              trailColor: "#FFFFFF66",
+              backgroundColor: "#3e98c7",
             })}
             className={classes.circularProgressBar}
           />
@@ -111,5 +111,5 @@ export default function ChallengeStatus(props) {
         </Grid>
       </Grid>
     </Card>
-  )
+  );
 }

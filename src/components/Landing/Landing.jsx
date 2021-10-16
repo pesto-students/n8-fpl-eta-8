@@ -14,7 +14,7 @@ export default function Landing() {
     history.push("/home");
     return null;
   }
-  
+
   return (
     <Container>
       <Grid container direction="column" alignItems="center">
