@@ -134,7 +134,7 @@ export default function ChallengeList(props) {
             </Fab>
           </ScrollTop>
         </Route>
-        <Route path={`${path}/challenge:id`}>
+        <Route path={`${path}/challenge/:challengeId`}>
           <Challenge />
         </Route>
         <Route path={`${path}/stock:id`}>
