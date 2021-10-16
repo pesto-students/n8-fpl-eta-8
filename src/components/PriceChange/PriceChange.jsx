@@ -15,8 +15,7 @@ const ArrowUpChip = withStyles({
 
         backgroundColor: '#E2FFE3',
         color: '#07A287',
-        fontSize: '1rem',
-        fontWeight: '500'
+        marginTop:'-.25rem' 
     }
 })(Chip);
 const ArrowUpIcon = withStyles({
@@ -30,8 +29,8 @@ const ArrowDownChip = withStyles({
     root: {
         backgroundColor: '#FDADAD',
         color: '#F43C3C',
-        fontSize: '1rem',
-        fontWeight: '500'
+        marginTop:'-.25rem'
+        
     }
 })(Chip);
 const ArrowDownIcon = withStyles({
@@ -44,9 +43,7 @@ const PauseChip = withStyles({
     root: {
         backgroundColor: '#AFD2FD',
         color: '#0C77F8',
-        fontSize: '1rem',
-        fontWeight: '500'
-
+        marginTop:'-.25rem'
     }
 })(Chip);
 const PauseIcon = withStyles({

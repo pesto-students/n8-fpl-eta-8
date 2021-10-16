@@ -4,6 +4,7 @@ export const useStyles = makeStyles({
     root:{
         padding:'1rem',
         borderRadius:'12px',
+        marginBottom:'2rem'
     },
     title:{
         fontWeight:'500',
@@ -16,13 +17,13 @@ export const useStyles = makeStyles({
     tableRow:{
         border:'2px solid #7F8081',
         borderRadius:'12px',
-        paddingBottom:'.25rem'
+        marginBottom:'.35rem',
+        paddingBottom:'.15rem'
     }, 
     positionChange:{
         display:'flex',
         alignItems:'center'
     },
-
     up:{
         color:'#07A287'
     },
