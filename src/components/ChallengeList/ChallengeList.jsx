@@ -138,7 +138,7 @@ export default function ChallengeList(props) {
           <Challenge />
         </Route>
         <Route path={`${path}/stock:id`}>
-          <StockDetails/>
+          <StockDetails />
         </Route>
       </Switch>
     </React.Fragment>

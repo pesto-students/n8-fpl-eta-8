@@ -42,7 +42,7 @@ export default function Login() {
     }
   }
 
-  async function login() {
+  async function demoLogin() {
     try {
       await firebase.login("demo@presto.com", "demopresto").then(({ user }) => {
         dispatch(
@@ -79,7 +79,7 @@ export default function Login() {
                   Email Sign in
                 </StyledLink>
               </EmailButton>
-              <EmailButton variant="contained" onClick={login}>
+              <EmailButton variant="contained" onClick={demoLogin}>
                 Demo
               </EmailButton>
             </Route>
