@@ -10,8 +10,11 @@ import UpdateIcon from "@mui/icons-material/Update";
 // Custom Components
 import ChallengeStatus from "../ChallengeStatus/ChallengeStatus";
 import Portfolio from "../Portfolio/Portfolio";
-import LeaderBoard from "../LeaderBoard/LeaderBoard";
+
+
 import Header from "../Header/Header";
+import LeaderBoardView from "../LeaderBoardView/LeaderBoardView";
+
 import { useStyles } from "./styles";
 
 export default function Challenge() {
@@ -70,7 +73,7 @@ export default function Challenge() {
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
-                <LeaderBoard />
+              <LeaderBoardView view="challengeRules" />
               </Grid>
             </Grid>
           </>
