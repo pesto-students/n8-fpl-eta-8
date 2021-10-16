@@ -50,7 +50,7 @@ export default function ChallengeStatus(props) {
       case 'NOT_LIVE':
         const startsIn = (sDate - currentDate) / oneDay;
         setChallengeStatus({
-          percentage: ((endsIn / duration) * 100),
+          percentage: ((startsIn / duration) * 100),
           titleText: 'The Challenge Starts in',
           duration: `${Math.floor(startsIn)} day`,
           buttonText:'challenge rules'
