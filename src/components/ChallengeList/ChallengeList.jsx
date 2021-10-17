@@ -23,6 +23,7 @@ import ChallengeCard from "./ChallengeCard/ChallengeCard";
 import Challenge from "../Challenge/Challenge";
 import Header from "../Header/Header";
 import StockDetails from "../StockDetails/StockDetails";
+import Profile from "../Profile/Profile";
 
 // scroll to top
 function ScrollTop(props) {
@@ -68,9 +69,7 @@ export default function ChallengeList(props) {
     const fetchData = async () => {
       try {
         // Fetch data from REST API
-        const response = await fetch(
-          "http://localhost:8080/api/challenge/all"
-        );
+        const response = await fetch("http://localhost:8080/api/challenge/all");
         if (response.status === 200) {
           // Extract json
           const rawData = await response.json();
@@ -137,8 +136,11 @@ export default function ChallengeList(props) {
         <Route path={`${path}/challenge/:challengeId`}>
           <Challenge />
         </Route>
-        <Route path={`${path}/stock:id`}>
+        <Route path={`${path}/stock/id`}>
           <StockDetails />
+        </Route>
+        <Route path={`${path}/profile`}>
+          <Profile />
         </Route>
       </Switch>
     </React.Fragment>
