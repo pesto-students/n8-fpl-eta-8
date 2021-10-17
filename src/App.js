@@ -5,10 +5,10 @@ import { Route, Switch } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
 // page components
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import ChallengeList from "./components/ChallengeList/ChallengeList";
-import Challenge from "./components/Challenge/Challenge";
 
 // firebase setup
 import firebase from "./firebase";
@@ -39,8 +39,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
-        <Route path="/home" component={ChallengeList} />
-        <Route path="/challenge/:challengeId" component={Challenge} />
+        <ProtectedRoute path="/home" component={ChallengeList} />
       </Switch>
     </div>
   ) : (
