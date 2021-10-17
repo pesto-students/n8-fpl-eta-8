@@ -33,11 +33,7 @@ export default function LandingHeader(props) {
     >
       <Logo></Logo>
       <Link to="/login" className={classes.link}>
-        <FplButton
-          label="Sign in / Sign up"
-          hasIcon="true"
-          icon="star"
-        ></FplButton>
+        <FplButton label="Sign in / Sign up" hasIcon="true" icon="star" />
       </Link>
     </Grid>
   );

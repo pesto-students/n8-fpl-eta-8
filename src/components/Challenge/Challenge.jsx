@@ -10,7 +10,6 @@ import UpdateIcon from "@mui/icons-material/Update";
 import ChallengeStatus from "../ChallengeStatus/ChallengeStatus";
 import Portfolio from "../Portfolio/Portfolio";
 import LeaderBoard from "../LeaderBoard/LeaderBoard";
-import Header from "../Header/Header";
 import { useStyles } from "./styles";
 
 export default function Challenge() {
@@ -38,7 +37,6 @@ export default function Challenge() {
   return (
     <>
       <Container>
-        <Header />
         {!isLoading && (
           <>
             <Typography variant="h4" className={classes.challengeTitle}>
