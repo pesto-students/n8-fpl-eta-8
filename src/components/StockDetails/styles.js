@@ -1,6 +1,9 @@
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
+    root:{
+        marginTop:'10rem',
+    },
     challengeContext:{
         marginTop:'4.4rem',
         boxShadow:'none',
