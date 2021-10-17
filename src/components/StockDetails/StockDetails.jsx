@@ -7,18 +7,20 @@ import { Container, Typography } from '@mui/material';
 import Header from '../Header/Header';
 
 import { useParams } from "react-router";
+import ChallengeContext from './ChallengeContext';
 
 
 export default function StockDetails() {
 
-  const {stock} = useParams();
+  const { stock } = useParams();
 
 
   return (
     <>
-      <Typography variant="h1">
-        {stock}
-      </Typography>
-        </>
+      <Container>
+        <Header />
+        <ChallengeContext/>                
+      </Container>
+    </>
   )
 }
