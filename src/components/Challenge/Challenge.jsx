@@ -21,6 +21,7 @@ export default function Challenge() {
   let { challengeId } = useParams();
   const [challenge, setChallenge] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [lbView, setlbView] = useState();
 
   useEffect(() => {
     console.log(
@@ -33,6 +34,13 @@ export default function Challenge() {
       .then((res) => res.json())
       .then((response) => {
         setChallenge(response);
+        switch (response.status) {
+          case 'NOT_LIVE': setlbView('notStarted'); break;
+          case 'LIVE': setlbView('leaderboard'); break;
+          case 'CLOSED': setlbView('claimRewards'); break;
+          default:
+        }
+
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
@@ -73,7 +81,7 @@ export default function Challenge() {
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
-              <LeaderBoardView view="challengeRules" />
+                <LeaderBoardView view={lbView} />
               </Grid>
             </Grid>
           </>
