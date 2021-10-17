@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "react-router";
 
 // mui
@@ -12,6 +11,7 @@ import ChallengeStatus from "../ChallengeStatus/ChallengeStatus";
 import Portfolio from "../Portfolio/Portfolio";
 import Header from "../Header/Header";
 import LeaderBoardView from "../LeaderBoardView/LeaderBoardView";
+import LeaderBoard from "../LeaderBoard/LeaderBoard";
 
 //  redux store
 import { useDispatch } from "react-redux";
@@ -56,7 +56,6 @@ export default function Challenge() {
   return (
     <>
       <Container>
-        <Header />
         {!isLoading && (
           <>
             <Typography variant="h4" className={classes.challengeTitle}>

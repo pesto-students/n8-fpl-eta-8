@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
 // page components
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import ChallengeList from "./components/ChallengeList/ChallengeList";
@@ -43,7 +44,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/challenge/:challengeId" component={Challenge} />
         <Route path="/home/stock/:stock" component={StockDetails} />
-        <Route path="/home" component={ChallengeList} />
+        <ProtectedRoute path="/home" component={ChallengeList} />
       </Switch>
     </div>
   ) : (
