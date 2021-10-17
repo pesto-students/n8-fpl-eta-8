@@ -9,14 +9,14 @@ import { useStyles } from "./styles";
 // charting from tradingview
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
 
-export default function SensexChart() {
+export default function SensexChart(props) {
   const classes = useStyles();
-
+  const symbol = props.symbol;
   return (
     <>
       <Card variant="outlined" className={classes.sensexChartCard}>
         <TradingViewWidget
-          symbol="BSE:SENSEX"
+          symbol={symbol}
           theme={Themes.LIGHT}
           locale="en"
           autosize

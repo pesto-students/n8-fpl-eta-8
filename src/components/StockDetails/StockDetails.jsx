@@ -1,7 +1,7 @@
 import React from 'react'
 
 // mui 
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography, Card } from '@mui/material';
 
 // webapp components
 import Header from '../Header/Header';
@@ -27,26 +27,54 @@ export default function StockDetails() {
           spacing={1}
           direction="row"
           className={classes.root}>
-          
+
           {/* title and stock search */}
           <Grid item xs={12} md={12} lg={12}>
-          <Grid
-          container
-          spacing={1}
-          direction="row"
-          justifyContent="space-between">
+            <Grid
+              container
+              spacing={1}
+              direction="row"
+              justifyContent="space-between">
               <Typography variant="h5">{stock}</Typography>
-              <Typography variant="p">searchbox</Typography>  
+              <Typography variant="p">searchbox</Typography>
+            </Grid>
           </Grid>
-          </Grid>
-          
-          {/* advance analytics  */}
+
+          {/* advance chart  */}
           <Grid item xs={12} md={12} lg={12}>
-            <SensexChart/>
+            <SensexChart />
           </Grid>
-        
-        
-        
+
+          {/* advance analytics */}
+          <Grid item xs={12} md={12} lg={12}>
+            <Grid
+              container
+              spacing={1}
+              direction="row">
+              <Grid item xs={12} md={5} lg={5}>
+                <Grid
+                  container
+                  spacing={1}
+                  direction="column">
+                  <Grid item xs={12}>
+                    <Card variant="outlined"></Card>
+                    {/* company overview */}
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Card variant="outlined"></Card>
+                    {/* technical analysis */}
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={7} lg={7}>
+                <Card variant="outlined"></Card>
+                {/* financial widget */}
+              </Grid>
+            </Grid>
+          </Grid>
+
+
+
         </Grid>
 
       </Container>

@@ -100,7 +100,7 @@ export default function ChallengeList(props) {
               <Grid item xs={12} lg={9} md={12}>
                 <Grid container direction="column">
                   <Grid item xs={12}>
-                    <SensexChart />
+                    <SensexChart symbol="BSE:SENSEX" />
                   </Grid>
                   <Grid item xs={12} elevation={10}>
                     <Typography
