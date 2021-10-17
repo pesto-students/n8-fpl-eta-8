@@ -136,7 +136,7 @@ export default function ChallengeList(props) {
         <Route path={`${path}/challenge/:challengeId`}>
           <Challenge />
         </Route>
-        <Route path={`${path}/stock/id`}>
+        <Route path={`${path}/stock/:id`}>
           <StockDetails />
         </Route>
         <Route path={`${path}/profile`}>

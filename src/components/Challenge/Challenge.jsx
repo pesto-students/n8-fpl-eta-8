@@ -9,9 +9,7 @@ import UpdateIcon from "@mui/icons-material/Update";
 // custom Components
 import ChallengeStatus from "../ChallengeStatus/ChallengeStatus";
 import Portfolio from "../Portfolio/Portfolio";
-import Header from "../Header/Header";
 import LeaderBoardView from "../LeaderBoardView/LeaderBoardView";
-import LeaderBoard from "../LeaderBoard/LeaderBoard";
 
 //  redux store
 import { useDispatch } from "react-redux";

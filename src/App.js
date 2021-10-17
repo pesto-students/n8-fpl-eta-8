@@ -9,27 +9,24 @@ import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import ChallengeList from "./components/ChallengeList/ChallengeList";
-import Challenge from "./components/Challenge/Challenge";
-import StockDetails from "./components/StockDetails/StockDetails";
 
 // firebase setup
 import firebase from "./firebase";
 import styled from "styled-components";
 
-const LoaderContainer = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-`;
-
 function App() {
   const [firebaseInitialized, setFirebaseInitialized] = useState(false);
 
+  const LoaderContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
 
   useEffect(() => {
     firebase.isInitialized().then((val) => {
@@ -42,8 +39,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
-        <Route path="/challenge/:challengeId" component={Challenge} />
-        <Route path="/home/stock/:stock" component={StockDetails} />
         <ProtectedRoute path="/home" component={ChallengeList} />
       </Switch>
     </div>
