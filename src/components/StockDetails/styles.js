@@ -39,6 +39,22 @@ export const useStyles = makeStyles({
             borderRadius: '.5rem'
         }
     },
+    tvWidget1_5: {
+        height: "50vh",
+        padding: ".25rem",
+        overflowY: 'scroll',
+        '&::-webkit-scrollbar': {
+            width: '0.5em',
+        },
+        '&::-webkit-scrollbar-track': {
+            background: '#FFFFFF',
+            boxShadow: 'inset 0px 4px 4px rgba(0, 0, 0, 0.25)'
+        },
+        '&::-webkit-scrollbar-thumb': {
+            background: 'linear-gradient(180deg, #3D59F7 0%, #283B9E 100%)',
+            borderRadius: '.5rem'
+        }
+    },
     tvWidget2: {
         height: "92vh",
         padding: ".25rem",

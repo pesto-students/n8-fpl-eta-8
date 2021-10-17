@@ -6,10 +6,9 @@ import { Container, Grid, Typography, Card } from '@mui/material';
 // webapp components
 import Header from '../Header/Header';
 import ChallengeContext from './ChallengeContext';
-import SensexChart from '../ChallengeList/SensexChart';
 
 // tradingView embeds
-import { TechnicalAnalysis, CompanyProfile, FundamentalData } from 'react-tradingview-embed';
+import { TechnicalAnalysis, CompanyProfile, FundamentalData, SymbolOverview } from 'react-tradingview-embed';
 
 import { useParams } from "react-router";
 
@@ -50,14 +49,25 @@ export default function StockDetails() {
               spacing={1}
               direction="row"
               justifyContent="space-between">
-              <Typography variant="h5">{stock}</Typography>
+              <Typography variant="h5">{symbol}</Typography>
               <Typography variant="p">searchbox</Typography>
             </Grid>
           </Grid>
 
           {/* advance chart  */}
           <Grid item xs={12} md={12} lg={12}>
-            <SensexChart />
+            <Card
+              variant="outlined"
+              className={classes.tvWidget1_5}>
+              <SymbolOverview
+                widgetPropsAny={{
+                  "colorTheme": "light",
+                  "symbols": [symbol],
+                  "width": '100%'
+                }}
+              />
+            </Card>
+
           </Grid>
 
           {/* advance analytics */}
@@ -114,11 +124,7 @@ export default function StockDetails() {
               </Grid>
             </Grid>
           </Grid>
-
-
-
         </Grid>
-
       </Container>
     </>
   )
