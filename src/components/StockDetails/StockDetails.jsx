@@ -1,21 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // mui 
 import { Container, Grid, Typography, Card } from '@mui/material';
 
 // webapp components
 import Header from '../Header/Header';
+import ChallengeContext from './ChallengeContext';
+import SensexChart from '../ChallengeList/SensexChart';
+
+// tradingView embeds
+import { TechnicalAnalysis, CompanyProfile, FundamentalData } from 'react-tradingview-embed';
 
 import { useParams } from "react-router";
-import ChallengeContext from './ChallengeContext';
+
 import { useStyles } from './styles';
-import SensexChart from '../ChallengeList/SensexChart';
 
 
 export default function StockDetails() {
 
   const { stock } = useParams();
   const classes = useStyles();
+  const [symbol, setSymbol] = useState();
+
+  useEffect(() => {
+
+    // split stock string
+    const split = stock.split('.');
+    if (split.length > 1)
+      setSymbol(`${split[1]}:${split[0]}`)
+    else
+      setSymbol(`${split[0]}`)
+  }, [stock])
 
   return (
     <>
@@ -57,18 +72,45 @@ export default function StockDetails() {
                   spacing={1}
                   direction="column">
                   <Grid item xs={12}>
-                    <Card variant="outlined"></Card>
-                    {/* company overview */}
+                    <Card
+                      variant="outlined"
+                      className={classes.tvWidget1}>
+                      <CompanyProfile
+                        widgetPropsAny={{
+                          "colorTheme": "light",
+                          "symbol": symbol,
+                          "width": '100%'
+                        }}
+                      />
+                    </Card>
                   </Grid>
                   <Grid item xs={12}>
-                    <Card variant="outlined"></Card>
-                    {/* technical analysis */}
+                    <Card
+                      variant="outlined"
+                      className={classes.tvWidget1}>
+                      <TechnicalAnalysis
+                        widgetPropsAny={{
+                          "colorTheme": "light",
+                          "symbol": symbol,
+                          "width": '100%'
+                        }}
+                      />
+                    </Card>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item xs={12} md={7} lg={7}>
-                <Card variant="outlined"></Card>
-                {/* financial widget */}
+                <Card
+                  variant="outlined"
+                  className={classes.tvWidget2}>
+                  <FundamentalData
+                    widgetPropsAny={{
+                      "colorTheme": "light",
+                      "symbol": symbol,
+                      "width": '100%'
+                    }}
+                  />
+                </Card>
               </Grid>
             </Grid>
           </Grid>
