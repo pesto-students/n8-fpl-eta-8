@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Typography, Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 
 import { useStyles } from "../LeaderBoard/styles";
 
@@ -11,11 +11,14 @@ export default function LeaderBoard(props) {
 
   return (
     <>
-      <Card variant="outlined" className={classes.root}>
-        <Typography variant="h5" className={classes.title}>
-          Leader Board
-        </Typography>
-        <Grid container direction="column">
+      <Typography variant="h5" className={classes.title}>
+        Leader Board
+      </Typography>
+      <div className={classes.lbContainer}>
+        <Grid
+          container
+          direction="row"
+          className={classes.container}>
           <Grid item xs={12} md={12} lg={12}>
             <LeaderBoardRow
               name="Participant"
@@ -106,7 +109,7 @@ export default function LeaderBoard(props) {
             />
           </Grid>
         </Grid>
-      </Card>
+      </div>
     </>
   );
 }

@@ -1,45 +1,84 @@
 import React from 'react'
 
 import { Chip } from '@mui/material'
+import { withStyles } from '@mui/styles';
 
+// direction icons 
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
-import { styled } from '@mui/styles';
 
 
-const ArrowUpChip = styled(Chip)`color:'#07A287'`;
-const ArrowDownChip = styled(Chip)`color:'#F43C3C'`;
-const PauseChip = styled(Chip)`color:'#0C77F8'`;
+// custom chips 
+const ArrowUpChip = withStyles({
+    root: {
 
-// TODO fix this component, need colors here
+        backgroundColor: '#E2FFE3',
+        color: '#07A287',
+        marginTop:'-.25rem' 
+    }
+})(Chip);
+const ArrowUpIcon = withStyles({
+    root: {
+        fill: '#07A287'
+    }
+})(ArrowCircleUpIcon);
+
+
+const ArrowDownChip = withStyles({
+    root: {
+        backgroundColor: '#FDADAD',
+        color: '#F43C3C',
+        marginTop:'-.25rem'
+        
+    }
+})(Chip);
+const ArrowDownIcon = withStyles({
+    root: {
+        fill: '#F43C3C'
+    }
+})(ArrowCircleDownIcon);
+
+const PauseChip = withStyles({
+    root: {
+        backgroundColor: '#AFD2FD',
+        color: '#0C77F8',
+        marginTop:'-.25rem'
+    }
+})(Chip);
+const PauseIcon = withStyles({
+    root: {
+        fill: '#0C77F8'
+    }
+})(PauseCircleIcon);
+
+
 
 export default function PriceChange(props) {
 
     const { text, direction } = props;
 
     const directionIcon = (direction) => {
-        console.log(`direction ${direction}`)
         switch (direction) {
             case 'up':
                 return (
                     <ArrowUpChip
                         label={text}
-                        icon={<ArrowCircleUpIcon />}
+                        icon={<ArrowUpIcon />}
                     />
                 )
             case 'down':
                 return (
                     <ArrowDownChip
                         label={text}
-                        icon={<ArrowCircleDownIcon />}
+                        icon={<ArrowDownIcon />}
                     />
                 )
             case 'pause':
                 return (
                     <PauseChip
                         label={text}
-                        icon={<PauseCircleIcon />}
+                        icon={<PauseIcon />}
                     />
                 )
             default:

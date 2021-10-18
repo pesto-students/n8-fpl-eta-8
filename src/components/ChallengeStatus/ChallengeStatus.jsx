@@ -9,6 +9,10 @@ import Button from "@mui/material/Button";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
+import { useDispatch } from "react-redux";
+import { setLbView } from "../../store-features/leaderboardView";
+
+
 import { Timestamp } from 'firebase/firestore'
 
 import { useStyles } from './styles'
@@ -17,6 +21,8 @@ export default function ChallengeStatus(props) {
 
 
   const { status, startDate, endDate } = props;
+  const dispatch = useDispatch();
+
   const classes = useStyles(props);
 
   const [challengeStatus, setChallengeStatus] =
@@ -25,7 +31,8 @@ export default function ChallengeStatus(props) {
         titleText: '',
         percentage: 0,
         duration: 0,
-        buttonText:''
+        buttonText: '',
+        view: ''
       });
 
   useEffect(() => {
@@ -45,28 +52,44 @@ export default function ChallengeStatus(props) {
           percentage: ((endsIn / duration) * 100),
           titleText: 'The Challenge Ends in',
           duration: `${Math.floor(endsIn)} day`,
-          buttonText:'awards'
-        }); break;
-      case 'NOT_LIVE':
+          buttonText: 'awards',
+          view: 'awards',
+        });
+        break;
+
+        case 'NOT_LIVE':
         const startsIn = (sDate - currentDate) / oneDay;
         setChallengeStatus({
-          percentage: ((endsIn / duration) * 100),
+          percentage: ((startsIn / duration) * 100),
           titleText: 'The Challenge Starts in',
           duration: `${Math.floor(startsIn)} day`,
-          buttonText:'challenge rules'
+          buttonText: 'challenge rules',
+          view: 'challengeRules'
         }); break;
-      case "CLOSED":
+
+        case "CLOSED":
         setChallengeStatus({
           percentage: 0,
           titleText: '',
           duration: ``,
-          buttonText:'Claim Rewards'
+          buttonText: 'Claim Rewards',
+          view: 'claimRewards'
         }); break;
-      default:
+
+        default:
         return 0;
     }
-  }, [startDate, endDate, status, challengeStatus]);
+  }, [startDate, endDate, status]);
 
+  const handleClick = (view) => {
+    console.log(`Click view  - ${view}`);
+    dispatch(
+      setLbView({
+        view: view
+      })
+    );
+
+  }
 
   return (
     <Card variant="outlined" className={classes.root}>
@@ -107,7 +130,9 @@ export default function ChallengeStatus(props) {
             sx={{
               color: 'white',
               borderColor: 'white'
-            }}>{challengeStatus.buttonText}</Button>
+            }}
+            onClick={() => handleClick(challengeStatus.view)}
+          >{challengeStatus.buttonText}</Button>
         </Grid>
       </Grid>
     </Card>

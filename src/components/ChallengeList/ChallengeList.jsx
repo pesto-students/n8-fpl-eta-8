@@ -99,7 +99,7 @@ export default function ChallengeList(props) {
               <Grid item xs={12} lg={9} md={12}>
                 <Grid container direction="column">
                   <Grid item xs={12}>
-                    <SensexChart />
+                    <SensexChart symbol="BSE:SENSEX" />
                   </Grid>
                   <Grid item xs={12} elevation={10}>
                     <Typography
@@ -136,7 +136,7 @@ export default function ChallengeList(props) {
         <Route path={`${path}/challenge/:challengeId`}>
           <Challenge />
         </Route>
-        <Route path={`${path}/stock/id`}>
+        <Route path={`${path}/stock/:id`}>
           <StockDetails />
         </Route>
         <Route path={`${path}/profile`}>

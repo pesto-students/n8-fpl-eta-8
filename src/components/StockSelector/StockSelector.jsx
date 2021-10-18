@@ -111,7 +111,7 @@ export default function StockSelector(props) {
                     size="small"
                     variant="outlined"
                   >
-                    <StyledViewStock to={`/home/stock:${item["1. symbol"]}`}>
+                    <StyledViewStock to={`/home/stock/${item["1. symbol"]}`}>
                       View Stock
                     </StyledViewStock>
                   </ViewStock>

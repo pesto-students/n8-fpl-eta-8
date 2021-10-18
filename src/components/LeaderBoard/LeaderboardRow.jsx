@@ -31,7 +31,6 @@ export default function LeaderBoardRow(props) {
     }
 
     const direction = (_1_day_change) => {
-
         if (parseInt(_1_day_change) > 0)
             return 'up';
         else if (parseInt(_1_day_change) < 0)
@@ -49,7 +48,6 @@ export default function LeaderBoardRow(props) {
             container
             spacing={1}
             direction="row"
-            justifyContent="center"
             alignItems="flex-start"
             className={!isTitle && classes.tableRow}
         >
@@ -80,7 +78,9 @@ export default function LeaderBoardRow(props) {
                     className={isTitle ? classes.rowTitle : null}
                 >{isTitle ?
                     _1_day_change :
-                    <PriceChange text={_1_day_change} direction={direction(_1_day_change)} />}
+                    <PriceChange 
+                        text={_1_day_change} 
+                        direction={direction(_1_day_change)} />}
                 </Typography>
             </Grid>
             <Grid
