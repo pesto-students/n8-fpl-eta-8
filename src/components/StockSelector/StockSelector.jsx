@@ -58,7 +58,7 @@ export default function StockSelector(props) {
   const [showStockSuggestionList, setShowStockSuggestionList] = useState(false);
 
   var returnedFunction = debounce(function (param) {
-    var url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=PZ28Q8TTH0NZ7WCA`;
+    var url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
     axios
       .get(url, {
         json: true,
