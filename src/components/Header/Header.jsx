@@ -19,6 +19,9 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
   },
+  link: {
+    textDecoration: "none",
+  },
 });
 
 export default function Header() {
@@ -30,7 +33,7 @@ export default function Header() {
       <Toolbar className={classes.toolbar}>
         <Logo light />
         <div>
-          <Link to={`/home/profile`}>
+          <Link className={classes.link} to={`/home/profile`}>
             <Avatar
               alt={user.name}
               src={user.profileImage}
