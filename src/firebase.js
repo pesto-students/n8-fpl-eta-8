@@ -12,13 +12,13 @@ import {
 import { getFirestore } from "firebase/firestore";
 
 const config = {
-  apiKey: "AIzaSyDB1Rb-qZEOK1TCZlNjtcSRxxJZa7vm3W8",
-  authDomain: "upbeat-button-327904.firebaseapp.com",
-  projectId: "upbeat-button-327904",
-  storageBucket: "upbeat-button-327904.appspot.com",
-  messagingSenderId: "378435873818",
-  appId: "1:378435873818:web:fb66772e7154b0a0b7f5a3",
-  measurementId: "G-BEXQFLEJBV"
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+  authDomain: process.env.REACT_APP_GOOGLE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_GOOGLE_PROJECTID,
+  storageBucket: process.env.REACT_APP_GOOGLE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_GOOGLE_MESSAGING_SENDERID,
+  appId: process.env.REACT_APP_GOOGLE_APPID,
+  measurementId: process.env.REACT_APP_GOOGLE_MEASUREMENTID
 };
 
 class Firebase {
