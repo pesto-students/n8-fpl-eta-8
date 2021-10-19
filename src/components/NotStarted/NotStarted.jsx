@@ -1,8 +1,11 @@
-import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
 import notStartedScene from '../../assets/not-started.svg';
 import { useStyles } from './styles';
+
+
+import { Grid, Typography } from '@mui/material';
+
 
 export default function NotStarted() {
     const classes = useStyles();
