@@ -32,10 +32,6 @@ export default function Challenge() {
     fetch(`${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`, {})
       .then((res) => res.json())
       .then((response) => {
-
-        // debug
-        console.log(`Fetch Challenge response - ${JSON.stringify(response, 0, 2)}`)
-
         let view = "";
         switch (response.status) {
           case 'NOT_LIVE': view = "notStarted"; break;

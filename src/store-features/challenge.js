@@ -14,10 +14,11 @@ export const challenge = createSlice({
     },
     reducers: {
         setChallengeToStore: (state, action) => {
-            const { name, startDate, endDate, status } = action.payload;
+            const { name, startDate, endDate, status, rules } = action.payload;
             state.name = name;
             state.startDate = startDate;
             state.endDate = endDate;
+            state.rules = rules;
             switch (status) {
                 case 'NOT_LIVE': state.lbView = "notStarted"; break;
                 case 'LIVE': state.lbView = "leaderboard"; break;

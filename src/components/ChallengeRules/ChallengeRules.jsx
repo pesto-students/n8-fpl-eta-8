@@ -3,19 +3,22 @@ import React from 'react';
 import { useStyles } from './styles';
 import { withStyles } from '@mui/styles';
 import { updateLbView } from './../../store-features/challenge';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 import {
     Button,
     Grid,
     List,
     ListItem,
-    ListItemButton,
     ListItemIcon,
     ListItemText,
     Typography
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 const GoBack = withStyles({
@@ -32,9 +35,14 @@ const GoBack = withStyles({
 
 
 export default function ChallengeRules() {
-    const classes = useStyles();
 
+    const classes = useStyles();
     const dispatch = useDispatch();
+    const [rules, setRules] = useState([]);
+    const _r = useSelector((state) => state.challenge.rules);
+    useEffect(() => {
+        setRules(_r);
+    }, [_r])
 
     const handleClick = () => {
         dispatch(updateLbView("notStarted"));
@@ -65,24 +73,18 @@ export default function ChallengeRules() {
                         item
                         xs={12} lg={12} md={12}
                     >
-                        {/* Iterate the rules from challenge redux store */}
                         <List>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <ArrowRightIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Inbox" />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <ArrowRightIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Drafts" />
-                                </ListItemButton>
-                            </ListItem>
+
+                            {rules.map((item, index) => {
+                                return (
+                                    <ListItem disablePadding>
+                                        <ListItemIcon>
+                                            <ArrowRightIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={item} />
+                                    </ListItem>
+                                );
+                            })}
                         </List>
                     </Grid>
 
