@@ -10,12 +10,13 @@ import {
   ProfileSideBar,
 } from "./ProfileSidebarStyle";
 import firebase from "../../firebase";
-import { useHistory } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 import StarIcon from "@mui/icons-material/Star";
 
 export default function ProfileSidebar() {
   const user = useSelector((state) => state.user);
   const history = useHistory();
+  const { url } = useRouteMatch();
 
   async function logout() {
     await firebase.logout();
@@ -31,9 +32,9 @@ export default function ProfileSidebar() {
           </div>
           <ProfileName>{user.name}</ProfileName>
           <SubscriptionType>Base Plan</SubscriptionType>
-          <StyledLink>Account Overview</StyledLink>
-          <StyledLink>Edit Profile</StyledLink>
-          <StyledLink>Change Password</StyledLink>
+          <StyledLink to={`${url}`}>Account Overview</StyledLink>
+          <StyledLink to={`${url}/edit`}>Edit Profile</StyledLink>
+          <StyledLink to={`${url}/change`}>Change Password</StyledLink>
           <Logout variant="contained" startIcon={<StarIcon />} onClick={logout}>
             Logout
           </Logout>

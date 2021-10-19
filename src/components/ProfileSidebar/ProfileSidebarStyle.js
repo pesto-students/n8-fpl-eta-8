@@ -41,6 +41,7 @@ export const ProfileSideBar = styled(Card)`
   height: 75vh;
   position: relative;
   display: none !important;
+  text-align: center;
   @media (min-width: 768px) {
     display: block !important;
   }

@@ -69,7 +69,7 @@ export default function ChallengeList(props) {
     const fetchData = async () => {
       try {
         // Fetch data from REST API
-        const response = await fetch("http://localhost:8080/api/challenge/all");
+        const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/challenge/all`);
         if (response.status === 200) {
           // Extract json
           const rawData = await response.json();
@@ -136,7 +136,7 @@ export default function ChallengeList(props) {
         <Route path={`${path}/challenge/:challengeId`}>
           <Challenge />
         </Route>
-        <Route path={`${path}/stock/:id`}>
+        <Route path={`${path}/stock/:stock`}>
           <StockDetails />
         </Route>
         <Route path={`${path}/profile`}>

@@ -29,7 +29,6 @@ export default function Challenge() {
 
 
   useEffect(() => {
-
     fetch(`${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`, {})
       .then((res) => res.json())
       .then((response) => {
