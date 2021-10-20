@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+// firebase setup
+import firebase from "./firebase";
+
+// styling 
+import styled from "styled-components";
+
 // router management
 import { Route, Switch } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
@@ -10,23 +16,19 @@ import Login from "./components/Login/Login";
 import Landing from "./components/Landing/Landing";
 import ChallengeList from "./components/ChallengeList/ChallengeList";
 
-// firebase setup
-import firebase from "./firebase";
-import styled from "styled-components";
+const LoaderContainer = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+`;
 
 function App() {
   const [firebaseInitialized, setFirebaseInitialized] = useState(false);
-
-  const LoaderContainer = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `;
 
   useEffect(() => {
     firebase.isInitialized().then((val) => {

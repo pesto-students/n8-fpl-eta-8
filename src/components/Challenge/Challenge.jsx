@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
+//  redux store
+import { useDispatch, useSelector } from "react-redux";
+import { setChallengeToStore } from "../../store-features/challenge";
+
+// styling
+import { useStyles } from "./styles";
+
 // mui
 import Container from "@mui/material/Container";
 import { Button, Grid, Typography } from "@mui/material";
@@ -11,19 +18,14 @@ import ChallengeStatus from "../ChallengeStatus/ChallengeStatus";
 import Portfolio from "../Portfolio/Portfolio";
 import LeaderBoardView from "../LeaderBoardView/LeaderBoardView";
 
-//  redux store
-import { useDispatch } from "react-redux";
-import { setLbView } from "../../store-features/leaderboardView";
-
-// styling
-import { useStyles } from "./styles";
-
 export default function Challenge() {
   let { challengeId } = useParams();
 
   const [challenge, setChallenge] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
+  const view = useSelector(state => state.challenge.lbView);
+
 
   useEffect(() => {
     fetch(
@@ -32,20 +34,16 @@ export default function Challenge() {
     )
       .then((res) => res.json())
       .then((response) => {
-        setChallenge(response);
+        let view = "";
         switch (response.status) {
-          case "NOT_LIVE":
-            dispatch(setLbView({ view: "notStarted" }));
-            break;
-          case "LIVE":
-            dispatch(setLbView({ view: "leaderboard" }));
-            break;
-          case "CLOSED":
-            dispatch(setLbView({ view: "claimReward" }));
-            break;
+          case 'NOT_LIVE': view = "notStarted"; break;
+          case 'LIVE': view = "leaderboard"; break;
+          case 'CLOSED': view = "claimRewards"; break;
           default:
         }
-
+        const c = { ...response, lbView: view };
+        dispatch(setChallengeToStore(c));
+        setChallenge(c);
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
@@ -85,7 +83,7 @@ export default function Challenge() {
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
-                <LeaderBoardView />
+                <LeaderBoardView  view={view}/>
               </Grid>
             </Grid>
           </>
