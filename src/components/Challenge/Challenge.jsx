@@ -19,7 +19,6 @@ import Portfolio from "../Portfolio/Portfolio";
 import LeaderBoardView from "../LeaderBoardView/LeaderBoardView";
 
 export default function Challenge() {
-
   let { challengeId } = useParams();
 
   const [challenge, setChallenge] = useState();
@@ -29,7 +28,10 @@ export default function Challenge() {
 
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`, {})
+    fetch(
+      `${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`,
+      {}
+    )
       .then((res) => res.json())
       .then((response) => {
         let view = "";
