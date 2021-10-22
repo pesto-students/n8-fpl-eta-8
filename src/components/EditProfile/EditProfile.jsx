@@ -1,4 +1,6 @@
 import { CardContent } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import firebase from "../../firebase";
@@ -11,10 +13,15 @@ import {
   UpdateButton,
 } from "./EditProfileStyle";
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export default function EditProfile() {
   const user = useSelector((state) => state.user);
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
+  const [open, setOpen] = React.useState(false);
 
   async function updateProfile() {
     try {
@@ -32,6 +39,7 @@ export default function EditProfile() {
     } catch (error) {
       console.log(error.message);
     }
+    setOpen(true);
   }
   return (
     <EditProfilewWrapper>
@@ -64,6 +72,15 @@ export default function EditProfile() {
           }}
         />
       </CardContent>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert severity="success" sx={{ width: "100%" }}>
+          This is a success message!
+        </Alert>
+      </Snackbar>
     </EditProfilewWrapper>
   );
 }

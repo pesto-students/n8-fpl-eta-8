@@ -77,8 +77,12 @@ export default function Changepassword() {
           }}
         />
       </CardContent>
-      <Snackbar open={open} autoHideDuration={6000}>
-        <Alert severity="success" sx={{ width: "100%" }}>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert severity="Success" sx={{ width: "100%" }}>
           This is a success message!
         </Alert>
       </Snackbar>
