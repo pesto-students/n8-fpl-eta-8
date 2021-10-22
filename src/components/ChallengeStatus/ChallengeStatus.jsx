@@ -10,12 +10,12 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 import { useDispatch } from "react-redux";
-import { setLbView } from "../../store-features/leaderboardView";
 
 
 import { Timestamp } from 'firebase/firestore'
 
 import { useStyles } from './styles'
+import { updateLbView } from '../../store-features/challenge';
 
 export default function ChallengeStatus(props) {
 
@@ -83,11 +83,7 @@ export default function ChallengeStatus(props) {
 
   const handleClick = (view) => {
     console.log(`Click view  - ${view}`);
-    dispatch(
-      setLbView({
-        view: view
-      })
-    );
+    dispatch(updateLbView(view));
 
   }
 

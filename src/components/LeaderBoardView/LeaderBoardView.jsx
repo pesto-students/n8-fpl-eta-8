@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { useStyles } from './styles';
 // mui 
 import Card from '@mui/material/Card';
 
@@ -11,13 +10,12 @@ import LeaderBoard from "../LeaderBoard/LeaderBoard"
 import ChallengeRules from "../ChallengeRules/ChallengeRules"
 
 
-import { useStyles } from './styles';
 
 
-export default function LeaderBoardView() {
+export default function LeaderBoardView(props) {
 
     const classes = useStyles();
-
+    
     const renderSwitch = (view) => {
         switch (view) {
             case 'notStarted':
@@ -39,7 +37,7 @@ export default function LeaderBoardView() {
     return (
         <Card variant="outlined" className={classes.root}>
             {
-                renderSwitch("leaderboard")
+                renderSwitch(props.view)
             }
         </Card>
     )
