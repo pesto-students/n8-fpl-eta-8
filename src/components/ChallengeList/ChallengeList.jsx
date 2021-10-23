@@ -116,7 +116,7 @@ export default function ChallengeList(props) {
                     >
                       {challenges.map((item, index) => {
                         return (
-                          <Grid item xs="12" md="12" lg="6" key={index}>
+                          <Grid item xs={12} md={12} lg={6} key={index}>
                             <ChallengeCard challenge={item} />
                           </Grid>
                         );

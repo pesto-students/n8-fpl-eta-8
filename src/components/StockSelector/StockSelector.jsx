@@ -30,6 +30,18 @@ const StockSuggestionList = styled.div`
   }
 `;
 
+const SearchItems = styled.div`
+  line-height: 48px;
+`;
+
+const SearchResultName = styled.span`
+  display: inline-block;
+  max-width: 275px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const ButtonContainer = styled.div`
   float: right;
   display: inline-block;
@@ -56,6 +68,7 @@ const StyledViewStock = styled(Link)`
 export default function StockSelector(props) {
   const [searchedStockList, setSearchedStockList] = useState([]);
   const [showStockSuggestionList, setShowStockSuggestionList] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   var returnedFunction = debounce(function (param) {
     var url = `${process.env.REACT_APP_ALPHAVANTAGE_URL}/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
@@ -97,33 +110,45 @@ export default function StockSelector(props) {
     <div>
       <StockPickerTextBox
         type="text"
-        placeholder="Add Stock to your List"
-        onChange={(e) => searchStock(e.target.value)}
+        placeholder={
+          props.stockDetails ? "Search Stock" : "Add Stock to your List"
+        }
+        onChange={(e) => {
+          setSearchQuery(e.target.value);
+          searchStock(searchQuery);
+        }}
+        value={searchQuery}
       />
       {searchedStockList.length > 0 && showStockSuggestionList ? (
         <StockSuggestionList>
           {searchedStockList.map((item) => {
             return (
-              <div key={item["1. symbol"]}>
-                <span>{item["2. name"]}</span>
+              <SearchItems key={item["1. symbol"]}>
+                <SearchResultName>{item["2. name"]}</SearchResultName>
                 <ButtonContainer>
                   <ViewStock
                     size="small"
                     variant="outlined"
+                    onClick={() => {
+                      setShowStockSuggestionList(false);
+                      setSearchQuery("");
+                    }}
                   >
                     <StyledViewStock to={`/home/stock/${item["1. symbol"]}`}>
                       View Stock
                     </StyledViewStock>
                   </ViewStock>
-                  <AddStock
-                    size="small"
-                    variant="outlined"
-                    onClick={() => addStock(item["2. name"])}
-                  >
-                    Add Stock
-                  </AddStock>
+                  {props.stockDetails ? null : (
+                    <AddStock
+                      size="small"
+                      variant="outlined"
+                      onClick={() => addStock(item["2. name"])}
+                    >
+                      Add Stock
+                    </AddStock>
+                  )}
                 </ButtonContainer>
-              </div>
+              </SearchItems>
             );
           })}
         </StockSuggestionList>
