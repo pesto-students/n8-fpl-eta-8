@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Grid } from "@mui/material";
 import { ref, onValue } from 'firebase/database';
-
+import { useSelector } from "react-redux";
 
 import Firebase from '../../firebase';
 import { useStyles } from "../LeaderBoard/styles";
@@ -10,12 +10,15 @@ import LeaderBoardRow from "./LeaderboardRow";
 export default function LeaderBoard(props) {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
-  const leaderboardId = '1c2628cd-fff8-40da-a477-867a9a9b5d53';
+  const leaderboardId = useSelector(state => {
+    console.log(state.challenge);
+    return state.challenge.leaderboard
+  });
   useEffect(() => {
     const db = Firebase.realTimeDB;
-    const r = ref(db, `Leaderboard/${leaderboardId}`);
+    const r = ref(db, `Leaderboard/${leaderboardId}/l`);
     onValue(r, (snapshot) => {
-      setRows(snapshot.val().l);
+      setRows(snapshot.val());
     }, {
       onlyOnce: false
     });

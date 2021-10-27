@@ -25,10 +25,17 @@ export default function StockDetails() {
   const [symbol, setSymbol] = useState();
 
   useEffect(() => {
-    // split stock string
-    const split = stock.split(".");
-    if (split.length > 1) setSymbol(`${split[1]}:${split[0]}`);
-    else setSymbol(`${split[0]}`);
+    const securityCode = stock.split(".")[0];
+    fetch(
+      `${process.env.REACT_APP_API_SERVER}/api/lookup/${securityCode}`,
+      {}
+    )
+      .then((res) => res.json())
+      .then((response) => {
+        const securityId = response[0].securityId;
+        setSymbol(securityId);
+      })
+      .catch((error) => console.log(error));
   }, [stock]);
 
   return (
@@ -45,7 +52,7 @@ export default function StockDetails() {
               justifyContent="space-between"
             >
               <Typography variant="h5">{symbol}</Typography>
-              <StockSelector stockDetails={true}/>
+              <StockSelector stockDetails={true} />
             </Grid>
           </Grid>
 
