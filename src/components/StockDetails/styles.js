@@ -40,7 +40,7 @@ export const useStyles = makeStyles({
         }
     },
     tvWidget1_5: {
-        height: "50vh",
+        height: "55vh",
         padding: ".25rem",
         overflowY: 'scroll',
         '&::-webkit-scrollbar': {

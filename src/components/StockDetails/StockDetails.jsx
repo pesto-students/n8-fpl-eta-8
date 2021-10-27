@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-// mui
+// Libraries
 import { Container, Grid, Typography, Card } from "@mui/material";
 
-// webapp components
-import ChallengeContext from "./ChallengeContext";
-import StockSelector from "../StockSelector/StockSelector";
-
-// tradingView embeds
 import {
   TechnicalAnalysis,
   CompanyProfile,
@@ -17,7 +12,14 @@ import {
 
 import { useParams } from "react-router";
 
+
+// Custom Components
+import ChallengeContext from "./ChallengeContext";
+import StockSelector from "../StockSelector/StockSelector";
+
 import { useStyles } from "./styles";
+
+
 
 export default function StockDetails() {
   const { stock } = useParams();
@@ -41,7 +43,7 @@ export default function StockDetails() {
   return (
     <>
       <Container>
-        <ChallengeContext />
+        <ChallengeContext  />
         <Grid container spacing={1} direction="row" className={classes.root}>
           {/* title and stock search */}
           <Grid item xs={12} md={12} lg={12}>

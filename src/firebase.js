@@ -26,7 +26,6 @@ const config = {
   appId: process.env.REACT_APP_GOOGLE_APPID,
   measurementId: process.env.REACT_APP_GOOGLE_MEASUREMENTID,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
-
 };
 
 class Firebase {
