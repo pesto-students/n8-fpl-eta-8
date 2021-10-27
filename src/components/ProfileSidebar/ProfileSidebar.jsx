@@ -11,6 +11,7 @@ import {
   StyledLink,
   SubscriptionType,
   ProfileSideBar,
+  ProfileAvatar,
 } from "./ProfileSidebarStyle";
 
 export default function ProfileSidebar() {
@@ -28,7 +29,11 @@ export default function ProfileSidebar() {
       <ProfileSideBar>
         <CardContent>
           <div>
-            <ProfileImg src={user.profileImage} alt={user.name} />
+            {user.profileImage ? (
+              <ProfileImg src={user.profileImage} alt={user.name} />
+            ) : (
+              <ProfileAvatar>{user.name.charAt(0).toUpperCase()}</ProfileAvatar>
+            )}
           </div>
           <ProfileName>{user.name}</ProfileName>
           <SubscriptionType>Base Plan</SubscriptionType>

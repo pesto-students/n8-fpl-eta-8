@@ -1,9 +1,13 @@
-import { Button, Card } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Avatar, Button, Card } from "@mui/material";
 import styled from "styled-components";
 
 export const ProfileImg = styled.img`
   border-radius: 48px;
+`;
+
+export const ProfileAvatar = styled(Avatar)`
+  margin: 0 auto;
 `;
 
 export const StyledLink = styled(Link)`
@@ -25,6 +29,7 @@ export const ProfileName = styled.div`
   font-weight: bold;
   font-size: 14px;
   padding-top: 7px;
+  text-transform: uppercase;
 `;
 
 export const Logout = styled(Button)`
