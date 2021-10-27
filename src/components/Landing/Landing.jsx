@@ -1,10 +1,12 @@
 import React from "react";
-import LandingHeader from "../LandingHeader/LandingHeader";
-import LandingMain from "../LandingMain/LandingMain";
+import { useHistory } from "react-router";
+
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import firebase from "../../firebase";
-import { useHistory } from "react-router";
+
+import LandingHeader from "components/LandingHeader/LandingHeader";
+import LandingMain from "components/LandingMain/LandingMain";
+import firebase from "firebase";
 
 export default function Landing() {
   const history = useHistory();

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Typography, Grid } from "@mui/material";
 
-import { useStyles } from "../LeaderBoard/styles";
+import { useStyles } from "components/LeaderBoard/styles";
 
 import LeaderBoardRow from "./LeaderboardRow";
 

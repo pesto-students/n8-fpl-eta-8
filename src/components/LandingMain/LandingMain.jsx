@@ -5,8 +5,8 @@ import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
 
 //  Assets 
-import landingImg from '../../assets/landing-img.png';
-import landingMainBg from '../../assets/landing-main-bg.svg';
+import landingImg from 'assets/landing-img.png';
+import landingMainBg from 'assets/landing-main-bg.svg';
 
 
 // routing 

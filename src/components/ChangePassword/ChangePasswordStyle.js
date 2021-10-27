@@ -1,12 +1,12 @@
 import { Button, Card, TextField } from "@mui/material";
 import styled from "styled-components";
 
-export const EditProfilewWrapper = styled(Card)`
+export const ChangePasswordwWrapper = styled(Card)`
   margin-top: 16px;
   height: calc(100% - 28%);
 `;
 
-export const EditProfileTitle = styled.div`
+export const ChangeProfileTitle = styled.div`
   font-size: 32px;
   font-weight: bold;
 `;
@@ -22,7 +22,7 @@ export const ProfileLabel = styled.div`
   font-size: 14px;
   line-height: 21px;
   color: #10182b;
-  margin-top: 15px;
+  margin-top: 10px;
   opacity: 0.6;
 `;
 

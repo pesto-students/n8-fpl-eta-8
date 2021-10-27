@@ -8,6 +8,10 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  updateEmail,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  updatePassword,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
@@ -18,7 +22,7 @@ const config = {
   storageBucket: process.env.REACT_APP_GOOGLE_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_GOOGLE_MESSAGING_SENDERID,
   appId: process.env.REACT_APP_GOOGLE_APPID,
-  measurementId: process.env.REACT_APP_GOOGLE_MEASUREMENTID
+  measurementId: process.env.REACT_APP_GOOGLE_MEASUREMENTID,
 };
 
 class Firebase {
@@ -28,8 +32,6 @@ class Firebase {
     this.db = getFirestore(app);
     this.provider = new GoogleAuthProvider();
     this.auth.languageCode = "en";
-
-    
   }
 
   login(email, password) {
@@ -61,6 +63,26 @@ class Firebase {
     return this.auth.currentUser && this.auth.currentUser.displayName;
   }
 
+  updateUserName(userName) {
+    return updateProfile(this.auth.currentUser, {
+      displayName: userName,
+    });
+  }
+
+  updateUserEmail(emailAddress) {
+    return updateEmail(this.auth.currentUser, emailAddress);
+  }
+
+  reLogin(username, password) {
+    return reauthenticateWithCredential(
+      this.auth.currentUser,
+      EmailAuthProvider.credential(username, password)
+    );
+  }
+
+  setNewPassword(newPassword) {
+    return updatePassword(this.auth.currentUser, newPassword);
+  }
 }
 
 export default new Firebase();

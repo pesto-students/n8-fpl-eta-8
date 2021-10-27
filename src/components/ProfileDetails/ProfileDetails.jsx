@@ -9,13 +9,13 @@ import {
   TotalChallenges,
 } from "./ProfileDetailsStyle";
 import { Route, Switch, useRouteMatch } from "react-router";
-import AccountOverview from "../AccountOverview/AccountOverview";
-import EditProfile from "../EditProfile/EditProfile";
-import ChangePassword from "../ChangePassword/ChangePassword";
+import AccountOverview from "components/AccountOverview/AccountOverview";
+import EditProfile from "components/EditProfile/EditProfile";
+import ChangePassword from "components/ChangePassword/ChangePassword";
 
 export default function ProfileDetails() {
   const { path } = useRouteMatch();
-  
+
   return (
     <>
       <Grid container direction="row" spacing={2}>
@@ -59,7 +59,6 @@ export default function ProfileDetails() {
         <Route exact path={`${path}/edit`} component={EditProfile} />
         <Route exact path={`${path}/change`} component={ChangePassword} />
       </Switch>
-      
     </>
   );
 }

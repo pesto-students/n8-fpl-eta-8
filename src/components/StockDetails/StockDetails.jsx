@@ -1,108 +1,89 @@
-import React, { useEffect, useState } from 'react'
-
-// mui 
-import { Container, Grid, Typography, Card } from '@mui/material';
-
-// webapp components
-import Header from '../Header/Header';
-import ChallengeContext from './ChallengeContext';
-
-// tradingView embeds
-import { TechnicalAnalysis, CompanyProfile, FundamentalData, SymbolOverview } from 'react-tradingview-embed';
-
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { useStyles } from './styles';
+// mui
+import { Container, Grid, Typography, Card } from "@mui/material";
 
+// webapp components
+import ChallengeContext from "./ChallengeContext";
+import StockSelector from "components/StockSelector/StockSelector";
+
+// tradingView embeds
+import {
+  TechnicalAnalysis,
+  CompanyProfile,
+  FundamentalData,
+  SymbolOverview,
+} from "react-tradingview-embed";
+
+import { useStyles } from "./styles";
 
 export default function StockDetails() {
-
   const { stock } = useParams();
   const classes = useStyles();
   const [symbol, setSymbol] = useState();
 
   useEffect(() => {
-
     // split stock string
-    const split = stock.split('.');
-    if (split.length > 1)
-      setSymbol(`${split[1]}:${split[0]}`)
-    else
-      setSymbol(`${split[0]}`)
-  }, [stock])
+    const split = stock.split(".");
+    if (split.length > 1) setSymbol(`${split[1]}:${split[0]}`);
+    else setSymbol(`${split[0]}`);
+  }, [stock]);
 
   return (
     <>
       <Container>
-        <Header />
         <ChallengeContext />
-        <Grid
-          container
-          spacing={1}
-          direction="row"
-          className={classes.root}>
-
+        <Grid container spacing={1} direction="row" className={classes.root}>
           {/* title and stock search */}
           <Grid item xs={12} md={12} lg={12}>
             <Grid
               container
               spacing={1}
               direction="row"
-              justifyContent="space-between">
+              justifyContent="space-between"
+            >
               <Typography variant="h5">{symbol}</Typography>
-              <Typography variant="p">searchbox</Typography>
+              <StockSelector stockDetails={true} />
             </Grid>
           </Grid>
 
           {/* advance chart  */}
           <Grid item xs={12} md={12} lg={12}>
-            <Card
-              variant="outlined"
-              className={classes.tvWidget1_5}>
+            <Card variant="outlined" className={classes.tvWidget1_5}>
               <SymbolOverview
                 widgetPropsAny={{
-                  "colorTheme": "light",
-                  "symbols": [symbol],
-                  "width": '100%'
+                  colorTheme: "light",
+                  symbols: [symbol],
+                  width: "100%",
                 }}
               />
             </Card>
-
           </Grid>
 
           {/* advance analytics */}
           <Grid item xs={12} md={12} lg={12}>
-            <Grid
-              container
-              spacing={1}
-              direction="row">
+            <Grid container spacing={1} direction="row">
               <Grid item xs={12} md={5} lg={5}>
-                <Grid
-                  container
-                  spacing={1}
-                  direction="column">
+                <Grid container spacing={1} direction="column">
                   <Grid item xs={12}>
-                    <Card
-                      variant="outlined"
-                      className={classes.tvWidget1}>
+                    <Card variant="outlined" className={classes.tvWidget1}>
                       <CompanyProfile
                         widgetPropsAny={{
-                          "colorTheme": "light",
-                          "symbol": symbol,
-                          "width": '100%'
+                          colorTheme: "light",
+                          symbol: symbol,
+                          width: "100%",
                         }}
                       />
                     </Card>
                   </Grid>
                   <Grid item xs={12}>
-                    <Card
-                      variant="outlined"
-                      className={classes.tvWidget1}>
+                    <Card variant="outlined" className={classes.tvWidget1}>
                       <TechnicalAnalysis
                         widgetPropsAny={{
-                          "colorTheme": "light",
-                          "symbol": symbol,
-                          "width": '100%'
+                          colorTheme: "light",
+                          symbol: symbol,
+                          width: "100%",
                         }}
                       />
                     </Card>
@@ -110,14 +91,12 @@ export default function StockDetails() {
                 </Grid>
               </Grid>
               <Grid item xs={12} md={7} lg={7}>
-                <Card
-                  variant="outlined"
-                  className={classes.tvWidget2}>
+                <Card variant="outlined" className={classes.tvWidget2}>
                   <FundamentalData
                     widgetPropsAny={{
-                      "colorTheme": "light",
-                      "symbol": symbol,
-                      "width": '100%'
+                      colorTheme: "light",
+                      symbol: symbol,
+                      width: "100%",
                     }}
                   />
                 </Card>
@@ -127,5 +106,5 @@ export default function StockDetails() {
         </Grid>
       </Container>
     </>
-  )
+  );
 }

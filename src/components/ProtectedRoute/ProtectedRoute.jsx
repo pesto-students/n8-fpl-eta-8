@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import firebase from "../../firebase";
+import firebase from "firebase";
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (

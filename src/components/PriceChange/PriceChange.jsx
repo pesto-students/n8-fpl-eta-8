@@ -1,90 +1,68 @@
-import React from 'react'
+import React from "react";
 
-import { Chip } from '@mui/material'
-import { withStyles } from '@mui/styles';
+import { Chip } from "@mui/material";
+import { withStyles } from "@mui/styles";
 
-// direction icons 
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
-import PauseCircleIcon from '@mui/icons-material/PauseCircle';
+// direction icons
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 
-
-// custom chips 
+// custom chips
 const ArrowUpChip = withStyles({
-    root: {
-
-        backgroundColor: '#E2FFE3',
-        color: '#07A287',
-        marginTop:'-.25rem' 
-    }
+  root: {
+    backgroundColor: "#E2FFE3",
+    color: "#07A287",
+    marginTop: "-.25rem",
+  },
 })(Chip);
 const ArrowUpIcon = withStyles({
-    root: {
-        fill: '#07A287'
-    }
+  root: {
+    fill: "#07A287",
+  },
 })(ArrowCircleUpIcon);
 
-
 const ArrowDownChip = withStyles({
-    root: {
-        backgroundColor: '#FDADAD',
-        color: '#F43C3C',
-        marginTop:'-.25rem'
-        
-    }
+  root: {
+    backgroundColor: "#FDADAD",
+    color: "#F43C3C",
+    marginTop: "-.25rem",
+  },
 })(Chip);
 const ArrowDownIcon = withStyles({
-    root: {
-        fill: '#F43C3C'
-    }
+  root: {
+    fill: "#F43C3C",
+  },
 })(ArrowCircleDownIcon);
 
 const PauseChip = withStyles({
-    root: {
-        backgroundColor: '#AFD2FD',
-        color: '#0C77F8',
-        marginTop:'-.25rem'
-    }
+  root: {
+    backgroundColor: "#AFD2FD",
+    color: "#0C77F8",
+    marginTop: "-.25rem",
+  },
 })(Chip);
 const PauseIcon = withStyles({
-    root: {
-        fill: '#0C77F8'
-    }
+  root: {
+    fill: "#0C77F8",
+  },
 })(PauseCircleIcon);
 
-
-
 export default function PriceChange(props) {
+  const { text, direction } = props;
 
-    const { text, direction } = props;
-
-    const directionIcon = (direction) => {
-        switch (direction) {
-            case 'up':
-                return (
-                    <ArrowUpChip
-                        label={text}
-                        icon={<ArrowUpIcon />}
-                    />
-                )
-            case 'down':
-                return (
-                    <ArrowDownChip
-                        label={text}
-                        icon={<ArrowDownIcon />}
-                    />
-                )
-            case 'pause':
-                return (
-                    <PauseChip
-                        label={text}
-                        icon={<PauseIcon />}
-                    />
-                )
-            default:
-                return ""
-        }
+  const directionIcon = (direction) => {
+    switch (direction) {
+      case "up":
+        return <ArrowUpChip label={text} icon={<ArrowUpIcon />} />;
+      case "down":
+        return <ArrowDownChip label={text} icon={<ArrowDownIcon />} />;
+      case "pause":
+        return <PauseChip label={text} icon={<PauseIcon />} />;
+      default:
+        return "";
     }
+  };
 
-    return directionIcon(direction)
+  return directionIcon(direction);
 }

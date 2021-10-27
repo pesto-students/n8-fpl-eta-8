@@ -1,9 +1,9 @@
-import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button } from "@mui/material";
-import firebase from "../../firebase";
 import { useHistory } from "react-router";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
+import styled from "styled-components";
+import firebase from "firebase";
 
 const LoginButton = styled(Button)`
   background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);

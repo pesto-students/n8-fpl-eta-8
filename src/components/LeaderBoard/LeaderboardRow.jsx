@@ -50,6 +50,7 @@ export default function LeaderBoardRow(props) {
             direction="row"
             alignItems="flex-start"
             className={!isTitle && classes.tableRow}
+            responsive={true}
         >
             <Grid
                 item

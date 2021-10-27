@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 // mui
 import Card from "@mui/material/Card";
@@ -8,88 +9,81 @@ import Button from "@mui/material/Button";
 
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
-import { useDispatch } from "react-redux";
-import { setLbView } from "../../store-features/leaderboardView";
-
-
-import { Timestamp } from 'firebase/firestore'
-
-import { useStyles } from './styles'
+import { Timestamp } from "firebase/firestore";
+import { useStyles } from "./styles";
+import { updateLbView } from "store-features/challenge";
 
 export default function ChallengeStatus(props) {
-
-
   const { status, startDate, endDate } = props;
   const dispatch = useDispatch();
 
   const classes = useStyles(props);
 
-  const [challengeStatus, setChallengeStatus] =
-    useState(
-      {
-        titleText: '',
-        percentage: 0,
-        duration: 0,
-        buttonText: '',
-        view: ''
-      });
+  const [challengeStatus, setChallengeStatus] = useState({
+    titleText: "",
+    percentage: 0,
+    duration: 0,
+    buttonText: "",
+    view: "",
+  });
 
   useEffect(() => {
-
     const currentDate = new Date();
 
-    const oneDay = (1000 * 60 * 60 * 24) //milliseconds in a day
-    const sDate = new Timestamp(startDate._seconds, startDate._nanoseconds).toDate();
-    const eDate = new Timestamp(endDate._seconds, endDate._nanoseconds).toDate();
+    const oneDay = 1000 * 60 * 60 * 24; //milliseconds in a day
+    const sDate = new Timestamp(
+      startDate._seconds,
+      startDate._nanoseconds
+    ).toDate();
+    const eDate = new Timestamp(
+      endDate._seconds,
+      endDate._nanoseconds
+    ).toDate();
 
     const duration = (eDate - sDate) / oneDay;
 
     switch (status) {
-      case 'LIVE':
+      case "LIVE":
         const endsIn = (eDate - currentDate) / oneDay;
         setChallengeStatus({
-          percentage: ((endsIn / duration) * 100),
-          titleText: 'The Challenge Ends in',
+          percentage: (endsIn / duration) * 100,
+          titleText: "The Challenge Ends in",
           duration: `${Math.floor(endsIn)} day`,
-          buttonText: 'awards',
-          view: 'awards',
+          buttonText: "awards",
+          view: "awards",
         });
         break;
 
-        case 'NOT_LIVE':
+      case "NOT_LIVE":
         const startsIn = (sDate - currentDate) / oneDay;
         setChallengeStatus({
-          percentage: ((startsIn / duration) * 100),
-          titleText: 'The Challenge Starts in',
+          percentage: (startsIn / duration) * 100,
+          titleText: "The Challenge Starts in",
           duration: `${Math.floor(startsIn)} day`,
-          buttonText: 'challenge rules',
-          view: 'challengeRules'
-        }); break;
+          buttonText: "challenge rules",
+          view: "challengeRules",
+        });
+        break;
 
-        case "CLOSED":
+      case "CLOSED":
         setChallengeStatus({
           percentage: 0,
-          titleText: '',
+          titleText: "",
           duration: ``,
-          buttonText: 'Claim Rewards',
-          view: 'claimRewards'
-        }); break;
+          buttonText: "Claim Rewards",
+          view: "claimRewards",
+        });
+        break;
 
-        default:
+      default:
         return 0;
     }
   }, [startDate, endDate, status]);
 
   const handleClick = (view) => {
     console.log(`Click view  - ${view}`);
-    dispatch(
-      setLbView({
-        view: view
-      })
-    );
-
-  }
+    dispatch(updateLbView(view));
+  };
 
   return (
     <Card variant="outlined" className={classes.root}>
@@ -102,9 +96,7 @@ export default function ChallengeStatus(props) {
         className={classes.content}
       >
         <Grid item>
-          <Typography
-            variant="p"
-            className={classes.text1}>
+          <Typography variant="p" className={classes.text1}>
             {challengeStatus.titleText}
           </Typography>
         </Grid>
@@ -112,7 +104,7 @@ export default function ChallengeStatus(props) {
           <CircularProgressbar
             value={challengeStatus.percentage}
             text={challengeStatus.duration}
-            strokeWidth='9'
+            strokeWidth="9"
             styles={buildStyles({
               textSize: "1rem",
               pathTransitionDuration: 0.5,
@@ -128,11 +120,13 @@ export default function ChallengeStatus(props) {
           <Button
             variant="outlined"
             sx={{
-              color: 'white',
-              borderColor: 'white'
+              color: "white",
+              borderColor: "white",
             }}
             onClick={() => handleClick(challengeStatus.view)}
-          >{challengeStatus.buttonText}</Button>
+          >
+            {challengeStatus.buttonText}
+          </Button>
         </Grid>
       </Grid>
     </Card>

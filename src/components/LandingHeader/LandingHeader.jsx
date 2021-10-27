@@ -1,15 +1,15 @@
 import React from "react";
 
+// Routing
+import { Link } from "react-router-dom";
+
 // Material Components and hooks
-import Logo from "../Logo/logo";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 
 // Custom components
+import Logo from "components/Logo/logo";
 import FplButton from "../FplButton/FplButton";
-
-// Routing
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {

@@ -1,7 +1,7 @@
-import { CardContent } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import PlanSubscription from "../PlanSubscription/PlanSubscription";
+import { CardContent } from "@mui/material";
+import PlanSubscription from "components/PlanSubscription/PlanSubscription";
 import {
   AccountOverviewTitle,
   AccountOverviewWrapper,
