@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 //  redux store
 import { useDispatch, useSelector } from "react-redux";
-import { setChallengeToStore } from "../../store-features/challenge";
+import { setChallengeToStore } from "store-features/challenge";
 
 // styling
 import { useStyles } from "./styles";
@@ -14,9 +14,9 @@ import { Button, Grid, Typography } from "@mui/material";
 import UpdateIcon from "@mui/icons-material/Update";
 
 // custom Components
-import ChallengeStatus from "../ChallengeStatus/ChallengeStatus";
-import Portfolio from "../Portfolio/Portfolio";
-import LeaderBoardView from "../LeaderBoardView/LeaderBoardView";
+import ChallengeStatus from "components/ChallengeStatus/ChallengeStatus";
+import Portfolio from "components/Portfolio/Portfolio";
+import LeaderBoardView from "components/LeaderBoardView/LeaderBoardView";
 
 export default function Challenge() {
   let { challengeId } = useParams();
@@ -24,8 +24,7 @@ export default function Challenge() {
   const [challenge, setChallenge] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const view = useSelector(state => state.challenge.lbView);
-
+  const view = useSelector((state) => state.challenge.lbView);
 
   useEffect(() => {
     fetch(
@@ -36,9 +35,15 @@ export default function Challenge() {
       .then((response) => {
         let view = "";
         switch (response.status) {
-          case 'NOT_LIVE': view = "notStarted"; break;
-          case 'LIVE': view = "leaderboard"; break;
-          case 'CLOSED': view = "claimRewards"; break;
+          case "NOT_LIVE":
+            view = "notStarted";
+            break;
+          case "LIVE":
+            view = "leaderboard";
+            break;
+          case "CLOSED":
+            view = "claimRewards";
+            break;
           default:
         }
         const c = { ...response, lbView: view };
@@ -83,7 +88,7 @@ export default function Challenge() {
                 />
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
-                <LeaderBoardView  view={view}/>
+                <LeaderBoardView view={view} />
               </Grid>
             </Grid>
           </>

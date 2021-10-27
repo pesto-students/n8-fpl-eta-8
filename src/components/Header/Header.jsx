@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import { makeStyles } from "@mui/styles";
 
 // custom components
-import Logo from "../Logo/logo";
+import Logo from "components/Logo/logo";
 
 // redux store
 import { useSelector } from "react-redux";
@@ -31,7 +31,9 @@ export default function Header() {
   return (
     <AppBar>
       <Toolbar className={classes.toolbar}>
-        <Logo light />
+        <Link className={classes.link} to={`/home`}>
+          <Logo light />
+        </Link>
         <div>
           <Link className={classes.link} to={`/home/profile`}>
             <Avatar

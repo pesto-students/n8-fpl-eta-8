@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+// managing routes on authentication
+import { useHistory } from "react-router";
 
 // mui components
 import TextField from "@mui/material/TextField";
@@ -8,13 +12,9 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 
 // auth provider
-import firebase from "../../firebase";
+import firebase from "firebase";
 
-// managing routes on authentication
-import { useHistory } from "react-router";
-
-import { useDispatch } from "react-redux";
-import { setUser } from "../../store-features/user";
+import { setUser } from "store-features/user";
 
 const LoginButton = styled(Button)`
   background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);

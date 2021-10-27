@@ -23,19 +23,24 @@ export default function Changepassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [notificationMessage, setNotificationMsg] = useState("");
+  const [severity, setSeverity] = useState("info");
 
   async function updatePassword() {
     try {
       await firebase.reLogin(user.email, oldPassword).then(() => {
         if (newPassword.length > 0 && newPassword === confirmPassword) {
           firebase.setNewPassword(newPassword).then(() => {
-            console.log("Password Updated Successfully");
+            setNotificationMsg("Password Updated Successfully");
+            setSeverity("success");
             setOpen(true);
           });
         }
       });
     } catch (error) {
-      console.log("Please enter correct old password.", error.message);
+      setNotificationMsg("Please enter correct old password.");
+      setSeverity("error");
+      setOpen(true);
     }
   }
   return (
@@ -82,8 +87,8 @@ export default function Changepassword() {
         autoHideDuration={4000}
         onClose={() => setOpen(false)}
       >
-        <Alert severity="Success" sx={{ width: "100%" }}>
-          This is a success message!
+        <Alert severity={severity} sx={{ width: "100%" }}>
+          {notificationMessage}
         </Alert>
       </Snackbar>
     </ChangePasswordwWrapper>

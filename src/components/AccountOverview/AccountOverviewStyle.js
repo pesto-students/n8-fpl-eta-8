@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const AccountOverviewWrapper = styled(Card)`
   margin-top: 16px;
-  height: calc(100% - 177px);
+  height: calc(100% - 28%);
 `;
 
 export const AccountOverviewTitle = styled.div`

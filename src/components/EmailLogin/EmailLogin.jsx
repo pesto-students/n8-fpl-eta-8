@@ -2,8 +2,8 @@ import React from "react";
 import Toggle from "@mui/material/Switch";
 import { EmailLoginTitle } from "./EmailLoginStyle";
 import { useRouteMatch, Route, Switch, useHistory } from "react-router-dom";
-import SignIn from "../SignIn/SignIn";
-import SignUp from "../SignUp/SignUp";
+import SignIn from "components/SignIn/SignIn";
+import SignUp from "components/SignUp/SignUp";
 
 export default function EmailLogin() {
   const [checked, setChecked] = React.useState(false);

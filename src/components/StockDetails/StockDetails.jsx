@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 // mui
 import { Container, Grid, Typography, Card } from "@mui/material";
 
 // webapp components
 import ChallengeContext from "./ChallengeContext";
-import StockSelector from "../StockSelector/StockSelector";
+import StockSelector from "components/StockSelector/StockSelector";
 
 // tradingView embeds
 import {
@@ -14,8 +15,6 @@ import {
   FundamentalData,
   SymbolOverview,
 } from "react-tradingview-embed";
-
-import { useParams } from "react-router";
 
 import { useStyles } from "./styles";
 
@@ -45,7 +44,7 @@ export default function StockDetails() {
               justifyContent="space-between"
             >
               <Typography variant="h5">{symbol}</Typography>
-              <StockSelector stockDetails={true}/>
+              <StockSelector stockDetails={true} />
             </Grid>
           </Grid>
 

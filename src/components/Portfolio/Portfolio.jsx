@@ -109,7 +109,11 @@ export default function Portfolio() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <SubmitPortfolio variant="contained" autoFocus onClick={submitPortfolio}>
+          <SubmitPortfolio
+            variant="contained"
+            autoFocus
+            onClick={submitPortfolio}
+          >
             Confirm Portfolio
           </SubmitPortfolio>
           <GoBackButton variant="contained" onClick={handleClose} autoFocus>
