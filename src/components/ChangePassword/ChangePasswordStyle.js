@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ChangePasswordwWrapper = styled(Card)`
   margin-top: 16px;
-  height: calc(100% - 177px);
+  height: calc(100% - 28%);
 `;
 
 export const ChangeProfileTitle = styled.div`

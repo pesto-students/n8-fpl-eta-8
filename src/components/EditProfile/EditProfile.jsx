@@ -1,9 +1,9 @@
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { CardContent } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import firebase from "../../firebase";
+import firebase from "firebase";
 import {
   EditProfileTitle,
   EditProfilewWrapper,
@@ -21,23 +21,33 @@ export default function EditProfile() {
   const user = useSelector((state) => state.user);
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [notificationMsg, setNotificationMsg] = useState("");
+  const [severity, setSeverity] = useState("info");
 
   async function updateProfile() {
     try {
       await firebase.updateUserName(name).then((response) => {
-        console.log(response);
+        setNotificationMsg("User information successfully updated.");
+        setSeverity("success");
+        setOpen(true);
       });
     } catch (error) {
-      console.log(error.message);
+      setNotificationMsg("Some error occured please try again");
+      setSeverity("error");
+      setOpen(true);
     }
 
     try {
       await firebase.updateUserEmail(email).then((response) => {
-        console.log(response);
+        setNotificationMsg("User information successfully updated.");
+        setSeverity("success");
+        setOpen(true);
       });
     } catch (error) {
-      console.log(error.message);
+      setNotificationMsg("Some error occured please try again");
+      setSeverity("error");
+      setOpen(true);
     }
     setOpen(true);
   }
@@ -77,8 +87,8 @@ export default function EditProfile() {
         autoHideDuration={4000}
         onClose={() => setOpen(false)}
       >
-        <Alert severity="success" sx={{ width: "100%" }}>
-          This is a success message!
+        <Alert severity={severity} sx={{ width: "100%" }}>
+          {notificationMsg}
         </Alert>
       </Snackbar>
     </EditProfilewWrapper>

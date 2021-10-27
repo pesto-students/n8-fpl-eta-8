@@ -20,10 +20,10 @@ import { useStyles } from "./styles";
 import SensexChart from "./SensexChart";
 import ChallengeFilter from "./ChallengeFilter";
 import ChallengeCard from "./ChallengeCard/ChallengeCard";
-import Challenge from "../Challenge/Challenge";
-import Header from "../Header/Header";
-import StockDetails from "../StockDetails/StockDetails";
-import Profile from "../Profile/Profile";
+import Challenge from "components/Challenge/Challenge";
+import Header from "components/Header/Header";
+import StockDetails from "components/StockDetails/StockDetails";
+import Profile from "components/Profile/Profile";
 
 // scroll to top
 function ScrollTop(props) {
@@ -69,7 +69,9 @@ export default function ChallengeList(props) {
     const fetchData = async () => {
       try {
         // Fetch data from REST API
-        const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/challenge/all`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_SERVER}/api/challenge/all`
+        );
         if (response.status === 200) {
           // Extract json
           const rawData = await response.json();

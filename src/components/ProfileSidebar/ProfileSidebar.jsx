@@ -1,6 +1,9 @@
 import React from "react";
-import { CardContent } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useHistory, useRouteMatch } from "react-router";
+import { CardContent } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
+import firebase from "firebase";
 import {
   Logout,
   ProfileImg,
@@ -8,10 +11,8 @@ import {
   StyledLink,
   SubscriptionType,
   ProfileSideBar,
+  ProfileAvatar,
 } from "./ProfileSidebarStyle";
-import firebase from "../../firebase";
-import { useHistory, useRouteMatch } from "react-router";
-import StarIcon from "@mui/icons-material/Star";
 
 export default function ProfileSidebar() {
   const user = useSelector((state) => state.user);
@@ -28,7 +29,11 @@ export default function ProfileSidebar() {
       <ProfileSideBar>
         <CardContent>
           <div>
-            <ProfileImg src={user.profileImage} alt={user.name} />
+            {user.profileImage ? (
+              <ProfileImg src={user.profileImage} alt={user.name} />
+            ) : (
+              <ProfileAvatar>{user.name.charAt(0).toUpperCase()}</ProfileAvatar>
+            )}
           </div>
           <ProfileName>{user.name}</ProfileName>
           <SubscriptionType>Base Plan</SubscriptionType>

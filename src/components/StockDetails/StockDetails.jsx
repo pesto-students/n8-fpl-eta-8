@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 // Libraries
 import { Container, Grid, Typography, Card } from "@mui/material";
@@ -9,13 +10,6 @@ import {
   FundamentalData,
   SymbolOverview,
 } from "react-tradingview-embed";
-
-import { useParams } from "react-router";
-
-
-// Custom Components
-import ChallengeContext from "./ChallengeContext";
-import StockSelector from "../StockSelector/StockSelector";
 
 import { useStyles } from "./styles";
 
