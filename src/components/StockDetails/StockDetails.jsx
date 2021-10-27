@@ -11,6 +11,12 @@ import {
   SymbolOverview,
 } from "react-tradingview-embed";
 
+
+
+// Custom Components
+import ChallengeContext from "./ChallengeContext";
+import StockSelector from "../StockSelector/StockSelector";
+
 import { useStyles } from "./styles";
 
 
