@@ -28,22 +28,26 @@ export default function StockDetails() {
 
   useEffect(() => {
     const securityCode = stock.split(".")[0];
-    fetch(
-      `${process.env.REACT_APP_API_SERVER}/api/lookup/${securityCode}`,
-      {}
-    )
-      .then((res) => res.json())
-      .then((response) => {
-        const securityId = response[0].securityId;
-        setSymbol(securityId);
-      })
-      .catch((error) => console.log(error));
+
+    if (!isNaN(securityCode)) {
+      fetch(
+        `${process.env.REACT_APP_API_SERVER}/api/lookup/${securityCode}`,
+        {}
+      )
+        .then((res) => res.json())
+        .then((response) => {
+          const securityId = response[0].securityId;
+          setSymbol(securityId);
+        })
+        .catch((error) => console.log(error));
+    } else { setSymbol(securityCode) }
+
   }, [stock]);
 
   return (
     <>
       <Container>
-        <ChallengeContext  />
+        <ChallengeContext />
         <Grid container spacing={1} direction="row" className={classes.root}>
           {/* title and stock search */}
           <Grid item xs={12} md={12} lg={12}>
