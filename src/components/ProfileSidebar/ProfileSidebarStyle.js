@@ -14,7 +14,11 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   color: #10182b;
   display: block;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+`;
+
+export const HighlightedStyledLink = styled(StyledLink)`
+  border-bottom: 2px solid #02abec;
 `;
 
 export const SubscriptionType = styled.div`
@@ -47,6 +51,7 @@ export const ProfileSideBar = styled(Card)`
   position: relative;
   display: none !important;
   text-align: center;
+  padding: 0 40px;
   @media (min-width: 768px) {
     display: block !important;
   }

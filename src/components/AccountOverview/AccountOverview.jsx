@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { CardContent } from "@mui/material";
-import PlanSubscription from "components/PlanSubscription/PlanSubscription";
 import {
   AccountOverviewTitle,
   AccountOverviewWrapper,
@@ -22,7 +21,6 @@ export default function AccountOverview() {
         <ProfileContent>{user.name}</ProfileContent>
         <ProfileLabel>Email</ProfileLabel>
         <ProfileContent>{user.email}</ProfileContent>
-        <PlanSubscription />
       </CardContent>
     </AccountOverviewWrapper>
   );
