@@ -1,13 +1,28 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { Typography, Grid } from "@mui/material";
+import { ref, onValue } from 'firebase/database';
+import { useSelector } from "react-redux";
 
-import { useStyles } from "components/LeaderBoard/styles";
-
+import Firebase from '../../firebase';
+import { useStyles } from "../LeaderBoard/styles";
 import LeaderBoardRow from "./LeaderboardRow";
 
 export default function LeaderBoard(props) {
   const classes = useStyles();
+  const [rows, setRows] = useState([]);
+  const leaderboardId = useSelector(state => {
+    console.log(state.challenge);
+    return state.challenge.leaderboard
+  });
+  useEffect(() => {
+    const db = Firebase.realTimeDB;
+    const r = ref(db, `Leaderboard/${leaderboardId}/l`);
+    onValue(r, (snapshot) => {
+      setRows(snapshot.val());
+    }, {
+      onlyOnce: false
+    });
+  }, [leaderboardId]);
 
   return (
     <>
@@ -28,86 +43,22 @@ export default function LeaderBoard(props) {
               isTitle={true}
             />
           </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="00.00%"
-              _1_day_position_change={5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="-20.12%"
-              _1_day_position_change={0}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="20.12%"
-              _1_day_position_change={-5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="20.12%"
-              _1_day_position_change={5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="20.12%"
-              _1_day_position_change={5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="20.12%"
-              _1_day_position_change={5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="20.12%"
-              _1_day_position_change={5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <LeaderBoardRow
-              name="Tushar L"
-              portfolio_return="24.54%"
-              _1_day_change="20.12%"
-              _1_day_position_change={5}
-              isTitle={false}
-              position="1"
-            />
-          </Grid>
+          {
+            rows.map((r, i) => {
+              return (
+                <Grid item xs={12} md={12} lg={12}>
+                  <LeaderBoardRow
+                    name={r.username}
+                    portfolio_return={r.avgReturn}
+                    _1_day_change="0"
+                    _1_day_position_change={r.changeInPosition}
+                    isTitle={false}
+                    position={i}
+                  />
+                </Grid>
+              )
+            })
+          }
         </Grid>
       </div>
     </>

@@ -20,7 +20,7 @@ const StockSuggestionList = styled.div`
   position: absolute;
   left: 35px;
   background-color: #e4e6f1;
-  padding: 0px 15px 10px;
+  padding: .25rem;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   color: #000000;
@@ -71,7 +71,8 @@ export default function StockSelector(props) {
   const [searchQuery, setSearchQuery] = useState("");
 
   var returnedFunction = debounce(function (param) {
-    var url = `${process.env.REACT_APP_ALPHAVANTAGE_URL}/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
+    var url =
+      `${process.env.REACT_APP_ALPHAVANTAGE_URL}/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
     axios
       .get(url, {
         json: true,
@@ -83,7 +84,11 @@ export default function StockSelector(props) {
             response.data.bestMatches &&
             response.data.bestMatches.length > 0
           ) {
-            setSearchedStockList(response.data.bestMatches);
+            const matches =
+              response.data.bestMatches
+                .filter(m => m['4. region'] === "India/Bombay");
+            console.log(matches);
+            setSearchedStockList(matches);
           }
         }
       })
