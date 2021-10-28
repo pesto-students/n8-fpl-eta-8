@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -42,7 +42,7 @@ const GoBackButton = styled(SubmitPortfolio)`
 const stocksSelected = [];
 const questionsNumber = 5;
 
-export default function Portfolio() {
+export default function Portfolio({ portfolio }) {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -54,6 +54,12 @@ export default function Portfolio() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+  useEffect(() => {
+    console.log(`Challenge Portfolio - ${JSON.stringify(portfolio, 0, 2)}`)
+  }, [portfolio])
+
 
   let data = {};
 

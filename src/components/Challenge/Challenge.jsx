@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-//  redux store
+// redux store
 import { useDispatch, useSelector } from "react-redux";
 import { setChallengeToStore } from "store-features/challenge";
 
@@ -22,10 +22,11 @@ export default function Challenge() {
   let { challengeId } = useParams();
 
   const [challenge, setChallenge] = useState();
+  const [portfolio, setPortfolio] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.challenge.lbView);
-
+  const porfolios = useSelector((state) => state.user.portfolios);
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`,
@@ -50,9 +51,13 @@ export default function Challenge() {
         dispatch(setChallengeToStore(c));
         setChallenge(c);
         setIsLoading(false);
+
+        const p = porfolios.filter(p => p.challengeId === challengeId);
+          setPortfolio(p);
       })
       .catch((error) => console.log(error));
-  }, [challengeId, dispatch]);
+
+  }, [challengeId, dispatch, porfolios]);
 
   const classes = useStyles();
   return (
@@ -78,7 +83,7 @@ export default function Challenge() {
             </Typography>
             <Grid container direction="row" spacing={2}>
               <Grid item xs={12} md={10} lg={9}>
-                <Portfolio challengeId={challenge.id} />
+                <Portfolio  portfolio={portfolio} />
               </Grid>
               <Grid item xs={12} md={2} lg={3}>
                 <ChallengeStatus
