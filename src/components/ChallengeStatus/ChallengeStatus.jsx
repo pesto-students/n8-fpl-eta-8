@@ -81,7 +81,6 @@ export default function ChallengeStatus(props) {
   }, [startDate, endDate, status]);
 
   const handleClick = (view) => {
-    console.log(`Click view  - ${view}`);
     dispatch(updateLbView(view));
   };
 
