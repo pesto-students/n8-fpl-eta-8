@@ -1,17 +1,13 @@
 import StockPicker from 'components/StockPicker/StockPicker';
 import React, { useEffect, useState } from 'react';
 
-export default function Stocklist({ portfolio, challengeStatus }) {
+export default function Stocklist({ portfolio, challengeStatus, state }) {
 
     const [stocks, setStocks] = useState([]);
-
-
     // fetching all the stock names 
-
-
     useEffect(() => {
         // fetch the stock names 
-        if (portfolio !== undefined) {
+        if (state === 'VIEW') {
             const _s = async () => {
                 return await Promise.all(portfolio[0].stocks.map(async s => {
                     let api = `${process.env.REACT_APP_API_SERVER}/api/lookup`;
@@ -33,19 +29,47 @@ export default function Stocklist({ portfolio, challengeStatus }) {
             _s().then(data => { setStocks(data) }, error => { console.log(error) })
 
         }
-    }, [portfolio]);
+    }, [portfolio, state]);
+
+
+    const StockListInternal = ({ state }) => {
+        switch (state) {
+            case 'CREATE':
+                return (
+                    <>
+                        <StockPicker state={state} />
+                        <StockPicker state={state} />
+                        <StockPicker state={state} />
+                        <StockPicker state={state} />
+                        <StockPicker state={state} />
+                    </>
+                );
+            case 'LIVE_VIEW':
+                return (
+                    stocks.map(s => {
+                        return (
+                            <StockPicker
+                                stockName={s} stockPrice state={state}
+                            />
+                        )
+                    })
+                );
+            case 'VIEW':
+            default:
+                return (
+                    stocks.map(s => {
+                        return (
+                            <StockPicker
+                                stockName={s} state={state}
+                            />
+                        )
+                    })
+                );
+        }
+    }
+
 
     return (
-        <>
-            {/* <p>in progress</p> */}
-            {stocks !== undefined ? stocks.map(s => {
-                return (
-                    <StockPicker
-                        stockName = {s}
-                    />
-                );
-            })
-                : ""}
-        </>
+        <StockListInternal state={state} />
     )
 }

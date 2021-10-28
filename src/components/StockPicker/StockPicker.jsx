@@ -26,7 +26,7 @@ const AutoCompleteStockSelector = styled(StockSelector)`
   width: auto !important;
 `;
 
-export default function StockPicker(props) {
+export default function StockPicker({ stockName, state }) {
   const [showSearch, setShowSearch] = useState(false);
   const [selectedStock, setSelectedStock] = useState({ name: "Pick Stocks" });
   const [isStockSelected, setIsStockSelected] = useState(false);
@@ -46,7 +46,7 @@ export default function StockPicker(props) {
   function deleteStock() {
     setIsStockSelected(false);
     setSelectedStock({ name: "Pick Stocks" });
-    props.getSelectedStocks(props.id, "");
+    // props.getSelectedStocks(props.id, "");
   }
 
   function selectStock(stock) {
@@ -54,12 +54,40 @@ export default function StockPicker(props) {
     setShowSearch(false);
     setSelectedStock(stock);
     setIsStockSelected(true);
-    props.getSelectedStocks(props.id, stock);
+    // props.getSelectedStocks(props.id, stock);
+  }
+
+
+  const PickStockInternal = ({ state, stockName }) => {
+    switch (state) {
+      case 'VIEW':
+      case 'CREATE':
+        return (
+          <>
+            {!isStockSelected && showSearch ? null : selectedStock.name
+            }
+            {
+              showSearch ? (
+                <AutoCompleteStockSelector selectStock={selectStock} />
+              ) : isStockSelected ? null : 
+                <DeletedStockButton onClick={deleteStock} />
+               : 
+            <AddStockButton onClick={() => setShowSearch(true)} />
+            
+            }
+          </>)
+      case 'LIVE_VIEW':
+      default:
+        return (
+          { stockName }
+        );
+
+    }
   }
 
   return (
     <PickStock>
-      {props.stockName}
+      <PickStockInternal state={state} />
       {/* {!isStockSelected && showSearch ? null : selectedStock.name}
       {showSearch ? (
         <AutoCompleteStockSelector selectStock={selectStock} />

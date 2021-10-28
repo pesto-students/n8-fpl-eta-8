@@ -22,7 +22,7 @@ export default function Challenge() {
   let { challengeId } = useParams();
 
   const [challenge, setChallenge] = useState();
-  const [portfolio, setPortfolio] = useState();
+  const [portfolio, setPortfolio] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.challenge.lbView);
@@ -53,7 +53,8 @@ export default function Challenge() {
         setIsLoading(false);
 
         const p = porfolios.filter(p => p.challengeId === challengeId);
-        setPortfolio(p);
+        console.log(`found portfolio for challenge ${challengeId} - ${JSON.stringify(p)}`)
+        if (p.length !== 0) { setPortfolio(p[0]); }
       })
       .catch((error) => console.log(error));
 
