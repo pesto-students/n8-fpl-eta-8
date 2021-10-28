@@ -26,7 +26,7 @@ export default function Challenge() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.challenge.lbView);
-  const porfolios = useSelector((state) => state.user.portfolios);
+  const portfolios = useSelector((state) => state.user.portfolios);
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`,
@@ -52,13 +52,13 @@ export default function Challenge() {
         setChallenge(c);
         setIsLoading(false);
 
-        const p = porfolios.filter(p => p.challengeId === challengeId);
+        const p = portfolios.filter(p => p.challengeId === challengeId);
         console.log(`found portfolio for challenge ${challengeId} - ${JSON.stringify(p)}`)
         setPortfolio(p); 
       })
       .catch((error) => console.log(error));
 
-  }, [challengeId, dispatch, porfolios]);
+  }, [challengeId, dispatch, portfolios]);
 
   const classes = useStyles();
   return (

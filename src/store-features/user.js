@@ -13,11 +13,11 @@ export const user = createSlice({
     setUser: (state, action) => {
      Object.assign(state, action.payload);
     },
-    setPortfolio: (state, action) => {
+    setUserPortfolio: (state, action) => {
       Object.assign(state.portfolios, action.payload);
      },
   }
 });
 
-export const { setUser, setPortfolio } = user.actions;
+export const { setUser, setUserPortfolio } = user.actions;
 export default user.reducers;

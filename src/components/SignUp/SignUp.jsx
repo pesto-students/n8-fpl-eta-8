@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { Button, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import styled from "styled-components";
@@ -28,10 +28,6 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-
   const [open, setOpen] = React.useState(false);
   const [notificationMsg, setNotificationMsg] = useState("");
   const [severity, setSeverity] = useState("info");
@@ -79,93 +75,75 @@ export default function SignUp() {
       setSeverity("error");
       setOpen(true);
     }
-
-    try {
-      await firebase.register(name, email, password);
-      await firebase.login(email, password).then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            name: user.displayName,
-            profileImage: user.photoURL,
-            uid: user.uid
-          })
-        );
-        history.push("/home");
-      });
-      firebase.getCurrentUsername();
-      history.push("/home");
-    } catch (error) {
-      console.log(error.message);
-    }
-
-    return (
-      <div>
-        <TextField
-          id="name"
-          label="Name"
-          variant="outlined"
-          size="small"
-          margin="normal"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-        <TextField
-          id="email"
-          label="Email"
-          variant="outlined"
-          size="small"
-          margin="normal"
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <TextField
-          id="password"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          size="small"
-          margin="normal"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <TextField
-          id="confirmPassword"
-          label="Confirm Password"
-          type="password"
-          autoComplete="current-password"
-          size="small"
-          margin="normal"
-          value={confirmPassword}
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-          }}
-        />
-        <br />
-        <LoginButton variant="contained" onClick={onRegister}>
-          Log In
-        </LoginButton>
-        <CancelButton variant="contained" onClick={() => history.push("/login")}>
-          Cancel
-        </CancelButton>
-        <Snackbar
-          open={open}
-          autoHideDuration={4000}
-          onClose={() => setOpen(false)}
-          anchorOrigin={{ vertical, horizontal }}
-          key={vertical + horizontal}
-        >
-          <Alert severity={severity} sx={{ width: "100%" }}>
-            {notificationMsg}
-          </Alert>
-        </Snackbar>
-      </div>
-    );
   }
+
+  return (
+    <div>
+      <TextField
+        id="name"
+        label="Name"
+        variant="outlined"
+        size="small"
+        margin="normal"
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      />
+      <TextField
+        id="email"
+        label="Email"
+        variant="outlined"
+        size="small"
+        margin="normal"
+        type="email"
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <TextField
+        id="password"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+        size="small"
+        margin="normal"
+        value={password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+      />
+      <TextField
+        id="confirmPassword"
+        label="Confirm Password"
+        type="password"
+        autoComplete="current-password"
+        size="small"
+        margin="normal"
+        value={confirmPassword}
+        onChange={(e) => {
+          setConfirmPassword(e.target.value);
+        }}
+      />
+      <br />
+      <LoginButton variant="contained" onClick={onRegister}>
+        Log In
+      </LoginButton>
+      <CancelButton variant="contained" onClick={() => history.push("/login")}>
+        Cancel
+      </CancelButton>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical, horizontal }}
+        key={vertical + horizontal}
+      >
+        <Alert severity={severity} sx={{ width: "100%" }}>
+          {notificationMsg}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+}

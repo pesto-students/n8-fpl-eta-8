@@ -3,6 +3,9 @@ import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StockSelector from "components/StockSelector/StockSelector";
+import { useDispatch } from "react-redux";
+
+import { removeStock } from "store-features/portfolio";
 
 const AddStockButton = styled(AddIcon)`
   float: right;
@@ -27,15 +30,20 @@ const AutoCompleteStockSelector = styled(StockSelector)`
 `;
 
 export default function StockPicker({ stockName, state }) {
+
+
   const [showSearch, setShowSearch] = useState(false);
   const [selectedStock, setSelectedStock] = useState({ name: "Pick Stocks" });
   const [isStockSelected, setIsStockSelected] = useState(false);
+
+  const dispatch = useDispatch();
+
 
   const PickStock = styled.div`
     border: 2px dashed #dee0e0;
     border-radius: 12px;
     padding: 0px 27px;
-    color: ${(isStockSelected || state === "LIVE_VIEW")? "#000000" : "#96999c"};
+    color: ${(isStockSelected || state === "LIVE_VIEW") ? "#000000" : "#96999c"};
     line-height: 40px;
     margin-bottom: 5px;
     &:focus-within {
@@ -45,16 +53,19 @@ export default function StockPicker({ stockName, state }) {
 
   function deleteStock() {
     setIsStockSelected(false);
+    console.log(`deleting stock - ${JSON.stringify(selectedStock)}`)
+    dispatch(removeStock({ selectedStock }));
+
     setSelectedStock({ name: "Pick Stocks" });
-    // props.getSelectedStocks(props.id, "");
   }
 
+
   function selectStock(stock) {
-    console.log(stock);
     setShowSearch(false);
+
     setSelectedStock(stock);
+
     setIsStockSelected(true);
-    // props.getSelectedStocks(props.id, stock);
   }
 
 
@@ -76,7 +87,7 @@ export default function StockPicker({ stockName, state }) {
       case 'LIVE_VIEW':
       default:
         return (
-           stockName 
+          stockName
         );
 
     }

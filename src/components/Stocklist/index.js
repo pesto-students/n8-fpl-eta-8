@@ -1,15 +1,25 @@
 import StockPicker from 'components/StockPicker/StockPicker';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addStock } from 'store-features/portfolio';
+import { setPortfolio } from 'store-features/portfolio';
 
 export default function Stocklist({ portfolio, challengeStatus, state }) {
 
+
+
     const [stocks, setStocks] = useState([]);
+    const dispatch = useDispatch();
+
     // fetching all the stock names 
     useEffect(() => {
         // fetch the stock names 
         if (state === 'VIEW') {
+            const { id, challengeId, stocks, submitTimestamp, username, uid } = portfolio[0];
+            const p = { id, challengeId, submitTimestamp, username, uid };
+            dispatch(setPortfolio(p));
             const _s = async () => {
-                return await Promise.all(portfolio[0].stocks.map(async s => {
+                return await Promise.all(stocks.map(async s => {
                     let api = `${process.env.REACT_APP_API_SERVER}/api/lookup`;
                     const st = s.split(".")[0];
                     if (isNaN(st)) {
@@ -20,6 +30,7 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
                     return await fetch(api)
                         .then((res) => res.json())
                         .then((response) => {
+                            dispatch(addStock({ name: response[0].securityName, symbol: s }))
                             return response[0].securityName;
                         })
                         .catch((error) => console.log(error))
@@ -29,7 +40,7 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
             _s().then(data => { console.log(JSON.stringify(data)); setStocks(data) }, error => { console.log(error) })
 
         }
-    }, [portfolio, state]);
+    }, [portfolio, state, dispatch]);
 
 
     const StockListInternal = ({ state }) => {
