@@ -1,3 +1,4 @@
+import StockPicker from 'components/StockPicker/StockPicker';
 import React, { useEffect, useState } from 'react';
 
 export default function Stocklist({ portfolio, challengeStatus }) {
@@ -6,11 +7,11 @@ export default function Stocklist({ portfolio, challengeStatus }) {
 
 
     // fetching all the stock names 
-    
+
 
     useEffect(() => {
         // fetch the stock names 
-        if (portfolio !== undefined) {            
+        if (portfolio !== undefined) {
             const _s = async () => {
                 return await Promise.all(portfolio[0].stocks.map(async s => {
                     let api = `${process.env.REACT_APP_API_SERVER}/api/lookup`;
@@ -37,7 +38,14 @@ export default function Stocklist({ portfolio, challengeStatus }) {
     return (
         <>
             {/* <p>in progress</p> */}
-            {stocks !== undefined ? stocks.map(s => { return s }) : ""}
+            {stocks !== undefined ? stocks.map(s => {
+                return (
+                    <StockPicker
+                        stockName = {s}
+                    />
+                );
+            })
+                : ""}
         </>
     )
 }

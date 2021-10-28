@@ -41,18 +41,19 @@ const GoBackButton = styled(SubmitPortfolio)`
 `;
 
 const stocksSelected = [];
-const questionsNumber = 5;
+// const questionsNumber = 5;
 
-export default function Portfolio({ portfolio }) {
+export default function Portfolio({ portfolio, challengeStatus }) {
 
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   let { challengeId } = useParams();
   const user = useSelector((state) => state.user);
-  
-  
+
+  const [portfolioState, setPortfolioState] = useState();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -61,9 +62,73 @@ export default function Portfolio({ portfolio }) {
   };
 
 
+  const SwitchPortfolioTitle = ({ state }) => {
+    switch (state) {
+      case 'CREATE':
+        return (
+          <PortfolioTitle>
+            My Portfolio
+            <SubmitPortfolio
+              variant="contained"
+              size="small"
+              onClick={handleClickOpen}
+            >
+              Submit
+            </SubmitPortfolio>
+          </PortfolioTitle>
+        );
+      case 'VIEW':
+        return (
+          <PortfolioTitle>
+            My Portfolio
+            <SubmitPortfolioDisabled
+              variant="contained"
+              size="small"
+              disabled
+            >
+              Submit
+            </SubmitPortfolioDisabled>
+          </PortfolioTitle>
+        )
+      case 'LIVE_VIEW':
+        return (
+          <PortfolioTitle>
+            My Portfolio
+          </PortfolioTitle>
+        )
+      default:
+        return (
+          <PortfolioTitle>
+            My Portfolio
+          </PortfolioTitle>
+        )
+    }
+  }
+
+
   useEffect(() => {
     console.log(`Challenge Portfolio - ${JSON.stringify(portfolio, 0, 2)}`)
-  }, [portfolio])
+
+    if (portfolio === undefined && challengeStatus === 'NOT_LIVE') {
+      setPortfolioState('CREATE');
+
+    } else if (portfolio !== undefined && challengeStatus === 'NOT_LIVE') {
+      setPortfolioState('VIEW');
+
+    } else if (portfolio !== undefined && challengeStatus === 'CLOSED') {
+      setPortfolioState('VIEW');
+
+    } else if (portfolio !== undefined && challengeStatus === 'LIVE') {
+      setPortfolioState('LIVE_VIEW');
+
+    } else if (portfolio === undefined && challengeStatus === 'LIVE') {
+      setPortfolioState('VIEW');
+
+    } else if (portfolio === undefined && challengeStatus === 'CLOSED') {
+      setPortfolioState('VIEW');
+    }
+
+  }, [portfolio, challengeStatus])
 
 
   let data = {};
@@ -119,30 +184,9 @@ export default function Portfolio({ portfolio }) {
   return (
     <PortfolioCard variant="outlined">
       <CardContent>
-        <PortfolioTitle>
-          My Portfolio
-          {!isSubmitted ? (
-            isSubmitEnabled ? (
-              <SubmitPortfolio
-                variant="contained"
-                size="small"
-                onClick={handleClickOpen}
-              >
-                Submit
-              </SubmitPortfolio>
-            ) : (
-              <SubmitPortfolioDisabled
-                variant="contained"
-                size="small"
-                disabled
-              >
-                Submit
-              </SubmitPortfolioDisabled>
-            )
-          ) : null}
-        </PortfolioTitle>
-        <Stocklist portfolio = {portfolio}/>
-        {[...Array(questionsNumber)].map((e, i) => {
+        <SwitchPortfolioTitle state={portfolioState} />
+        <Stocklist portfolio={portfolio} />
+        {/* {[...Array(questionsNumber)].map((e, i) => {
           return (
             <StockPicker
               key={i}
@@ -151,7 +195,7 @@ export default function Portfolio({ portfolio }) {
               isSubmitted={isSubmitted}
             />
           );
-        })}
+        })} */}
       </CardContent>
       <Dialog
         open={open}

@@ -59,7 +59,8 @@ export default function StockPicker(props) {
 
   return (
     <PickStock>
-      {!isStockSelected && showSearch ? null : selectedStock.name}
+      {props.stockName}
+      {/* {!isStockSelected && showSearch ? null : selectedStock.name}
       {showSearch ? (
         <AutoCompleteStockSelector selectStock={selectStock} />
       ) : isStockSelected ? (
@@ -68,7 +69,7 @@ export default function StockPicker(props) {
         )
       ) : (
         <AddStockButton onClick={() => setShowSearch(true)} />
-      )}
+      )} */}
     </PickStock>
   );
 }

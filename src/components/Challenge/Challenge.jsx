@@ -53,7 +53,7 @@ export default function Challenge() {
         setIsLoading(false);
 
         const p = porfolios.filter(p => p.challengeId === challengeId);
-          setPortfolio(p);
+        setPortfolio(p);
       })
       .catch((error) => console.log(error));
 
@@ -83,7 +83,7 @@ export default function Challenge() {
             </Typography>
             <Grid container direction="row" spacing={2}>
               <Grid item xs={12} md={10} lg={9}>
-                <Portfolio  portfolio={portfolio} />
+                <Portfolio portfolio={portfolio} challengeStatus={challenge.status} />
               </Grid>
               <Grid item xs={12} md={2} lg={3}>
                 <ChallengeStatus
