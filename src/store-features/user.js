@@ -6,6 +6,7 @@ export const user = createSlice({
     email: "",
     name: "",
     profileImage: "",
+    uid:"",
   },
   reducers: {
     setUser: (state, action) => {

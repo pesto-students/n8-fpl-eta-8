@@ -20,7 +20,7 @@ const StockSuggestionList = styled.div`
   position: absolute;
   left: 35px;
   background-color: #e4e6f1;
-  padding: .25rem;
+  padding: 0.25rem;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   color: #000000;
@@ -71,8 +71,7 @@ export default function StockSelector(props) {
   const [searchQuery, setSearchQuery] = useState("");
 
   var returnedFunction = debounce(function (param) {
-    var url =
-      `${process.env.REACT_APP_ALPHAVANTAGE_URL}/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
+    var url = `${process.env.REACT_APP_ALPHAVANTAGE_URL}/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
     axios
       .get(url, {
         json: true,
@@ -84,11 +83,7 @@ export default function StockSelector(props) {
             response.data.bestMatches &&
             response.data.bestMatches.length > 0
           ) {
-            const matches =
-              response.data.bestMatches
-                .filter(m => m['4. region'] === "India/Bombay");
-            console.log(matches);
-            setSearchedStockList(matches);
+            setSearchedStockList(response.data.bestMatches);
           }
         }
       })
@@ -120,7 +115,9 @@ export default function StockSelector(props) {
         }
         onChange={(e) => {
           setSearchQuery(e.target.value);
-          searchStock(searchQuery);
+          if (e.target.value.length % 3 === 0) {
+            searchStock(e.target.value);
+          }
         }}
         value={searchQuery}
       />
@@ -147,7 +144,12 @@ export default function StockSelector(props) {
                     <AddStock
                       size="small"
                       variant="outlined"
-                      onClick={() => addStock(item["2. name"])}
+                      onClick={() =>
+                        addStock({
+                          name: item["2. name"],
+                          value: item["1. symbol"],
+                        })
+                      }
                     >
                       Add Stock
                     </AddStock>

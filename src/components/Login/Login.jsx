@@ -31,6 +31,7 @@ export default function Login() {
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,
+            uid: user.uid,
           })
         );
 
