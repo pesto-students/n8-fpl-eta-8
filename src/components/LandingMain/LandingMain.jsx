@@ -40,19 +40,6 @@ const useStyles = makeStyles({
 });
 
 export default function LandingMain(props) {
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <img src={landingMainBg} alt="" srcset="" className={classes.bgImage} />
-      <div className={classes.container}>
-        <div className={classes.textSection}>
-          <h1>New to Investing ?</h1>
-          <ul>
-            <li>Learn to Invest by building your Portfolio</li>
-            <li>Analyse Stocks to make right decsion</li>
-            <li>Submit your portfolio and win rewards</li>
-          </ul>
-
     const classes = useStyles();
     return (
         <>
