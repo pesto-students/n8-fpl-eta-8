@@ -26,7 +26,7 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
                 })
                 );
             }
-            _s().then(data => { setStocks(data) }, error => { console.log(error) })
+            _s().then(data => { console.log(JSON.stringify(data)); setStocks(data) }, error => { console.log(error) })
 
         }
     }, [portfolio, state]);

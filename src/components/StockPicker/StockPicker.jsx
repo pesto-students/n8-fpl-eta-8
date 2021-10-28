@@ -35,7 +35,7 @@ export default function StockPicker({ stockName, state }) {
     border: 2px dashed #dee0e0;
     border-radius: 12px;
     padding: 0px 27px;
-    color: ${isStockSelected ? "#000000" : "#96999c"};
+    color: ${(isStockSelected || state === "LIVE_VIEW")? "#000000" : "#96999c"};
     line-height: 40px;
     margin-bottom: 5px;
     &:focus-within {
@@ -60,26 +60,23 @@ export default function StockPicker({ stockName, state }) {
 
   const PickStockInternal = ({ state, stockName }) => {
     switch (state) {
-      case 'VIEW':
       case 'CREATE':
         return (
           <>
-            {!isStockSelected && showSearch ? null : selectedStock.name
-            }
-            {
-              showSearch ? (
-                <AutoCompleteStockSelector selectStock={selectStock} />
-              ) : isStockSelected ? null : 
-                <DeletedStockButton onClick={deleteStock} />
-               : 
-            <AddStockButton onClick={() => setShowSearch(true)} />
-            
+            {!isStockSelected && showSearch ? null : selectedStock.name}
+            {showSearch ? (
+              <AutoCompleteStockSelector selectStock={selectStock} />
+            ) : isStockSelected ? (
+              <DeletedStockButton onClick={deleteStock} />
+            )
+              : (<AddStockButton onClick={() => setShowSearch(true)} />)
             }
           </>)
+      case 'VIEW':
       case 'LIVE_VIEW':
       default:
         return (
-          { stockName }
+           stockName 
         );
 
     }
@@ -87,17 +84,7 @@ export default function StockPicker({ stockName, state }) {
 
   return (
     <PickStock>
-      <PickStockInternal state={state} />
-      {/* {!isStockSelected && showSearch ? null : selectedStock.name}
-      {showSearch ? (
-        <AutoCompleteStockSelector selectStock={selectStock} />
-      ) : isStockSelected ? (
-        props.isSubmitted ? null : (
-          <DeletedStockButton onClick={deleteStock} />
-        )
-      ) : (
-        <AddStockButton onClick={() => setShowSearch(true)} />
-      )} */}
+      <PickStockInternal state={state} stockName={stockName} />
     </PickStock>
   );
 }

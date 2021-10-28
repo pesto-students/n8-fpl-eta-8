@@ -18,12 +18,13 @@ const StockPickerTextBox = styled.input.attrs({
 
 const StockSuggestionList = styled.div`
   position: absolute;
-  left: 35px;
+  left: 5vw;
   background-color: #e4e6f1;
   padding: 0.25rem;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   color: #000000;
+  padding:.45rem;
 
   @media (min-width: 1024px) {
     left: auto;
@@ -31,7 +32,9 @@ const StockSuggestionList = styled.div`
 `;
 
 const SearchItems = styled.div`
-  line-height: 48px;
+  line-height: 1.5rem;
+  padding-top:.25rem;
+  padding-right:.25rem;
 `;
 
 const SearchResultName = styled.span`
