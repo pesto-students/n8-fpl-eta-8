@@ -10,6 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Button, Card, CardContent } from "@mui/material";
 import axios from "axios";
 import StockPicker from "components/StockPicker/StockPicker";
+import Stocklist from "components/Stocklist";
 // import firebase from "firebase";
 
 const PortfolioCard = styled(Card)`
@@ -43,11 +44,15 @@ const stocksSelected = [];
 const questionsNumber = 5;
 
 export default function Portfolio({ portfolio }) {
+
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
   let { challengeId } = useParams();
   const user = useSelector((state) => state.user);
+  
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -136,6 +141,7 @@ export default function Portfolio({ portfolio }) {
             )
           ) : null}
         </PortfolioTitle>
+        <Stocklist portfolio = {portfolio}/>
         {[...Array(questionsNumber)].map((e, i) => {
           return (
             <StockPicker
