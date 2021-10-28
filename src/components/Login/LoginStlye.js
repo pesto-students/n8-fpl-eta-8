@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import Card from "@mui/material/Card";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import StarIcon from "@mui/icons-material/Star";
 import GoogleLogin from "react-google-login";
 import { Link } from "react-router-dom";
@@ -18,6 +19,10 @@ export const LoginTitle = styled.div`
   margin-bottom: 33px;
 `;
 
+export const BackButton = styled(ArrowBackIosIcon)`
+  float: left;
+`;
+
 export const GoogleButton = styled(Button)`
   background: linear-gradient(180deg, #4285f4 0%, #3c62eb 100%);
   text-transform: capitalize !important;
@@ -25,7 +30,7 @@ export const GoogleButton = styled(Button)`
   border-radius: 12px !important;
   display: block !important;
   margin: 0 auto !important;
-  color:#ffffff !important;
+  color: #ffffff !important;
 `;
 
 export const GoogleLoginButton = styled(GoogleLogin)`

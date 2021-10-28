@@ -64,27 +64,41 @@ export default function ChallengeList(props) {
   const classes = useStyles();
   const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
+  const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch data from REST API
-        const response = await fetch(
+  const fetchData = async () => {
+    try {
+      let response;
+      if (filter === "all") {
+        response = await fetch(
           `${process.env.REACT_APP_API_SERVER}/api/challenge/all`
         );
-        if (response.status === 200) {
-          // Extract json
-          const rawData = await response.json();
-          setChallenges(rawData);
-        } else {
-          console.error(`Error ${response.status} ${response.statusText}`);
-        }
-      } catch (error) {
-        console.error(`Error ${error}`);
+      } else {
+        response = await fetch(
+          `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`
+        );
       }
-    };
+      // Fetch data from REST API
+
+      if (response.status === 200) {
+        // Extract json
+        const rawData = await response.json();
+        setChallenges(rawData);
+      } else {
+        console.error(`Error ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error(`Error ${error}`);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
-  }, []);
+  }, [filter]);
+
+  const changeFilter = (filterValue) => {
+    setFilter(filterValue);
+  };
 
   return (
     <React.Fragment>
@@ -96,7 +110,7 @@ export default function ChallengeList(props) {
           <Container className={classes.root}>
             <Grid container direction="row" spacing={5}>
               <Grid item xs={12} lg={3} md={12} elevation={10}>
-                <ChallengeFilter />
+                <ChallengeFilter changeFilter={changeFilter} />
               </Grid>
               <Grid item xs={12} lg={9} md={12}>
                 <Grid container direction="column">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // Material UI components and hooks
 import Button from '@mui/material/Button';
@@ -10,9 +10,8 @@ import { makeStyles } from '@mui/styles';
 import landingImg from 'assets/landing-img.png';
 // import landingMainBg from 'assets/landing-main-bg.svg';
 
-
-// routing 
-import { Link } from 'react-router-dom';
+// routing
+import { Link } from "react-router-dom";
 
 // Styling
 const useStyles = makeStyles({
@@ -41,6 +40,18 @@ const useStyles = makeStyles({
 });
 
 export default function LandingMain(props) {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <img src={landingMainBg} alt="" srcset="" className={classes.bgImage} />
+      <div className={classes.container}>
+        <div className={classes.textSection}>
+          <h1>New to Investing ?</h1>
+          <ul>
+            <li>Learn to Invest by building your Portfolio</li>
+            <li>Analyse Stocks to make right decsion</li>
+            <li>Submit your portfolio and win rewards</li>
+          </ul>
 
     const classes = useStyles();
     return (
