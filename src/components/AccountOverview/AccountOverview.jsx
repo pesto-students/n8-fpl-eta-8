@@ -8,6 +8,7 @@ import {
   ProfileLabel,
   ProfileTitle,
 } from "./AccountOverviewStyle";
+import PlanSubscription from "components/PlanSubscription/PlanSubscription";
 
 export default function AccountOverview() {
   const user = useSelector((state) => state.user);
@@ -21,6 +22,7 @@ export default function AccountOverview() {
         <ProfileContent>{user.name}</ProfileContent>
         <ProfileLabel>Email</ProfileLabel>
         <ProfileContent>{user.email}</ProfileContent>
+        <PlanSubscription />
       </CardContent>
     </AccountOverviewWrapper>
   );

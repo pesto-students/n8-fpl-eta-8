@@ -46,21 +46,29 @@ export default function SignIn() {
 
   async function login() {
     if (email.length > 0 && password.length > 0) {
-      try {
-        await firebase.login(email, password).then(({ user }) => {
-          dispatch(
-            setUser({
-              email: user.email,
-              name: user.displayName,
-              profileImage: user.photoURL,
-            })
-          );
-          history.push("/home");
-        });
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(String(email).toLowerCase())) {
+        try {
+          await firebase.login(email, password).then(({ user }) => {
+            dispatch(
+              setUser({
+                email: user.email,
+                name: user.displayName,
+                profileImage: user.photoURL,
+              })
+            );
+            history.push("/home");
+          });
 
-        // firebase.getCurrentUsername();
-      } catch (error) {
-        setNotificationMsg("Please enter valid user name/password");
+          // firebase.getCurrentUsername();
+        } catch (error) {
+          setNotificationMsg("Please enter valid user name/password");
+          setSeverity("error");
+          setOpen(true);
+        }
+      } else {
+        setNotificationMsg("Please enter valid email address");
         setSeverity("error");
         setOpen(true);
       }
