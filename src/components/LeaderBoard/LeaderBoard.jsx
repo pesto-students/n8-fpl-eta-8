@@ -16,7 +16,7 @@ export default function LeaderBoard(props) {
   });
   useEffect(() => {
     const db = Firebase.realTimeDB;
-    const r = ref(db, `Leaderboard/${leaderboardId}/l`);
+    const r = ref(db, `FPL/Leaderboard/${leaderboardId}/l`);
     onValue(r, (snapshot) => {
       setRows(snapshot.val());
     }, {
