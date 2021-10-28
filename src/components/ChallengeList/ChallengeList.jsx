@@ -24,6 +24,9 @@ import Challenge from "components/Challenge/Challenge";
 import Header from "components/Header/Header";
 import StockDetails from "components/StockDetails/StockDetails";
 import Profile from "components/Profile/Profile";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setPortfolio } from "store-features/user";
 
 // scroll to top
 function ScrollTop(props) {
@@ -65,8 +68,8 @@ export default function ChallengeList(props) {
   const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
   const [filter, setFilter] = useState("all");
-
-
+  const uid = useSelector(state => state.user.uid);
+  const dispatch = useDispatch();
   useEffect(() => {
     try {
       let api = '';
@@ -84,9 +87,15 @@ export default function ChallengeList(props) {
 
     } catch (error) {
       console.error(`Error ${error}`);
-    }
+    };
 
-  }, [filter]);
+    fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
+      .then((res) => res.json())
+      .then((response) => {
+        dispatch(setPortfolio(response));
+      });
+
+  }, [filter, uid, dispatch]);
 
   const changeFilter = (filterValue) => {
     setFilter(filterValue);
