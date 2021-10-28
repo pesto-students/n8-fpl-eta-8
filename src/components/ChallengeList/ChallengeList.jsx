@@ -66,34 +66,26 @@ export default function ChallengeList(props) {
   const { path } = useRouteMatch();
   const [filter, setFilter] = useState("all");
 
-  const fetchData = async () => {
+
+  useEffect(() => {
     try {
-      let response;
+      let api = '';
       if (filter === "all") {
-        response = await fetch(
-          `${process.env.REACT_APP_API_SERVER}/api/challenge/all`
-        );
+        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/all`
       } else {
-        response = await fetch(
-          `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`
-        );
+        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`
       }
       // Fetch data from REST API
+      fetch(api)
+        .then((res) => res.json())
+        .then((response) => {
+          setChallenges(response);
+        });
 
-      if (response.status === 200) {
-        // Extract json
-        const rawData = await response.json();
-        setChallenges(rawData);
-      } else {
-        console.error(`Error ${response.status} ${response.statusText}`);
-      }
     } catch (error) {
       console.error(`Error ${error}`);
     }
-  };
 
-  useEffect(() => {
-    fetchData();
   }, [filter]);
 
   const changeFilter = (filterValue) => {
