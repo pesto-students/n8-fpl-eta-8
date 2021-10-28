@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CardContent } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -12,6 +12,7 @@ import {
   StyledTextField,
   UpdateButton,
 } from "./EditProfileStyle";
+import { setUser } from "store-features/user";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -24,32 +25,47 @@ export default function EditProfile() {
   const [open, setOpen] = useState(false);
   const [notificationMsg, setNotificationMsg] = useState("");
   const [severity, setSeverity] = useState("info");
+  const vertical = "top";
+  const horizontal = "center";
+  const dispatch = useDispatch();
 
   async function updateProfile() {
-    try {
-      await firebase.updateUserName(name).then((response) => {
-        setNotificationMsg("User information successfully updated.");
-        setSeverity("success");
+    if (name !== user.name) {
+      try {
+        await firebase.updateUserName(name).then((response) => {
+          dispatch(
+            setUser({
+              name: name,
+            })
+          );
+          setNotificationMsg("User information successfully updated.");
+          setSeverity("success");
+          setOpen(true);
+        });
+      } catch (error) {
+        setNotificationMsg("Some error occured please try again");
+        setSeverity("error");
         setOpen(true);
-      });
-    } catch (error) {
-      setNotificationMsg("Some error occured please try again");
-      setSeverity("error");
-      setOpen(true);
+      }
     }
-
-    try {
-      await firebase.updateUserEmail(email).then((response) => {
-        setNotificationMsg("User information successfully updated.");
-        setSeverity("success");
+    if (email !== user.email) {
+      try {
+        await firebase.updateUserEmail(email).then((response) => {
+          dispatch(
+            setUser({
+              email: email,
+            })
+          );
+          setNotificationMsg("User information successfully updated.");
+          setSeverity("success");
+          setOpen(true);
+        });
+      } catch (error) {
+        setNotificationMsg("Some error occured please try again");
+        setSeverity("error");
         setOpen(true);
-      });
-    } catch (error) {
-      setNotificationMsg("Some error occured please try again");
-      setSeverity("error");
-      setOpen(true);
+      }
     }
-    setOpen(true);
   }
   return (
     <EditProfilewWrapper>
@@ -86,6 +102,8 @@ export default function EditProfile() {
         open={open}
         autoHideDuration={4000}
         onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical, horizontal }}
+        key={vertical + horizontal}
       >
         <Alert severity={severity} sx={{ width: "100%" }}>
           {notificationMsg}

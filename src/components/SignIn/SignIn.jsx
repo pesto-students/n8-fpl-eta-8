@@ -7,6 +7,8 @@ import { useHistory } from "react-router";
 // mui components
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 // to style the components
 import styled from "styled-components";
@@ -25,31 +27,55 @@ const CancelButton = styled(LoginButton)`
   margin-left: 20px !important;
 `;
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [notificationMsg, setNotificationMsg] = useState("");
+  const [severity, setSeverity] = useState("info");
+  const vertical = "top";
+  const horizontal = "center";
 
   const dispatch = useDispatch();
 
   const history = useHistory();
 
   async function login() {
-    try {
-      await firebase.login(email, password).then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            name: user.displayName,
-            profileImage: user.photoURL,
-            uid : user.uid
-          })
-        );
-        history.push("/home");
-      });
+    if (email.length > 0 && password.length > 0) {
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(String(email).toLowerCase())) {
+        try {
+          await firebase.login(email, password).then(({ user }) => {
+            dispatch(
+              setUser({
+                email: user.email,
+                name: user.displayName,
+                profileImage: user.photoURL,
+              })
+            );
+            history.push("/home");
+          });
 
-      firebase.getCurrentUsername();
-    } catch (error) {
-      console.log(error);
+          // firebase.getCurrentUsername();
+        } catch (error) {
+          setNotificationMsg("Please enter valid user name/password");
+          setSeverity("error");
+          setOpen(true);
+        }
+      } else {
+        setNotificationMsg("Please enter valid email address");
+        setSeverity("error");
+        setOpen(true);
+      }
+    } else {
+      setNotificationMsg("Please enter user name/password");
+      setSeverity("error");
+      setOpen(true);
     }
   }
 
@@ -85,6 +111,17 @@ export default function SignIn() {
       <CancelButton variant="contained" onClick={() => history.push("/login")}>
         Cancel
       </CancelButton>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical, horizontal }}
+        key={vertical + horizontal}
+      >
+        <Alert severity={severity} sx={{ width: "100%" }}>
+          {notificationMsg}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

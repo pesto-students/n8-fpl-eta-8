@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { CardContent } from "@mui/material";
-import PlanSubscription from "components/PlanSubscription/PlanSubscription";
 import {
   AccountOverviewTitle,
   AccountOverviewWrapper,
@@ -9,6 +8,7 @@ import {
   ProfileLabel,
   ProfileTitle,
 } from "./AccountOverviewStyle";
+import PlanSubscription from "components/PlanSubscription/PlanSubscription";
 
 export default function AccountOverview() {
   const user = useSelector((state) => state.user);

@@ -12,9 +12,10 @@ import {
   SubscriptionType,
   ProfileSideBar,
   ProfileAvatar,
+  HighlightedStyledLink,
 } from "./ProfileSidebarStyle";
 
-export default function ProfileSidebar() {
+export default function ProfileSidebar(props) {
   const user = useSelector((state) => state.user);
   const history = useHistory();
   const { url } = useRouteMatch();
@@ -23,7 +24,7 @@ export default function ProfileSidebar() {
     await firebase.logout();
     history.push("/");
   }
-
+  console.log(history);
   return (
     <>
       <ProfileSideBar>
@@ -37,9 +38,27 @@ export default function ProfileSidebar() {
           </div>
           <ProfileName>{user.name}</ProfileName>
           <SubscriptionType>Base Plan</SubscriptionType>
-          <StyledLink to={`${url}`}>Account Overview</StyledLink>
-          <StyledLink to={`${url}/edit`}>Edit Profile</StyledLink>
-          <StyledLink to={`${url}/change`}>Change Password</StyledLink>
+          {history.location.pathname === url ? (
+            <HighlightedStyledLink to={`${url}`}>
+              Account Overview
+            </HighlightedStyledLink>
+          ) : (
+            <StyledLink to={`${url}`}>Account Overview</StyledLink>
+          )}
+          {history.location.pathname === url + "/edit" ? (
+            <HighlightedStyledLink to={`${url}/edit`}>
+              Edit Profile
+            </HighlightedStyledLink>
+          ) : (
+            <StyledLink to={`${url}/edit`}>Edit Profile</StyledLink>
+          )}
+          {history.location.pathname === url + "/change" ? (
+            <HighlightedStyledLink to={`${url}/change`}>
+              Change Password
+            </HighlightedStyledLink>
+          ) : (
+            <StyledLink to={`${url}/change`}>Change Password</StyledLink>
+          )}
           <Logout variant="contained" startIcon={<StarIcon />} onClick={logout}>
             Logout
           </Logout>
