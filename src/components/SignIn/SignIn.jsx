@@ -41,6 +41,7 @@ export default function SignIn() {
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,
+            uid : user.uid
           })
         );
         history.push("/home");

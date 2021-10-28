@@ -46,14 +46,18 @@ export default function Login() {
   async function demoLogin() {
     try {
       await firebase.login("demo@presto.com", "demopresto").then(({ user }) => {
+        
         dispatch(
           setUser({
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,
+            uid: user.uid
           })
         );
+        
         history.push("/home");
+      
       });
 
       firebase.getCurrentUsername();
