@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import StockPicker from "../StockPicker/StockPicker";
+import StockPicker from "components/StockPicker/StockPicker";
 
 const PortfolioCard = styled(Card)`
   border-radius: 12px !important;
