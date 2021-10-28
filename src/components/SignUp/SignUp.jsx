@@ -7,6 +7,11 @@ import firebase from "firebase";
 
 const LoginButton = styled(Button)`
   background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
+  border-radius: 12px !important;
+`;
+
+const CancelButton = styled(LoginButton)`
+  margin-left: 20px !important;
 `;
 
 export default function SignUp() {
@@ -79,6 +84,9 @@ export default function SignUp() {
       <LoginButton variant="contained" onClick={onRegister}>
         Log In
       </LoginButton>
+      <CancelButton variant="contained" onClick={() => history.push("/login")}>
+        Cancel
+      </CancelButton>
     </div>
   );
 }
