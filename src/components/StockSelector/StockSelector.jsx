@@ -20,7 +20,7 @@ const StockSuggestionList = styled.div`
   position: absolute;
   left: 35px;
   background-color: #e4e6f1;
-  padding: 0px 15px 10px;
+  padding: 0.25rem;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   color: #000000;
@@ -115,7 +115,9 @@ export default function StockSelector(props) {
         }
         onChange={(e) => {
           setSearchQuery(e.target.value);
-          searchStock(searchQuery);
+          if (e.target.value.length % 3 === 0) {
+            searchStock(e.target.value);
+          }
         }}
         value={searchQuery}
       />
@@ -142,7 +144,12 @@ export default function StockSelector(props) {
                     <AddStock
                       size="small"
                       variant="outlined"
-                      onClick={() => addStock(item["2. name"])}
+                      onClick={() =>
+                        addStock({
+                          name: item["2. name"],
+                          value: item["1. symbol"],
+                        })
+                      }
                     >
                       Add Stock
                     </AddStock>

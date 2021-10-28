@@ -1,5 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router";
+import { useRouteMatch, Route, Switch, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { CardContent } from "@mui/material";
+import LoginHeader from "components/LoginHeader/LoginHeader";
+import EmailLogin from "components/EmailLogin/EmailLogin";
+import firebase from "firebase";
 import {
   DesignedCard,
   EmailButton,
@@ -7,15 +13,9 @@ import {
   LoginTitle,
   StyledLink,
   GoogleButton,
+  BackButton,
 } from "./LoginStlye";
-import LoginHeader from "../LoginHeader/LoginHeader";
-import { useRouteMatch, Route, Switch } from "react-router-dom";
-import { useHistory } from "react-router";
-import EmailLogin from "../EmailLogin/EmailLogin";
-import firebase from "../../firebase";
-
-import { useDispatch } from "react-redux";
-import { setUser } from "../../store-features/user";
+import { setUser } from "store-features/user";
 
 export default function Login() {
   const { url, path } = useRouteMatch();
@@ -31,6 +31,7 @@ export default function Login() {
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,
+            uid: user.uid,
           })
         );
 
@@ -68,7 +69,12 @@ export default function Login() {
         <CardContent>
           <Switch>
             <Route exact path={`${path}/`}>
-              <LoginTitle>Login / Sign Up</LoginTitle>
+              <LoginTitle>
+                <Link to={"/"}>
+                  <BackButton fontSize="large" />
+                </Link>
+                Login / Sign Up
+              </LoginTitle>
               <GoogleButton onClick={googleLogin}>
                 <StyledStarIcon />
                 Google Sign in
@@ -80,7 +86,7 @@ export default function Login() {
                 </StyledLink>
               </EmailButton>
               <EmailButton variant="contained" onClick={demoLogin}>
-                Demo
+                Demo Login
               </EmailButton>
             </Route>
             <Route path={`${path}/email`}>

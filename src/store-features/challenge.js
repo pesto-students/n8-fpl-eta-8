@@ -11,16 +11,17 @@ export const challenge = createSlice({
         rules: null,
         awards: null,
         lbView: null,
+        leaderboard:null,
     },
     reducers: {
         setChallengeToStore: (state, action) => {
-            // const { name, startDate, endDate, status, rules } = action.payload;
-            // state.name = name;
-            // state.startDate = startDate;
-            // state.endDate = endDate;
-            // state.rules = rules;
-            Object.assign(state, action.payload);
-            switch (action.payload.status) {
+            const { name, startDate, endDate, status, rules, leaderboard } = action.payload;
+            state.name = name;
+            state.startDate = startDate;
+            state.endDate = endDate;
+            state.rules = rules;
+            state.leaderboard = leaderboard;
+            switch (status) {
                 case 'NOT_LIVE': state.lbView = "notStarted"; break;
                 case 'LIVE': state.lbView = "leaderboard"; break;
                 case 'CLOSED': state.lbView = "claimRewards"; break;

@@ -30,7 +30,7 @@ export default function ChallengeCard(props) {
       <Link className={classes.styledLink} to={`${url}/challenge/${id}`}>
         <Button
           color="primary"
-          fullWidth="true"
+          fullWidth={true}
           style={{ justifyContent: "flex-start" }}
           variant="contained"
         >
