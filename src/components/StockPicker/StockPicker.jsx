@@ -28,7 +28,7 @@ const AutoCompleteStockSelector = styled(StockSelector)`
 
 export default function StockPicker(props) {
   const [showSearch, setShowSearch] = useState(false);
-  const [selectedStock, setSelectedStock] = useState("Pick Stocks");
+  const [selectedStock, setSelectedStock] = useState({ name: "Pick Stocks" });
   const [isStockSelected, setIsStockSelected] = useState(false);
 
   const PickStock = styled.div`
@@ -45,24 +45,27 @@ export default function StockPicker(props) {
 
   function deleteStock() {
     setIsStockSelected(false);
-    setSelectedStock("Pick Stocks");
+    setSelectedStock({ name: "Pick Stocks" });
     props.getSelectedStocks(props.id, "");
   }
 
-  function selectStock(stockName) {
+  function selectStock(stock) {
+    console.log(stock);
     setShowSearch(false);
-    setSelectedStock(stockName);
+    setSelectedStock(stock);
     setIsStockSelected(true);
-    props.getSelectedStocks(props.id, stockName);
+    props.getSelectedStocks(props.id, stock);
   }
 
   return (
     <PickStock>
-      {!isStockSelected && showSearch ? null : selectedStock}
+      {!isStockSelected && showSearch ? null : selectedStock.name}
       {showSearch ? (
         <AutoCompleteStockSelector selectStock={selectStock} />
       ) : isStockSelected ? (
-        <DeletedStockButton onClick={deleteStock} />
+        props.isSubmitted ? null : (
+          <DeletedStockButton onClick={deleteStock} />
+        )
       ) : (
         <AddStockButton onClick={() => setShowSearch(true)} />
       )}

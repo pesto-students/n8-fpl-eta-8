@@ -1,12 +1,16 @@
-import { Button, Card, CardContent } from "@mui/material";
 import React, { useState } from "react";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Button, Card, CardContent } from "@mui/material";
+import axios from "axios";
 import StockPicker from "components/StockPicker/StockPicker";
+// import firebase from "firebase";
 
 const PortfolioCard = styled(Card)`
   border-radius: 12px !important;
@@ -40,20 +44,23 @@ const questionsNumber = 5;
 
 export default function Portfolio() {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  let { challengeId } = useParams();
+  const user = useSelector((state) => state.user);
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
 
+  let data = {};
+
   function getSelectedStocks(index, selectedStock) {
     if (selectedStock !== "") {
       let obj = {
-        [index]: selectedStock,
+        [index]: selectedStock.value,
       };
       stocksSelected.push(obj);
     } else {
@@ -68,7 +75,33 @@ export default function Portfolio() {
     }
   }
 
+  function createSubmitData() {
+    let arrStockSelected = stocksSelected.map(function (obj, i) {
+      return obj[i];
+    });
+    data.challengeId = challengeId;
+    var d2 = new Date();
+    data.submittedAt = d2.toUTCString();
+    data.uid = user.uid;
+    data.stocks = arrStockSelected;
+    data.username = user.email.split("@")[0];
+  }
+
   function submitPortfolio() {
+    if (stocksSelected.length === 5) {
+      createSubmitData();
+      var url = `${process.env.REACT_APP_API_SERVER}/api/portfolio`;
+
+      axios
+        .post(url, data)
+        .then((response) => {
+          console.log("Portfolio data saved successfully");
+          setIsSubmitted(true);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
     handleClose();
   }
 
@@ -77,23 +110,34 @@ export default function Portfolio() {
       <CardContent>
         <PortfolioTitle>
           My Portfolio
-          {isSubmitEnabled ? (
-            <SubmitPortfolio
-              variant="contained"
-              size="small"
-              onClick={handleClickOpen}
-            >
-              Submit
-            </SubmitPortfolio>
-          ) : (
-            <SubmitPortfolioDisabled variant="contained" size="small" disabled>
-              Submit
-            </SubmitPortfolioDisabled>
-          )}
+          {!isSubmitted ? (
+            isSubmitEnabled ? (
+              <SubmitPortfolio
+                variant="contained"
+                size="small"
+                onClick={handleClickOpen}
+              >
+                Submit
+              </SubmitPortfolio>
+            ) : (
+              <SubmitPortfolioDisabled
+                variant="contained"
+                size="small"
+                disabled
+              >
+                Submit
+              </SubmitPortfolioDisabled>
+            )
+          ) : null}
         </PortfolioTitle>
         {[...Array(questionsNumber)].map((e, i) => {
           return (
-            <StockPicker key={i} getSelectedStocks={getSelectedStocks} id={i} />
+            <StockPicker
+              key={i}
+              getSelectedStocks={getSelectedStocks}
+              id={i}
+              isSubmitted={isSubmitted}
+            />
           );
         })}
       </CardContent>
