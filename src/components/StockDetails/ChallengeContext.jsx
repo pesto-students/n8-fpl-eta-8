@@ -31,8 +31,6 @@ export default function ChallengeContext() {
 
   useEffect(() => {
     // debug
-    console.log(`Challenge - ${JSON.stringify(challenge, 0, 2)}`);
-
     const { name, startDate, endDate } = challenge;
     const sDate = new Timestamp(
       startDate._seconds,

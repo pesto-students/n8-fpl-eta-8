@@ -24,7 +24,6 @@ export default function ProfileSidebar(props) {
     await firebase.logout();
     history.push("/");
   }
-  console.log(history);
   return (
     <>
       <ProfileSideBar>

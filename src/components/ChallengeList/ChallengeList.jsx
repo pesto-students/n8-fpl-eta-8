@@ -95,7 +95,6 @@ export default function ChallengeList(props) {
     fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
       .then((res) => res.json())
       .then((response) => {
-        console.log(`UID portfolios${JSON.stringify(response)}`)
         if (response.length > 0)
           dispatch(setUserPortfolio(response));
       });

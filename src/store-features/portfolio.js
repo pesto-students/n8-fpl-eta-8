@@ -26,20 +26,17 @@ export const portfolio = createSlice({
     },
     addStock: (state, action) => {
       state.stocks.push(action.payload);
-      console.log(JSON.stringify(state));
     },
     removeStock: (state, action) => {
       const st = state.stocks;
       let s = st.length;
       while (s--) {
         if (st[s].symbol === action.payload.symbol) {
-          console.log(`found the stock`);
           st.splice(s, 1);
           break;
         }
       }
       state.stocks = st;
-      console.log(JSON.stringify(state));
     },
     analysingStock: (state, action) => {
       state.analysingStock = action.payload;

@@ -54,9 +54,6 @@ export default function Challenge() {
         setIsLoading(false);
         dispatch(resetPortfolio());
         const p = portfolios.filter((p) => p.challengeId === challengeId);
-        console.log(
-          `found portfolio for challenge ${challengeId} - ${JSON.stringify(p)}`
-        );
         setPortfolio(p);
       })
       .catch((error) => console.log(error));

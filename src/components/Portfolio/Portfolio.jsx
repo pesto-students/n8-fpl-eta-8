@@ -62,8 +62,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
   };
 
   useEffect(() => {
-    console.log(`Challenge Portfolio - ${JSON.stringify(portfolio, 0, 2)}`);
-
     if (
       (portfolio === undefined || portfolio.length === 0) &&
       challengeStatus === "NOT_LIVE"
@@ -90,7 +88,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
 
   // component rendering Portfolio Title area as per the Portfolio State
   const SwitchPortfolioTitle = ({ state }) => {
-    console.log(`Portfolio State - ${state}`);
     switch (state) {
       case "CREATE":
         return (
@@ -181,7 +178,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
         .post(url, data)
         .then((response) => {
           console.log("Portfolio data saved successfully");
-          // setIsSubmitted(true);
         })
         .catch((error) => {
           console.log(error.message);

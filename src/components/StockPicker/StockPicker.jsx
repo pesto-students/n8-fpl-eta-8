@@ -51,9 +51,6 @@ export default function StockPicker({ stockName, state, stockChange }) {
 
   function deleteStock() {
     setIsStockSelected(false);
-    console.log(`deleting stock - ${JSON.stringify(selectedStock)}`)
-    // dispatch(removeStock({ selectedStock }));
-
     setSelectedStock({ name: "Pick Stocks" });
   }
 
@@ -65,7 +62,6 @@ export default function StockPicker({ stockName, state, stockChange }) {
   }
 
   const direction = (_1_day_change) => {
-    console.log(`Change - ${_1_day_change}`)
     if (parseInt(_1_day_change) > 0)
       return 'up';
     else if (parseInt(_1_day_change) < 0)
