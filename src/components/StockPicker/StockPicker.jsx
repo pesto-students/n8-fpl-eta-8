@@ -6,6 +6,8 @@ import StockSelector from "components/StockSelector/StockSelector";
 import { useDispatch } from "react-redux";
 
 import { removeStock } from "store-features/portfolio";
+import PriceChange from "components/PriceChange/PriceChange";
+import { Grid } from "@mui/material";
 
 const AddStockButton = styled(AddIcon)`
   float: right;
@@ -29,13 +31,12 @@ const AutoCompleteStockSelector = styled(StockSelector)`
   width: auto !important;
 `;
 
-export default function StockPicker({ stockName, state }) {
+export default function StockPicker({ stockName, state, stockChange }) {
 
 
   const [showSearch, setShowSearch] = useState(false);
   const [selectedStock, setSelectedStock] = useState({ name: "Pick Stocks" });
   const [isStockSelected, setIsStockSelected] = useState(false);
-
   const dispatch = useDispatch();
 
 
@@ -62,10 +63,17 @@ export default function StockPicker({ stockName, state }) {
 
   function selectStock(stock) {
     setShowSearch(false);
-
     setSelectedStock(stock);
-
     setIsStockSelected(true);
+  }
+
+  const direction = (_1_day_change) => {
+    console.log(`Change - ${_1_day_change}`)
+    if (parseInt(_1_day_change) > 0)
+      return 'up';
+    else if (parseInt(_1_day_change) < 0)
+      return 'down';
+    return 'pause';
   }
 
 
@@ -83,12 +91,20 @@ export default function StockPicker({ stockName, state }) {
               : (<AddStockButton onClick={() => setShowSearch(true)} />)
             }
           </>)
-      case 'VIEW':
       case 'LIVE_VIEW':
-      default:
         return (
-          stockName
+          <Grid container justifyContent="space-between">
+            <Grid item>{stockChange.stock}</Grid>
+            <Grid item>
+              <PriceChange
+                text={stockChange.price}
+                direction={direction(stockChange.diff)} />
+            </Grid>
+          </Grid>
         );
+      case 'VIEW':
+      default:
+        return (stockName)
 
     }
   }

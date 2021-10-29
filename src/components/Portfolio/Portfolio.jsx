@@ -84,13 +84,14 @@ export default function Portfolio({ portfolio, challengeStatus }) {
     } else if ((portfolio === undefined || portfolio.length === 0) && challengeStatus === 'CLOSED') {
       setPortfolioState('VIEW');
     }
+
   }, [portfolio, challengeStatus])
 
 
 
   // component rendering Portfolio Title area as per the Portfolio State
   const SwitchPortfolioTitle = ({ state }) => {
-    console.log(`${state}`)
+    console.log(`Portfolio State - ${state}`)
     switch (state) {
       case 'CREATE':
         return (

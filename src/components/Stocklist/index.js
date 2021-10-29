@@ -1,11 +1,14 @@
 import StockPicker from 'components/StockPicker/StockPicker';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addStock } from 'store-features/portfolio';
+import { ref, onValue } from 'firebase/database';
+
+
+import Firebase from '../../firebase';
+
 import { setPortfolio } from 'store-features/portfolio';
-
 export default function Stocklist({ portfolio, challengeStatus, state }) {
-
 
 
     const [stocks, setStocks] = useState([]);
@@ -40,10 +43,34 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
             _s().then(data => { console.log(JSON.stringify(data)); setStocks(data) }, error => { console.log(error) })
 
         }
+
+        if (state === 'LIVE_VIEW') {
+            const db = Firebase.realTimeDB;
+            const r = ref(db, `FPL/Portfolios/${portfolio[0].id}/l`);
+
+            onValue(r, (snapshot) => {
+                console.log(`port snapshot-${JSON.stringify(snapshot.val())}`);
+                setStocks(snapshot.val());
+            }
+                , {
+                    onlyOnce: false
+                });
+        }
+
     }, [portfolio, state, dispatch]);
 
 
     const StockListInternal = ({ state }) => {
+            function usePrevious(value) {
+            const ref = useRef();
+            useEffect(() => {
+                ref.current = value;
+            });
+            return ref.current;
+        }
+    
+    
+        const prev = usePrevious(stocks);
         switch (state) {
             case 'CREATE':
                 return (
@@ -55,23 +82,28 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
                         <StockPicker state={state} />
                     </>
                 );
-            case 'LIVE_VIEW':
+            case 'VIEW':
                 return (
                     stocks.map(s => {
                         return (
-                            <StockPicker
-                                stockName={s} stockPrice state={state}
-                            />
+                            <StockPicker stockName={s} state={state} />
                         )
                     })
                 );
-            case 'VIEW':
+            case 'LIVE_VIEW':
             default:
+                let change = [];
+    
+                for (let c = 0; c < stocks.length; c++) {
+                    let diff = prev[c].price - stocks[c].price;
+                    change.push({ price: stocks[c].price, stock: stocks[c].stock, diff });
+                }
+
                 return (
-                    stocks.map(s => {
+                    change.map(s => {
                         return (
                             <StockPicker
-                                stockName={s} state={state}
+                                stockName={s} stockChange={s} state={state}
                             />
                         )
                     })
