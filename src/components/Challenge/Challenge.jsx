@@ -10,8 +10,7 @@ import { useStyles } from "./styles";
 
 // mui
 import Container from "@mui/material/Container";
-import { Button, Grid, Typography } from "@mui/material";
-import UpdateIcon from "@mui/icons-material/Update";
+import { Grid, Typography } from "@mui/material";
 
 // custom Components
 import ChallengeStatus from "components/ChallengeStatus/ChallengeStatus";
@@ -67,19 +66,6 @@ export default function Challenge() {
           <>
             <Typography variant="h4" className={classes.challengeTitle}>
               {challenge.name}
-              <div className={classes.updateDetails}>
-                <span className={classes.updateDetailsText}>
-                  Last Updated at
-                </span>
-                <Button
-                  className={classes.refreshButton}
-                  aria-label="refresh"
-                  size="large"
-                  variant="contained"
-                >
-                  <UpdateIcon fontSize="medium" />
-                </Button>
-              </div>
             </Typography>
             <Grid container direction="row" spacing={2}>
               <Grid item xs={12} md={10} lg={9}>
