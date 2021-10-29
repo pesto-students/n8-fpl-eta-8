@@ -43,17 +43,16 @@ const stocksSelected = [];
 // const questionsNumber = 5;
 
 export default function Portfolio({ portfolio, challengeStatus }) {
-
   const [open, setOpen] = useState(false);
 
   let { challengeId } = useParams();
   const user = useSelector((state) => state.user);
+  const currentPortfolio = useSelector((state) => state.portfolio);
 
   const [portfolioState, setPortfolioState] = useState();
 
   const handleSubmit = () => {
-
-    // validate the portfolio 
+    // validate the portfolio
 
     // tigger confirm dialog
     setOpen(true);
@@ -62,78 +61,73 @@ export default function Portfolio({ portfolio, challengeStatus }) {
     setOpen(false);
   };
 
-
   useEffect(() => {
-    console.log(`Challenge Portfolio - ${JSON.stringify(portfolio, 0, 2)}`)
+    console.log(`Challenge Portfolio - ${JSON.stringify(portfolio, 0, 2)}`);
 
-    if ((portfolio === undefined || portfolio.length === 0) && challengeStatus === 'NOT_LIVE') {
-      setPortfolioState('CREATE');
-
-    } else if (portfolio !== undefined && challengeStatus === 'NOT_LIVE') {
-      setPortfolioState('VIEW');
-
-    } else if (portfolio !== undefined && challengeStatus === 'CLOSED') {
-      setPortfolioState('VIEW');
-
-    } else if (portfolio !== undefined && challengeStatus === 'LIVE') {
-      setPortfolioState('LIVE_VIEW');
-
-    } else if ((portfolio === undefined || portfolio.length === 0) && challengeStatus === 'LIVE') {
-      setPortfolioState('VIEW');
-
-    } else if ((portfolio === undefined || portfolio.length === 0) && challengeStatus === 'CLOSED') {
-      setPortfolioState('VIEW');
+    if (
+      (portfolio === undefined || portfolio.length === 0) &&
+      challengeStatus === "NOT_LIVE"
+    ) {
+      setPortfolioState("CREATE");
+    } else if (portfolio !== undefined && challengeStatus === "NOT_LIVE") {
+      setPortfolioState("VIEW");
+    } else if (portfolio !== undefined && challengeStatus === "CLOSED") {
+      setPortfolioState("VIEW");
+    } else if (portfolio !== undefined && challengeStatus === "LIVE") {
+      setPortfolioState("LIVE_VIEW");
+    } else if (
+      (portfolio === undefined || portfolio.length === 0) &&
+      challengeStatus === "LIVE"
+    ) {
+      setPortfolioState("VIEW");
+    } else if (
+      (portfolio === undefined || portfolio.length === 0) &&
+      challengeStatus === "CLOSED"
+    ) {
+      setPortfolioState("VIEW");
     }
-
-  }, [portfolio, challengeStatus])
-
-
+  }, [portfolio, challengeStatus]);
 
   // component rendering Portfolio Title area as per the Portfolio State
   const SwitchPortfolioTitle = ({ state }) => {
-    console.log(`Portfolio State - ${state}`)
+    console.log(`Portfolio State - ${state}`);
     switch (state) {
-      case 'CREATE':
+      case "CREATE":
         return (
           <PortfolioTitle>
             My Portfolio
-            <SubmitPortfolio
-              variant="contained"
-              size="small"
-              onClick={handleSubmit}
-            >
-              Submit
-            </SubmitPortfolio>
+            {currentPortfolio.stocks.length === 5 ? (
+              <SubmitPortfolio
+                variant="contained"
+                size="small"
+                onClick={handleSubmit}
+              >
+                Submit
+              </SubmitPortfolio>
+            ) : (
+              <SubmitPortfolioDisabled
+                variant="contained"
+                size="small"
+                disabled
+              >
+                Submit
+              </SubmitPortfolioDisabled>
+            )}
           </PortfolioTitle>
         );
-      case 'VIEW':
+      case "VIEW":
         return (
           <PortfolioTitle>
             My Portfolio
-            <SubmitPortfolioDisabled
-              variant="contained"
-              size="small"
-              disabled
-            >
+            <SubmitPortfolioDisabled variant="contained" size="small" disabled>
               Submit
             </SubmitPortfolioDisabled>
           </PortfolioTitle>
-        )
-      case 'LIVE_VIEW':
-        return (
-          <PortfolioTitle>
-            My Portfolio
-          </PortfolioTitle>
-        )
+        );
       default:
-        return (
-          <PortfolioTitle>
-            My Portfolio
-          </PortfolioTitle>
-        )
+        return <PortfolioTitle>My Portfolio</PortfolioTitle>;
     }
-  }
-
+  };
 
   const ConfirmDialog = () => {
     return (
@@ -161,12 +155,10 @@ export default function Portfolio({ portfolio, challengeStatus }) {
           </GoBackButton>
         </DialogActions>
       </Dialog>
-
-    )
-  }
+    );
+  };
 
   let data = {};
-
 
   function createSubmitData() {
     let arrStockSelected = stocksSelected.map(function (obj, i) {
@@ -202,7 +194,11 @@ export default function Portfolio({ portfolio, challengeStatus }) {
     <PortfolioCard variant="outlined">
       <CardContent>
         <SwitchPortfolioTitle state={portfolioState} />
-        <Stocklist portfolio={portfolio} state={portfolioState} challengeId={challengeId} />
+        <Stocklist
+          portfolio={portfolio}
+          state={portfolioState}
+          challengeId={challengeId}
+        />
       </CardContent>
       <ConfirmDialog />
     </PortfolioCard>

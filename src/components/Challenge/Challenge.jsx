@@ -17,6 +17,7 @@ import UpdateIcon from "@mui/icons-material/Update";
 import ChallengeStatus from "components/ChallengeStatus/ChallengeStatus";
 import Portfolio from "components/Portfolio/Portfolio";
 import LeaderBoardView from "components/LeaderBoardView/LeaderBoardView";
+import { resetPortfolio } from "store-features/portfolio";
 
 export default function Challenge() {
   let { challengeId } = useParams();
@@ -51,13 +52,14 @@ export default function Challenge() {
         dispatch(setChallengeToStore(c));
         setChallenge(c);
         setIsLoading(false);
-
-        const p = portfolios.filter(p => p.challengeId === challengeId);
-        console.log(`found portfolio for challenge ${challengeId} - ${JSON.stringify(p)}`)
-        setPortfolio(p); 
+        dispatch(resetPortfolio());
+        const p = portfolios.filter((p) => p.challengeId === challengeId);
+        console.log(
+          `found portfolio for challenge ${challengeId} - ${JSON.stringify(p)}`
+        );
+        setPortfolio(p);
       })
       .catch((error) => console.log(error));
-
   }, [challengeId, dispatch, portfolios]);
 
   const classes = useStyles();
@@ -84,7 +86,10 @@ export default function Challenge() {
             </Typography>
             <Grid container direction="row" spacing={2}>
               <Grid item xs={12} md={10} lg={9}>
-                <Portfolio portfolio={portfolio} challengeStatus={challenge.status} />
+                <Portfolio
+                  portfolio={portfolio}
+                  challengeStatus={challenge.status}
+                />
               </Grid>
               <Grid item xs={12} md={2} lg={3}>
                 <ChallengeStatus

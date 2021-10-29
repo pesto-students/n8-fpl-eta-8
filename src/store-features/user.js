@@ -7,16 +7,20 @@ export const user = createSlice({
     name: "",
     profileImage: "",
     uid: "",
-    portfolios: []
+    portfolios: [],
   },
   reducers: {
     setUser: (state, action) => {
-     Object.assign(state, action.payload);
+      Object.assign(state, action.payload);
     },
     setUserPortfolio: (state, action) => {
-      Object.assign(state.portfolios, action.payload);
-     },
-  }
+      console.log(action.payload);
+      if (action.payload !== null && action.payload !== undefined) {
+        // Object.assign(state.portfolios, action.payload);
+        state.portfolios = action.payload;
+      }
+    },
+  },
 });
 
 export const { setUser, setUserPortfolio } = user.actions;
