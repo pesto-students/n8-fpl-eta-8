@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     marginTop: "2rem",
   },
   imageSection: {
-    maxHeight: "30rem",
+    maxHeight: "35rem",
     width: "100%",
     height: "auto",
   },

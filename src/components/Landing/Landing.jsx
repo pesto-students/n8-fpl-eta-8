@@ -19,8 +19,8 @@ export default function Landing() {
 
   return (
     <>
-      <LandingHeader />
       <Container>
+        <LandingHeader />
         <Grid container direction="column" alignItems="center" justifyContent="center" >
           <Grid
             item xs={12} sm={12} md={12} lg={12}>
