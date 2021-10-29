@@ -71,8 +71,8 @@ export default function ChallengeList(props) {
   const uid = useSelector(state => state.user.uid);
   const dispatch = useDispatch();
   useEffect(() => {
-    
-    
+
+
 
     try {
       let api = '';
@@ -96,7 +96,8 @@ export default function ChallengeList(props) {
       .then((res) => res.json())
       .then((response) => {
         console.log(`UID portfolios${JSON.stringify(response)}`)
-        dispatch(setUserPortfolio(response));
+        if (response.length > 0)
+          dispatch(setUserPortfolio(response));
       });
   }, [filter, uid, dispatch]);
 
@@ -134,13 +135,17 @@ export default function ChallengeList(props) {
                       spacing={3}
                       className={classes.challengeList}
                     >
-                      {challenges.map((item, index) => {
+                      {challenges.length > 0 ? challenges.map((item, index) => {
                         return (
                           <Grid item xs={12} md={12} lg={6} key={index}>
                             <ChallengeCard challenge={item} />
                           </Grid>
                         );
-                      })}
+                      }) : <Typography 
+                      variant="p"
+                      className = {classes.errorBoundry}>
+                        No Challenges. Check for other filters
+                         </Typography >}
                     </Grid>
                   </Grid>
                 </Grid>

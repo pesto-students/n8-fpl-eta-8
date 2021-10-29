@@ -23,4 +23,7 @@ export const useStyles = makeStyles({
     backgroundColor: "#f6f9ff",
     zIndex: "2",
   },
+  errorBoundry:{
+    padding:'2rem'
+  }
 });
