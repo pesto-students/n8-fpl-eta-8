@@ -33,7 +33,7 @@ export default function ProfileSidebar(props) {
             {user.profileImage ? (
               <ProfileImg src={user.profileImage} alt={user.name} />
             ) : (
-              <ProfileAvatar>{user.name.charAt(0).toUpperCase()}</ProfileAvatar>
+              <ProfileAvatar sx={{ width: 80, height: 80 }}>{user.name.charAt(0).toUpperCase()}</ProfileAvatar>
             )}
           </div>
           <ProfileName>{user.name}</ProfileName>

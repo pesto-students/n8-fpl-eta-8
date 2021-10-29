@@ -47,7 +47,8 @@ export default function Portfolio({ portfolio, challengeStatus }) {
 
   let { challengeId } = useParams();
   const user = useSelector((state) => state.user);
-  const currentPortfolio = useSelector((state) => state.portfolio);
+  // const currentPortfolio = useSelector((state) => state.portfolio);
+  // const [selectedStockList, setSelectedStockList] = useState([]);
 
   const [portfolioState, setPortfolioState] = useState();
 
@@ -59,6 +60,12 @@ export default function Portfolio({ portfolio, challengeStatus }) {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  let selectedStockList =[];
+  const getSelectedStockList = (stockList) => {
+    console.log(stockList);
+    selectedStockList=stockList;
+    // setSelectedStockList(stockList);
   };
 
   useEffect(() => {
@@ -96,7 +103,7 @@ export default function Portfolio({ portfolio, challengeStatus }) {
         return (
           <PortfolioTitle>
             My Portfolio
-            {currentPortfolio.stocks.length === 5 ? (
+            {selectedStockList.length === 5 ? (
               <SubmitPortfolio
                 variant="contained"
                 size="small"
@@ -175,6 +182,7 @@ export default function Portfolio({ portfolio, challengeStatus }) {
   function submitPortfolio() {
     if (stocksSelected.length === 5) {
       createSubmitData();
+      console.log(data);
       var url = `${process.env.REACT_APP_API_SERVER}/api/portfolio`;
 
       axios
@@ -198,6 +206,7 @@ export default function Portfolio({ portfolio, challengeStatus }) {
           portfolio={portfolio}
           state={portfolioState}
           challengeId={challengeId}
+          getSelectedStockList={getSelectedStockList}
         />
       </CardContent>
       <ConfirmDialog />
