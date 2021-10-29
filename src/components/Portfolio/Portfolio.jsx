@@ -201,7 +201,7 @@ export default function Portfolio({ portfolio, challengeStatus }) {
     <PortfolioCard variant="outlined">
       <CardContent>
         <SwitchPortfolioTitle state={portfolioState} />
-        <Stocklist portfolio={portfolio} state={portfolioState} />
+        <Stocklist portfolio={portfolio} state={portfolioState} challengeId={challengeId} />
       </CardContent>
       <ConfirmDialog />
     </PortfolioCard>

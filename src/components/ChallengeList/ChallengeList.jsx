@@ -28,8 +28,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUserPortfolio } from "store-features/user";
 
-import { resetPortfolio } from "store-features/portfolio";
-
 // scroll to top
 function ScrollTop(props) {
   const { children, window } = props;
@@ -74,9 +72,7 @@ export default function ChallengeList(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     
-    // reset local portfolios
-    dispatch(resetPortfolio());
-
+    
 
     try {
       let api = '';
@@ -99,6 +95,7 @@ export default function ChallengeList(props) {
     fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
       .then((res) => res.json())
       .then((response) => {
+        console.log(`UID portfolios${JSON.stringify(response)}`)
         dispatch(setUserPortfolio(response));
       });
   }, [filter, uid, dispatch]);

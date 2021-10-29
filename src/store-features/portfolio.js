@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = {
+    id: null,
+    challengeId: null,
+    stocks: [],
+    submitTimestamp: null,
+    uid: null,
+    username: null,
+    analysingStock: null,
+}
+
 export const portfolio = createSlice({
     name: 'portfolio',
-    initialState: {
-        id: null,
-        challengeId: null,
-        stocks: [],
-        submitTimestamp: null,
-        uid: null,
-        username: null,
-        analysingStock: null,
-    },
+    initialState,
     reducers: {
         setPortfolio: (state, action) => {
             const { id, challengeId, submitTimestamp, uid, username } = action.payload;
@@ -42,18 +44,7 @@ export const portfolio = createSlice({
         analysingStock: (state, action) => {
             state.analysingStock = action.payload;
         },
-        resetPortfolio: (state) => {
-            state = {
-                id: null,
-                challengeId: null,
-                stocks: [],
-                submitTimestamp: null,
-                uid: null,
-                username: null,
-                analysingStock: null,
-            }
-            console.log(`${JSON.stringify(state, 0, 2)}`)
-        }
+        resetPortfolio: state => initialState
     }
 });
 
