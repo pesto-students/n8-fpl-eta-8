@@ -31,7 +31,7 @@ export default function StockDetails() {
 
     if (!isNaN(securityCode)) {
       fetch(
-        `${process.env.REACT_APP_API_SERVER}/api/lookup/${securityCode}`,
+        `${process.env.REACT_APP_API_SERVER}/api/lookup/code/${securityCode}`,
         {}
       )
         .then((res) => res.json())

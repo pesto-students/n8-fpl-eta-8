@@ -15,7 +15,7 @@ import {
   GoogleButton,
   BackButton,
 } from "./LoginStlye";
-import { setUser } from "store-features/user";
+import { setUser} from "store-features/user";
 
 export default function Login() {
   const { url, path } = useRouteMatch();
@@ -32,9 +32,7 @@ export default function Login() {
             name: user.displayName,
             profileImage: user.photoURL,
             uid: user.uid,
-          })
-        );
-
+          }) );
         user.getIdToken().then((token) => {});
       });
       history.push("/home");
@@ -46,14 +44,18 @@ export default function Login() {
   async function demoLogin() {
     try {
       await firebase.login("demo@presto.com", "demopresto").then(({ user }) => {
+        
         dispatch(
           setUser({
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,
+            uid: user.uid
           })
         );
+                
         history.push("/home");
+      
       });
 
       firebase.getCurrentUsername();

@@ -55,7 +55,7 @@ export default function ChallengeRules() {
         <Grid container direction="row" justifyContent="center">
           <Grid item xs={12} lg={12} md={12}>
             <List>
-              {rules.map((item, index) => {
+              {(rules !== undefined && rules.length > 0) ? rules.map((item, index) => {
                 return (
                   <ListItem disablePadding>
                     <ListItemIcon>
@@ -64,7 +64,9 @@ export default function ChallengeRules() {
                     <ListItemText primary={item} />
                   </ListItem>
                 );
-              })}
+              }) :
+                <Typography variant="p"> Looks like, the rules are not ready, keep watching for this section for updates </Typography>
+              }
             </List>
           </Grid>
         </Grid>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { withStyles } from "@mui/styles";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { useStyles } from "./styles";
 import { Timestamp } from "firebase/firestore";
+import { addStock } from "store-features/portfolio";
+import { useHistory } from "react-router";
 
 const AddStockBtn = withStyles({
   root: {
@@ -20,6 +22,12 @@ export default function ChallengeContext() {
   const classes = useStyles();
   const challenge = useSelector((state) => state.challenge);
   const [challengeContext, setChallengeContext] = useState(null);
+
+  const _s = useSelector(state => state.portfolio.analysingStock);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+
 
   useEffect(() => {
     // debug
@@ -38,6 +46,13 @@ export default function ChallengeContext() {
     setChallengeContext({ name, sDate, eDate });
   }, [challenge]);
 
+
+
+  const handleAddToPortfolio = () => {
+    dispatch(addStock(_s));
+    history.goBack();
+  }
+
   return (
     <AppBar className={classes.challengeContext}>
       {challengeContext !== null ? (
@@ -51,7 +66,7 @@ export default function ChallengeContext() {
               {challengeContext.eDate.toDateString()}
             </Typography>
           </div>
-          <AddStockBtn>Add Stock to Portfolio</AddStockBtn>
+          <AddStockBtn onClick={handleAddToPortfolio}>Add Stock to Portfolio</AddStockBtn>
         </Toolbar>
       ) : (
         <div></div>

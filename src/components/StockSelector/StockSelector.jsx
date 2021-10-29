@@ -4,6 +4,9 @@ import axios from "axios";
 import { Button } from "@mui/material";
 import styled from "styled-components";
 import { debounce } from "components/common";
+import { useDispatch } from "react-redux";
+
+import { addStock, analysingStock } from "store-features/portfolio";
 
 const StockPickerTextBox = styled.input.attrs({
   type: "text",
@@ -18,12 +21,13 @@ const StockPickerTextBox = styled.input.attrs({
 
 const StockSuggestionList = styled.div`
   position: absolute;
-  left: 35px;
+  left: 5vw;
   background-color: #e4e6f1;
   padding: 0.25rem;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   color: #000000;
+  padding: 0.45rem;
 
   @media (min-width: 1024px) {
     left: auto;
@@ -31,7 +35,9 @@ const StockSuggestionList = styled.div`
 `;
 
 const SearchItems = styled.div`
-  line-height: 48px;
+  line-height: 1.5rem;
+  padding-top: 0.25rem;
+  padding-right: 0.25rem;
 `;
 
 const SearchResultName = styled.span`
@@ -70,6 +76,8 @@ export default function StockSelector(props) {
   const [showStockSuggestionList, setShowStockSuggestionList] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const dispatch = useDispatch();
+
   var returnedFunction = debounce(function (param) {
     var url = `${process.env.REACT_APP_ALPHAVANTAGE_URL}/query?function=SYMBOL_SEARCH&keywords=${param}&apikey=${process.env.REACT_APP_ALPHAVANTAGE_KEY}`;
     axios
@@ -101,7 +109,8 @@ export default function StockSelector(props) {
     }
   }
 
-  function addStock(selectedStock) {
+  function addStockToPicker(selectedStock) {
+    dispatch(addStock(selectedStock));
     props.selectStock(selectedStock);
     setSearchedStockList(false);
   }
@@ -132,6 +141,12 @@ export default function StockSelector(props) {
                     size="small"
                     variant="outlined"
                     onClick={() => {
+                      dispatch(
+                        analysingStock({
+                          name: item["2. name"],
+                          symbol: item["1. symbol"],
+                        })
+                      );
                       setShowStockSuggestionList(false);
                       setSearchQuery("");
                     }}
@@ -145,7 +160,7 @@ export default function StockSelector(props) {
                       size="small"
                       variant="outlined"
                       onClick={() =>
-                        addStock({
+                        addStockToPicker({
                           name: item["2. name"],
                           value: item["1. symbol"],
                         })

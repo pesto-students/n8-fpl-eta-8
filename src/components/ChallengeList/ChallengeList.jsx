@@ -24,6 +24,9 @@ import Challenge from "components/Challenge/Challenge";
 import Header from "components/Header/Header";
 import StockDetails from "components/StockDetails/StockDetails";
 import Profile from "components/Profile/Profile";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUserPortfolio } from "store-features/user";
 
 // scroll to top
 function ScrollTop(props) {
@@ -65,9 +68,12 @@ export default function ChallengeList(props) {
   const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
   const [filter, setFilter] = useState("all");
-
-
+  const uid = useSelector(state => state.user.uid);
+  const dispatch = useDispatch();
   useEffect(() => {
+
+
+
     try {
       let api = '';
       if (filter === "all") {
@@ -84,9 +90,16 @@ export default function ChallengeList(props) {
 
     } catch (error) {
       console.error(`Error ${error}`);
-    }
+    };
 
-  }, [filter]);
+    fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(`UID portfolios${JSON.stringify(response)}`)
+        if (response.length > 0)
+          dispatch(setUserPortfolio(response));
+      });
+  }, [filter, uid, dispatch]);
 
   const changeFilter = (filterValue) => {
     setFilter(filterValue);
@@ -122,13 +135,17 @@ export default function ChallengeList(props) {
                       spacing={3}
                       className={classes.challengeList}
                     >
-                      {challenges.map((item, index) => {
+                      {challenges.length > 0 ? challenges.map((item, index) => {
                         return (
                           <Grid item xs={12} md={12} lg={6} key={index}>
                             <ChallengeCard challenge={item} />
                           </Grid>
                         );
-                      })}
+                      }) : <Typography 
+                      variant="p"
+                      className = {classes.errorBoundry}>
+                        No Challenges. Check for other filters
+                         </Typography >}
                     </Grid>
                   </Grid>
                 </Grid>
