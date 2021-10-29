@@ -24,7 +24,7 @@ export default function ChallengeFilter(props) {
           <FormControlLabel value="STARTING_SOON" control={<Radio />} label="Starting Soon" />
           <FormControlLabel value="LIVE" control={<Radio />} label="Closing Soon" />
           <FormControlLabel value="CLOSED" control={<Radio />} label="Closed Challenges" />
-          <FormControlLabel value="all" control={<Radio />} label="My Challenges" />
+          <FormControlLabel value="all" control={<Radio />} label="All Challenges" />
         </RadioGroup>
       </Card>
     </>

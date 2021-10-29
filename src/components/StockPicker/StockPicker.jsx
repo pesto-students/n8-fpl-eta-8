@@ -3,9 +3,7 @@ import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StockSelector from "components/StockSelector/StockSelector";
-import { useDispatch } from "react-redux";
 
-import { removeStock } from "store-features/portfolio";
 import PriceChange from "components/PriceChange/PriceChange";
 import { Grid } from "@mui/material";
 
@@ -37,7 +35,6 @@ export default function StockPicker({ stockName, state, stockChange }) {
   const [showSearch, setShowSearch] = useState(false);
   const [selectedStock, setSelectedStock] = useState({ name: "Pick Stocks" });
   const [isStockSelected, setIsStockSelected] = useState(false);
-  const dispatch = useDispatch();
 
 
   const PickStock = styled.div`
@@ -55,7 +52,7 @@ export default function StockPicker({ stockName, state, stockChange }) {
   function deleteStock() {
     setIsStockSelected(false);
     console.log(`deleting stock - ${JSON.stringify(selectedStock)}`)
-    dispatch(removeStock({ selectedStock }));
+    // dispatch(removeStock({ selectedStock }));
 
     setSelectedStock({ name: "Pick Stocks" });
   }
