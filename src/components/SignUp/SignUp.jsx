@@ -5,10 +5,7 @@ import { Button } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import styled from "styled-components";
-
 import firebase from "firebase";
-import { setUser } from "store-features/user";
-
 
 const LoginButton = styled(Button)`
   background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);

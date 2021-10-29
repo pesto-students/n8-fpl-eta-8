@@ -27,7 +27,7 @@ const StockSuggestionList = styled.div`
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   color: #000000;
-  padding:.45rem;
+  padding: 0.45rem;
 
   @media (min-width: 1024px) {
     left: auto;
@@ -36,8 +36,8 @@ const StockSuggestionList = styled.div`
 
 const SearchItems = styled.div`
   line-height: 1.5rem;
-  padding-top:.25rem;
-  padding-right:.25rem;
+  padding-top: 0.25rem;
+  padding-right: 0.25rem;
 `;
 
 const SearchResultName = styled.span`
@@ -110,8 +110,6 @@ export default function StockSelector(props) {
   }
 
   function addStockToPicker(selectedStock) {
-
-
     dispatch(addStock(selectedStock));
     props.selectStock(selectedStock);
     setSearchedStockList(false);
@@ -143,7 +141,12 @@ export default function StockSelector(props) {
                     size="small"
                     variant="outlined"
                     onClick={() => {
-                      dispatch(analysingStock({ name: item["2. name"], symbol: item["1. symbol"] }))
+                      dispatch(
+                        analysingStock({
+                          name: item["2. name"],
+                          symbol: item["1. symbol"],
+                        })
+                      );
                       setShowStockSuggestionList(false);
                       setSearchQuery("");
                     }}
