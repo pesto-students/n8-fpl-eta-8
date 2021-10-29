@@ -5,6 +5,7 @@ import {
   BackButton,
   Badge,
   Currency,
+  Info,
   PlanDesc,
   PlanName,
   PlanSubscriptionTitle,
@@ -20,7 +21,7 @@ export default function PlanSubscription() {
       {isPlanViewed ? (
         <>
           <SelectPlanTitle>
-            Select Plan
+            Select Plan <Info>*Payment Integration is not a part of MVP 1</Info>
             <BackButton onClick={() => setIsPlanViewed(false)} />
           </SelectPlanTitle>
           <Grid container direction="row" spacing={2}>

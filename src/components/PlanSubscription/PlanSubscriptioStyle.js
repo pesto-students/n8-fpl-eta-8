@@ -92,3 +92,7 @@ export const Badge = styled(BookmarkIcon)`
 export const BackButton = styled(ArrowBackIcon)`
   float: right;
 `;
+export const Info = styled.span`
+  font-size:12px;
+  margin-left: 10%;
+`;
