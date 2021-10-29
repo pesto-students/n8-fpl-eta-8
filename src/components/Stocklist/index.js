@@ -1,5 +1,5 @@
 import StockPicker from 'components/StockPicker/StockPicker';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addStock } from 'store-features/portfolio';
 import { ref, onValue } from 'firebase/database';
@@ -61,16 +61,7 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
 
 
     const StockListInternal = ({ state }) => {
-            function usePrevious(value) {
-            const ref = useRef();
-            useEffect(() => {
-                ref.current = value;
-            });
-            return ref.current;
-        }
-    
-    
-        const prev = usePrevious(stocks);
+
         switch (state) {
             case 'CREATE':
                 return (
@@ -92,15 +83,8 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
                 );
             case 'LIVE_VIEW':
             default:
-                let change = [];
-    
-                for (let c = 0; c < stocks.length; c++) {
-                    let diff = prev[c].price - stocks[c].price;
-                    change.push({ price: stocks[c].price, stock: stocks[c].stock, diff });
-                }
-
                 return (
-                    change.map(s => {
+                    stocks.map(s => {
                         return (
                             <StockPicker
                                 stockName={s} stockChange={s} state={state}
