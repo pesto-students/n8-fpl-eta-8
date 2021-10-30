@@ -35,6 +35,19 @@ To participate in the challenge the users will have to subscribe to the app. Onc
 
 ## Features 
 
+### User Stories
+| Feature | Description | Priority |
+| ---------------- | ------------ | -------- |
+|Landing Page/Home Page | As a user, I should have a page where I can navigate and browse content of the  website. | P1 |
+| Signup / Login | As a new user to the site I should be able to register my self. As a returning user I should be able to login to my account | P1 |
+| Check Stock Details | As a user I can search Stocks and view details of a particular stock and company(Company Overview,Earnings,Income Statement, Balance Sheet, Cash Flow ) | P1 | 
+| Submit Portfolio | As a Logged in user I should be able to use a ticket to select a portfolio challenge and submit a stock portfolio. Users can select from their basket or can  directly add from the stock details page | P1 |
+| View Challenge Results | Submitted challenges can be viewed in this section, users cannot edit challenges once the challenge starts. | P1 |
+| Subscription Plan | Users can opt for various plans to subscribe. Default free plan will be applied if not opted for any. | P2 |
+| User Profile | As a user I should be able to view/update my profile details (Name/Email address) | P2 | 
+| Manage Users | As an admin I should be able to manage users and their subscriptions. | Low |
+| Disburse Awards to winners | As an admin I should be able to disburse the awards to the winners of a particular challenge. | Low |
+Dashboard/Performance Page |  As an admin I should be able to view the performance of challenges, engagement of users in the challenges in a graphical view. | Low
 
 ## Demo Credentials 
 app : Fantasy Portfolio League (https://fpleague.netlify.app) \
