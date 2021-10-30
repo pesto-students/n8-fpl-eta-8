@@ -54,9 +54,11 @@ export default function Challenge() {
         for (let p = 0; p < portfolios.length; p++) {
           if (portfolios[p].challengeId === challengeId) {
             setPortfolio(portfolios[p]);
-            setIsLoading(false);
           }
         }
+        setIsLoading(false);
+        
+
       })
       .catch((error) => console.log(error));
   }, [challengeId, dispatch, portfolios]);
