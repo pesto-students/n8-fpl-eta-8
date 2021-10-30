@@ -32,7 +32,6 @@ class Firebase {
   constructor() {
     const app = initializeApp(config);
     this.auth = getAuth(app);
-    // ? have we used it anywhere
     this.db = getFirestore(app);
     this.provider = new GoogleAuthProvider();
     this.auth.languageCode = "en";
