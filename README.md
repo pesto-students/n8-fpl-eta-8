@@ -7,9 +7,10 @@
 ## Table of Content 
 1. [Introduction](#introduction)
 2. [Features](#features)
+3. [Demo Credentials](#demo)
 3. [Documents](#documents)
-3. [Tech](#Tech)
-4. [Tools and Libraries](#tools)
+3. [Technical Details ](#technical-details)
+4. [Tools and Libraries](#tools-and-libraries)
 4. [Installation](#installation)
 5. [Contact](#contact)
 6. [License](#license)
@@ -34,27 +35,58 @@ To participate in the challenge the users will have to subscribe to the app. Onc
 
 ## Features 
 
-## Documents 
-
-## Tech
-1. React (Frontend Library)
-2. Redux (State Management Library)
-3. Material UI (Base UI framework)
-4. Sentry (Capture logs of the site)
-5. Trading view (Charting and Stock Details Application)
-6. Alphavantage ( Stock Search and Base Price Data) 
-7. Firebase - Authenticate ( User and Login Management)
-8. Firebase - Firestore ( Application Database)
-9. Firebase - Realtime ( Live calculations)
-10. Nodejs - Application Server 
-
-
-
-
-
-
-
 
 ## Demo Credentials 
-username: demo@pesto.com
+app : Fantasy Portfolio League (https://fpleague.netlify.app) \
+username: demo@pesto.com \
 password: demopresto
+
+## Documents 
+
+
+
+
+## Technical Details
+### Technologies and API's
+| Tech / API  | Description |
+| ------------- | ------------- |
+| Sentry  | Capture logs of the site  |
+| TradingView  | Charting and Stock Details Application  |
+| AlphaVantage | Stock Search and Base Price Data |
+| Firebase Authentication | User and Login Management |
+| Firebase Firestore | Application Database |
+| Firebase Realtime Database | Live calculations |
+| Nodejs | Application Server |
+
+
+### Tools and Libraries 
+| Library  | Description |
+| ------------- | ------------- |
+| reactjs  | Frontend Library  |
+| redux  | State Management Library  |
+| material ui| Base UI framework |
+| redux persist | Persist redux state to Browser Local Storage|
+| axios | API call and management |
+| firebase | access and integrate firebase services |
+| alphavantage | access aplhavantage api |
+| react-circular-progressbar | used for challenge status component |
+
+
+### Env variables
+> **_Please Note:_**  All env variables to be prenended with `REACT_APP`
+
+| Variable  | Description |
+| ------------- | ------------- |
+| GOOGLE_API_KEY  | firebase access key  |
+| GOOGLE_AUTHDOMAIN  | firebase authdomain key  |
+| GOOGLE_PROJECTID| firebase project id |
+| GOOGLE_STORAGEBUCKET | firebase storage bucket |
+| GOOGLE_MESSAGING_SENDERID | firebase key for notifications |
+| GOOGLE_APPID | google app id |
+| GOOGLE_MEASUREMENTID | google measurement key for resource use measurement |
+| API_SERVER | nodejs deployment |
+| ALPHAVANTAGE_KEY | alphavantage api key |
+| ALPHAVANTAGE_URL | alphavantage url |
+| DATABASE_URL | firebase realtime database url |
+
+
