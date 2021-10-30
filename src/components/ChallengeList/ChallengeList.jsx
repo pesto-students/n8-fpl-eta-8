@@ -68,18 +68,15 @@ export default function ChallengeList(props) {
   const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
   const [filter, setFilter] = useState("all");
-  const uid = useSelector(state => state.user.uid);
+  const uid = useSelector((state) => state.user.uid);
   const dispatch = useDispatch();
   useEffect(() => {
-
-
-
     try {
-      let api = '';
+      let api = "";
       if (filter === "all") {
-        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/all`
+        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/all`;
       } else {
-        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`
+        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`;
       }
       // Fetch data from REST API
       fetch(api)
@@ -87,16 +84,14 @@ export default function ChallengeList(props) {
         .then((response) => {
           setChallenges(response);
         });
-
     } catch (error) {
       console.error(`Error ${error}`);
-    };
+    }
 
     fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
       .then((res) => res.json())
       .then((response) => {
-        if (response.length > 0)
-          dispatch(setUserPortfolio(response));
+        if (response.length > 0) dispatch(setUserPortfolio(response));
       });
   }, [filter, uid, dispatch]);
 
@@ -134,17 +129,22 @@ export default function ChallengeList(props) {
                       spacing={3}
                       className={classes.challengeList}
                     >
-                      {challenges.length > 0 ? challenges.map((item, index) => {
-                        return (
-                          <Grid item xs={12} md={12} lg={6} key={index}>
-                            <ChallengeCard challenge={item} />
-                          </Grid>
-                        );
-                      }) : <Typography 
-                      variant="p"
-                      className = {classes.errorBoundry}>
-                        No Challenges. Check for other filters
-                         </Typography >}
+                      {challenges.length > 0 ? (
+                        challenges.map((item, index) => {
+                          return (
+                            <Grid item xs={12} md={12} lg={6} key={index}>
+                              <ChallengeCard challenge={item} />
+                            </Grid>
+                          );
+                        })
+                      ) : (
+                        <Typography
+                          variant="p"
+                          className={classes.errorBoundry}
+                        >
+                          No Challenges. Check for other filters
+                        </Typography>
+                      )}
                     </Grid>
                   </Grid>
                 </Grid>

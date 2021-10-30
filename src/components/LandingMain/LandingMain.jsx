@@ -7,7 +7,6 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 //  Assets
 import landingImg from "assets/landing-img.png";
-// import landingMainBg from 'assets/landing-main-bg.svg';
 
 // Styling
 import { useStyles, TextSection, StyledLink } from "./styles";

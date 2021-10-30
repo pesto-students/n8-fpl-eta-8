@@ -9,10 +9,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { CardContent } from "@mui/material";
 import axios from "axios";
 import Stocklist from "components/Stocklist";
-import { GoBackButton, PortfolioCard, PortfolioTitle, SubmitPortfolio, SubmitPortfolioDisabled } from "./PortfolioStyle";
+import {
+  GoBackButton,
+  PortfolioCard,
+  PortfolioTitle,
+  SubmitPortfolio,
+  SubmitPortfolioDisabled,
+} from "./PortfolioStyle";
 
 const stocksSelected = [];
-// const questionsNumber = 5;
 
 export default function Portfolio({ portfolio, challengeStatus }) {
   const [open, setOpen] = useState(false);
