@@ -6,26 +6,15 @@ import { useHistory } from "react-router";
 
 // mui components
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-
-// to style the components
-import styled from "styled-components";
 
 // auth provider
 import firebase from "firebase";
 
 import { setUser } from "store-features/user";
 
-const LoginButton = styled(Button)`
-  background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
-  border-radius: 12px !important;
-`;
-
-const CancelButton = styled(LoginButton)`
-  margin-left: 20px !important;
-`;
+import { CancelButton, LoginButton } from "./SignInStyles";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { TextField } from "@mui/material";
-import { Button } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import styled from "styled-components";
 import firebase from "firebase";
-
-const LoginButton = styled(Button)`
-  background: linear-gradient(180deg, #2f3538 0%, #0c0d0e 100%);
-  border-radius: 12px !important;
-`;
-
-const CancelButton = styled(LoginButton)`
-  margin-left: 20px !important;
-`;
+import { CancelButton, LoginButton } from "./SignUpStyle";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
