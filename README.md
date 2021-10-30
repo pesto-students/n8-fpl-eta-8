@@ -8,12 +8,11 @@
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Demo Credentials](#demo)
-3. [Documents](#documents)
-3. [Technical Details ](#technical-details)
-4. [Tools and Libraries](#tools-and-libraries)
-4. [Installation](#installation)
-5. [Contact](#contact)
-6. [License](#license)
+4. [Documents](#documents)
+5. [Technical Details ](#technical-details)
+6. [Installation](#installation)
+7. [Contact](#contact)
+8. [License](#license)
 
 
 ## Introduction 
@@ -34,6 +33,7 @@ Fantasy Premier League (FPL) is a stock portfolio challenge platform. Each chall
 To participate in the challenge the users will have to subscribe to the app. Once subscribed, they will be provided with more tickets each month for the challenges that month. With 1 ticket they can participate in 1 challenge.
 
 ## Features 
+![Demo Image of the application](https://github.com/pesto-students/n8-fpl-eta-fe/blob/master/src/assets/landing-img.png)
 
 ### User Stories
 | Feature | Description | Priority |
@@ -50,12 +50,13 @@ To participate in the challenge the users will have to subscribe to the app. Onc
 Dashboard/Performance Page |  As an admin I should be able to view the performance of challenges, engagement of users in the challenges in a graphical view. | Low
 
 ## Demo Credentials 
-    app : Fantasy Portfolio League (https://fpleague.netlify.app) \
+app : Fantasy Portfolio League https://fpleague.netlify.app \
 username: demo@pesto.com \
 password: demopresto
 
 ## Documents 
-
+Product Requirement Document :[FPL](https://drive.google.com/file/d/1Pd8VmqID5Ys5YQF64ecCNV5up6dmuHv_/view?usp=sharing) \
+UI Design : [Figma](https://www.figma.com/proto/8FqBYcwDPaKWRtAwmGl0nt/FPL?node-id=34%3A20&scaling=min-zoom&page-id=34%3A19&starting-point-node-id=34%3A20) 
 
 
 
@@ -103,3 +104,4 @@ password: demopresto
 | DATABASE_URL | firebase realtime database url |
 
 
+## Installation 
