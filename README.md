@@ -71,11 +71,11 @@ UI Design : [Figma](https://www.figma.com/proto/8FqBYcwDPaKWRtAwmGl0nt/FPL?node-
 | Sentry  | Capture logs of the site  |
 | TradingView  | Charting and Stock Details Application  |
 | AlphaVantage | Stock Search and Base Price Data |
+| Yahoo Finance | To stream live market price |
 | Firebase Authentication | User and Login Management |
 | Firebase Firestore | Application Database |
 | Firebase Realtime Database | Live calculations |
 | Nodejs | Application Server |
-
 
 ### Tools and Libraries 
 | Library  | Description |
