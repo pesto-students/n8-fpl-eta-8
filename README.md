@@ -50,7 +50,7 @@ To participate in the challenge the users will have to subscribe to the app. Onc
 Dashboard/Performance Page |  As an admin I should be able to view the performance of challenges, engagement of users in the challenges in a graphical view. | Low
 
 ## Demo Credentials 
-app : Fantasy Portfolio League (https://fpleague.netlify.app) \
+    app : Fantasy Portfolio League (https://fpleague.netlify.app) \
 username: demo@pesto.com \
 password: demopresto
 
