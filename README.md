@@ -49,6 +49,11 @@ To participate in the challenge the users will have to subscribe to the app. Onc
 | Disburse Awards to winners | As an admin I should be able to disburse the awards to the winners of a particular challenge. | Low |
 Dashboard/Performance Page |  As an admin I should be able to view the performance of challenges, engagement of users in the challenges in a graphical view. | Low
 
+### Workflow Walkthrough
+
+https://drive.google.com/file/d/16BPstAomqHH15klTrBrmfF_qKh1tJtlM/view?usp=sharing
+
+
 ## Demo Credentials 
 app : Fantasy Portfolio League https://fpleague.netlify.app \
 username: demo@pesto.com \
