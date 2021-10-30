@@ -11,15 +11,11 @@ import {
   SymbolOverview,
 } from "react-tradingview-embed";
 
-
-
 // Custom Components
 import ChallengeContext from "./ChallengeContext";
 import StockSelector from "../StockSelector/StockSelector";
 
 import { useStyles } from "./styles";
-
-
 
 export default function StockDetails() {
   const { stock } = useParams();
@@ -40,8 +36,9 @@ export default function StockDetails() {
           setSymbol(securityId);
         })
         .catch((error) => console.log(error));
-    } else { setSymbol(securityCode) }
-
+    } else {
+      setSymbol(securityCode);
+    }
   }, [stock]);
 
   return (

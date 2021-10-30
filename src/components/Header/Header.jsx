@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
-import { makeStyles } from "@mui/styles";
 
 // custom components
 import Logo from "components/Logo/logo";
@@ -13,16 +12,7 @@ import Logo from "components/Logo/logo";
 // redux store
 import { useSelector } from "react-redux";
 
-const useStyles = makeStyles({
-  profileIcon: {},
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  link: {
-    textDecoration: "none",
-  },
-});
+import { useStyles } from "./styles";
 
 export default function Header() {
   const classes = useStyles();

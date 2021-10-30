@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withStyles } from "@mui/styles";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { useStyles } from "./styles";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AddStockBtn, useStyles } from "./styles";
 import { Timestamp } from "firebase/firestore";
 import { addStock } from "store-features/portfolio";
 import { useHistory } from "react-router";
-
-const AddStockBtn = withStyles({
-  root: {
-    background: "linear-gradient(180deg, #07A287 0%, #057E69 100%)",
-    color: "#fff",
-    borderRadius: "12px",
-    textTransform: "none",
-    fontSize: "1rem",
-    padding: ".25rem .85rem",
-  },
-})(Button);
 
 export default function ChallengeContext() {
   const classes = useStyles();
@@ -31,8 +19,6 @@ export default function ChallengeContext() {
 
   useEffect(() => {
     // debug
-    console.log(`Challenge - ${JSON.stringify(challenge, 0, 2)}`);
-
     const { name, startDate, endDate } = challenge;
     const sDate = new Timestamp(
       startDate._seconds,

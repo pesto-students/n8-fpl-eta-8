@@ -14,7 +14,6 @@ export const user = createSlice({
       Object.assign(state, action.payload);
     },
     setUserPortfolio: (state, action) => {
-      console.log(action.payload);
       if (action.payload !== null && action.payload !== undefined) {
         // Object.assign(state.portfolios, action.payload);
         state.portfolios = action.payload;

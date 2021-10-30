@@ -1,46 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Button, Card, CardContent } from "@mui/material";
+import { CardContent } from "@mui/material";
 import axios from "axios";
 import Stocklist from "components/Stocklist";
-
-const PortfolioCard = styled(Card)`
-  border-radius: 12px !important;
-`;
-
-const PortfolioTitle = styled.div`
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
-  margin-bottom: 13px;
-`;
-
-const SubmitPortfolio = styled(Button)`
-  float: right;
-  color: #ffffff !important;
-  background: linear-gradient(180deg, #0c77f8 0%, #0856b5 100%);
-  border-radius: 12px !important;
-  text-transform: capitalize !important;
-  font-size: 14px !important;
-`;
-
-const SubmitPortfolioDisabled = styled(SubmitPortfolio)`
-  background: #fcddec !important;
-`;
-
-const GoBackButton = styled(SubmitPortfolio)`
-  background: rgba(206, 61, 41, 1) !important;
-`;
+import {
+  GoBackButton,
+  PortfolioCard,
+  PortfolioTitle,
+  SubmitPortfolio,
+  SubmitPortfolioDisabled,
+} from "./PortfolioStyle";
 
 const stocksSelected = [];
-// const questionsNumber = 5;
 
 export default function Portfolio({ portfolio, challengeStatus }) {
   const [open, setOpen] = useState(false);
@@ -52,9 +29,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
   const [portfolioState, setPortfolioState] = useState();
 
   const handleSubmit = () => {
-    // validate the portfolio
-
-    // tigger confirm dialog
     setOpen(true);
   };
   const handleClose = () => {
@@ -62,8 +36,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
   };
 
   useEffect(() => {
-    console.log(`Challenge Portfolio - ${JSON.stringify(portfolio, 0, 2)}`);
-
     if (
       (portfolio === undefined || portfolio.length === 0) &&
       challengeStatus === "NOT_LIVE"
@@ -90,7 +62,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
 
   // component rendering Portfolio Title area as per the Portfolio State
   const SwitchPortfolioTitle = ({ state }) => {
-    console.log(`Portfolio State - ${state}`);
     switch (state) {
       case "CREATE":
         return (
@@ -181,7 +152,6 @@ export default function Portfolio({ portfolio, challengeStatus }) {
         .post(url, data)
         .then((response) => {
           console.log("Portfolio data saved successfully");
-          // setIsSubmitted(true);
         })
         .catch((error) => {
           console.log(error.message);

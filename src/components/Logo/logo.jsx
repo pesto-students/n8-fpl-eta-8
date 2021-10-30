@@ -1,15 +1,9 @@
 import React from "react";
-import { withStyles } from "@mui/styles";
 import logoLongDark from "assets/logo-long-dark.svg";
 import logoLonglight from "assets/logo-long-light.svg";
 import PropTypes from "prop-types";
-
-const styles = {
-  root: {
-    maxWidth: "25rem",
-  },
-};
-
+import { withStyles } from "@mui/styles";
+import { styles } from "./styles";
 function Logo(props) {
   const { classes, light } = props;
   return (

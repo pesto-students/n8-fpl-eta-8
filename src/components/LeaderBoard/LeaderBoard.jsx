@@ -11,7 +11,6 @@ export default function LeaderBoard(props) {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
   const leaderboardId = useSelector(state => {
-    console.log(state.challenge);
     return state.challenge.leaderboard
   });
   useEffect(() => {
