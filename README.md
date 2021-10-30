@@ -105,3 +105,25 @@ UI Design : [Figma](https://www.figma.com/proto/8FqBYcwDPaKWRtAwmGl0nt/FPL?node-
 
 
 ## Installation 
+
+### Deploy fpl-backend app 
+```
+git clone https://github.com/pesto-students/n8-fpl-eta-be.git
+cd n8-fpl-eta-be
+npm install
+npm start
+```
+
+
+
+### Deloy fpl-frontend app
+```
+git clone https://github.com/pesto-students/n8-fpl-eta-fe.git
+cd n8-fpl-eta-fe
+npm install
+npm start
+```
+> **_Please Note:_**  to deploy the frontend on local backend server please change the REACT_APP_API_SERVER to localhost:8080
+
+
+
