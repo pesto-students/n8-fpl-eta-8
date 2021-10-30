@@ -1,4 +1,4 @@
-![Fantasy Portfilio League][https://github.com/pesto-students/n8-fpl-eta-fe/blob/demo/small-fixes/src/assets/logo-long-light.svg]
+![Fantasy Portfilio League](https://github.com/pesto-students/n8-fpl-eta-fe/blob/demo/small-fixes/src/assets/logo-long-light.svg)
 
 # Fantasy Portfolio League - React App
 
