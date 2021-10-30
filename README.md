@@ -1,3 +1,4 @@
+![Fantasy Portfilio League][https://github.com/pesto-students/n8-fpl-eta-fe/blob/demo/small-fixes/src/assets/logo-long-light.svg]
 
 # Fantasy Portfolio League - React App
 
@@ -32,6 +33,9 @@ Fantasy Premier League (FPL) is a stock portfolio challenge platform. Each chall
 To participate in the challenge the users will have to subscribe to the app. Once subscribed, they will be provided with more tickets each month for the challenges that month. With 1 ticket they can participate in 1 challenge.
 
 ## Features 
+
+
+
 
 ## Demo Credentials 
 username: demo@pesto.com
