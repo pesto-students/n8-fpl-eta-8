@@ -126,4 +126,10 @@ npm start
 > **_Please Note:_**  to deploy the frontend on local backend server please change the REACT_APP_API_SERVER to localhost:8080
 
 
+## Contact 
+[Madan Patro](https://in.linkedin.com/in/madan-patro-1434916a) \
+[Neil Doshi](https://in.linkedin.com/?trk=guest_homepage-basic_nav-header-logo)
 
+## Liscence
+[MIT](https://opensource.org/licenses/MIT) \
+The code has been opensourced for others to view and fork
