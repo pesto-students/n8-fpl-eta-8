@@ -1,4 +1,18 @@
+
 # Fantasy Portfolio League - React App
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a95a6607-715b-465d-a86d-f39f6e86a094/deploy-status)](https://app.netlify.com/sites/fpleague/deploys)
+
+## Table of Content 
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Documents](#documents)
+3. [Tech](#Tech)
+4. [Tools and Libraries](#tools)
+4. [Installation](#installation)
+5. [Contact](#contact)
+6. [License](#license)
+
 
 ## Introduction 
 
@@ -12,13 +26,13 @@ Further we believe that we have a huge untapped potential for introducing the yo
 ### Product Opportunity
 While the retail investors are investing a majority of them are completely new to the Stocks Market and so there lies an opportunity to provide a  platform for them to learn by investing without substantially losing their hard earned money. 
 
-How does it work ?
+### How does it work ?
 Fantasy Premier League (FPL) is a stock portfolio challenge platform. Each challenge will have a criteria to select and create a portfolio of 5 stocks. The challenge has a cut off date, before which participants can submit their portfolio and an end date on which the user with maximum return on the portfolio will be rewarded in the form of coupons and discounts.
 
 To participate in the challenge the users will have to subscribe to the app. Once subscribed, they will be provided with more tickets each month for the challenges that month. With 1 ticket they can participate in 1 challenge.
 
+## Features 
 
 ## Demo Credentials 
 username: demo@pesto.com
 password: demopresto
-
