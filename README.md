@@ -51,7 +51,7 @@ Dashboard/Performance Page |  As an admin I should be able to view the performan
 
 ### Workflow Walkthrough
 
-![Walkthrough](https://youtu.be/PihX0ARCFGU)
+[![Watch the video](https://youtu.be/PihX0ARCFGU)](https://youtu.be/PihX0ARCFGU)
 
 
 ## Demo Credentials 
