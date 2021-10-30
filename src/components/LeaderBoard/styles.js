@@ -23,8 +23,9 @@ export const useStyles = makeStyles({
   },
 
   container: {
-    maxWidth: "70vw",
+    width: "inherit",
     marginLeft: "1rem",
+    padding:'.25rem'
   },
 
   title: {
