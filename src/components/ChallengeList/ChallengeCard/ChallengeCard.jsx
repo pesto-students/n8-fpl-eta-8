@@ -4,16 +4,15 @@ import { useRouteMatch } from "react-router-dom";
 // material ui imports
 import Card from "@mui/material/Card";
 import { Typography } from "@mui/material";
-import { Button } from "@mui/material";
 
-import { useStyles } from "./styles";
+import { CreatePortfolio, useStyles, ViewLeaderboard } from "./styles";
 import { Link } from "react-router-dom";
 
 import { Timestamp } from "firebase/firestore";
 
 export default function ChallengeCard(props) {
   const classes = useStyles();
-  const { name, id, startDate, endDate } = props.challenge;
+  const { name, id, startDate, endDate, status } = props.challenge;
   const { url } = useRouteMatch();
 
   let s_date = new Timestamp(startDate._seconds, startDate._nanoseconds);
@@ -28,14 +27,25 @@ export default function ChallengeCard(props) {
         </Typography>
       </div>
       <Link className={classes.styledLink} to={`${url}/challenge/${id}`}>
-        <Button
-          color="primary"
-          fullWidth="true"
-          style={{ justifyContent: "flex-start" }}
-          variant="contained"
-        >
-          Create Portfolio
-        </Button>
+        {status === "NOT_LIVE" ? (
+          <CreatePortfolio
+            color="primary"
+            fullWidth={true}
+            style={{ justifyContent: "flex-start" }}
+            variant="contained"
+          >
+            Create Portfolio
+          </CreatePortfolio>
+        ) : (
+          <ViewLeaderboard
+            color="secondary"
+            fullWidth={true}
+            style={{ justifyContent: "flex-start" }}
+            variant="contained"
+          >
+            View Leaderboard
+          </ViewLeaderboard>
+        )}
       </Link>
     </Card>
   );

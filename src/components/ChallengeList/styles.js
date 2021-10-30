@@ -17,9 +17,13 @@ export const useStyles = makeStyles({
     padding: "1rem",
   },
   challengeListTitle: {
-    padding: "0rem 1rem",
-    paddingTop: "1.5rem",
+    padding: "1.5rem 1rem",
     position: "sticky",
-    top: "5.5rem",
+    top: "4.5rem",
+    backgroundColor: "#f6f9ff",
+    zIndex: "2",
   },
+  errorBoundry:{
+    padding:'2rem'
+  }
 });

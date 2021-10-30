@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { withStyles } from "@mui/styles";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { useStyles } from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AddStockBtn, useStyles } from "./styles";
 import { Timestamp } from "firebase/firestore";
-
-const AddStockBtn = withStyles({
-  root: {
-    background: "linear-gradient(180deg, #07A287 0%, #057E69 100%)",
-    color: "#fff",
-    borderRadius: "12px",
-    textTransform: "none",
-    fontSize: "1rem",
-    padding: ".25rem .85rem",
-  },
-})(Button);
+import { addStock } from "store-features/portfolio";
+import { useHistory } from "react-router";
 
 export default function ChallengeContext() {
   const classes = useStyles();
   const challenge = useSelector((state) => state.challenge);
   const [challengeContext, setChallengeContext] = useState(null);
 
+  const _s = useSelector(state => state.portfolio.analysingStock);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+
+
   useEffect(() => {
     // debug
-    console.log(`Challenge - ${JSON.stringify(challenge, 0, 2)}`);
-
     const { name, startDate, endDate } = challenge;
     const sDate = new Timestamp(
       startDate._seconds,
@@ -37,6 +31,13 @@ export default function ChallengeContext() {
 
     setChallengeContext({ name, sDate, eDate });
   }, [challenge]);
+
+
+
+  const handleAddToPortfolio = () => {
+    dispatch(addStock(_s));
+    history.goBack();
+  }
 
   return (
     <AppBar className={classes.challengeContext}>
@@ -51,7 +52,7 @@ export default function ChallengeContext() {
               {challengeContext.eDate.toDateString()}
             </Typography>
           </div>
-          <AddStockBtn>Add Stock to Portfolio</AddStockBtn>
+          <AddStockBtn onClick={handleAddToPortfolio}>Add Stock to Portfolio</AddStockBtn>
         </Toolbar>
       ) : (
         <div></div>

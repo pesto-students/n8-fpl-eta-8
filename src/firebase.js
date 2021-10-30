@@ -13,7 +13,9 @@ import {
   EmailAuthProvider,
   updatePassword,
 } from "firebase/auth";
+
 import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 
 const config = {
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -23,6 +25,7 @@ const config = {
   messagingSenderId: process.env.REACT_APP_GOOGLE_MESSAGING_SENDERID,
   appId: process.env.REACT_APP_GOOGLE_APPID,
   measurementId: process.env.REACT_APP_GOOGLE_MEASUREMENTID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 };
 
 class Firebase {
@@ -32,6 +35,7 @@ class Firebase {
     this.db = getFirestore(app);
     this.provider = new GoogleAuthProvider();
     this.auth.languageCode = "en";
+    this.realTimeDB = getDatabase(app);
   }
 
   login(email, password) {

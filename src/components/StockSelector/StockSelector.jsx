@@ -1,69 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { Button } from "@mui/material";
-import styled from "styled-components";
 import { debounce } from "components/common";
-
-const StockPickerTextBox = styled.input.attrs({
-  type: "text",
-})`
-  border: none;
-  font-size: 16px;
-  width: 100%;
-  &:focus-visible {
-    outline: 0px;
-  }
-`;
-
-const StockSuggestionList = styled.div`
-  position: absolute;
-  left: 35px;
-  background-color: #e4e6f1;
-  padding: 0px 15px 10px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  color: #000000;
-
-  @media (min-width: 1024px) {
-    left: auto;
-  }
-`;
-
-const SearchItems = styled.div`
-  line-height: 48px;
-`;
-
-const SearchResultName = styled.span`
-  display: inline-block;
-  max-width: 275px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const ButtonContainer = styled.div`
-  float: right;
-  display: inline-block;
-  padding-left: 20px;
-`;
-
-const ViewStock = styled(Button)`
-  border-radius: 12px !important;
-  color: #ef5da8 !important;
-  border: none !important;
-  background-color: #ffffff !important;
-  text-transform: capitalize !important;
-  font-size: 14px !important;
-`;
-const AddStock = styled(ViewStock)`
-  margin-left: 10px !important;
-  color: #1f41f7 !important;
-`;
-const StyledViewStock = styled(Link)`
-  text-decoration: none !important;
-  color: #ef5da8 !important;
-`;
+import {
+  AddStock,
+  ButtonContainer,
+  SearchItems,
+  SearchResultName,
+  StockPickerTextBox,
+  StockSuggestionList,
+  StyledViewStock,
+  ViewStock,
+} from "./StockSelectorStyle";
 
 export default function StockSelector(props) {
   const [searchedStockList, setSearchedStockList] = useState([]);
@@ -101,7 +48,7 @@ export default function StockSelector(props) {
     }
   }
 
-  function addStock(selectedStock) {
+  function addStockToPicker(selectedStock) {
     props.selectStock(selectedStock);
     setSearchedStockList(false);
   }
@@ -115,7 +62,9 @@ export default function StockSelector(props) {
         }
         onChange={(e) => {
           setSearchQuery(e.target.value);
-          searchStock(searchQuery);
+          if (e.target.value.length % 3 === 0) {
+            searchStock(e.target.value);
+          }
         }}
         value={searchQuery}
       />
@@ -142,7 +91,12 @@ export default function StockSelector(props) {
                     <AddStock
                       size="small"
                       variant="outlined"
-                      onClick={() => addStock(item["2. name"])}
+                      onClick={() =>
+                        addStockToPicker({
+                          name: item["2. name"],
+                          value: item["1. symbol"],
+                        })
+                      }
                     >
                       Add Stock
                     </AddStock>

@@ -18,11 +18,17 @@ export default function Landing() {
   }
 
   return (
-    <Container>
-      <Grid container direction="column" alignItems="center">
+    <>
+      <Container>
         <LandingHeader />
-        <LandingMain />
-      </Grid>
-    </Container>
+        <Grid container direction="column" alignItems="center" justifyContent="center" >
+          <Grid
+            item xs={12} sm={12} md={12} lg={12}>
+            <LandingMain />
+          </Grid>
+        </Grid>
+      </Container>
+
+    </>
   );
 }

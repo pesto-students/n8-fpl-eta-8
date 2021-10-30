@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { CardContent } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import {
   ChangePasswordwWrapper,
   ChangeProfileTitle,
@@ -10,8 +12,7 @@ import {
 } from "./ChangePasswordStyle";
 import firebase from "../../firebase";
 import { useSelector } from "react-redux";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -25,20 +26,33 @@ export default function Changepassword() {
   const [open, setOpen] = React.useState(false);
   const [notificationMessage, setNotificationMsg] = useState("");
   const [severity, setSeverity] = useState("info");
+  const vertical = "top";
+  const horizontal = "center";
 
   async function updatePassword() {
-    try {
-      await firebase.reLogin(user.email, oldPassword).then(() => {
-        if (newPassword.length > 0 && newPassword === confirmPassword) {
-          firebase.setNewPassword(newPassword).then(() => {
-            setNotificationMsg("Password Updated Successfully");
-            setSeverity("success");
-            setOpen(true);
-          });
-        }
-      });
-    } catch (error) {
-      setNotificationMsg("Please enter correct old password.");
+    if (oldPassword !== "") {
+      try {
+        await firebase.reLogin(user.email, oldPassword).then(() => {
+          if (newPassword.length > 0 && newPassword === confirmPassword) {
+            firebase.setNewPassword(newPassword).then(() => {
+              setNotificationMsg("Password Updated Successfully");
+              setSeverity("success");
+              setOpen(true);
+            });
+          }
+          else{
+            setNotificationMsg("Please enter new password and the confirm password should match the new password");
+              setSeverity("error");
+              setOpen(true);
+          }
+        });
+      } catch (error) {
+        setNotificationMsg("Please enter correct old password.");
+        setSeverity("error");
+        setOpen(true);
+      }
+    } else {
+      setNotificationMsg("Please enter old password");
       setSeverity("error");
       setOpen(true);
     }
@@ -86,6 +100,8 @@ export default function Changepassword() {
         open={open}
         autoHideDuration={4000}
         onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical, horizontal }}
+        key={vertical + horizontal}
       >
         <Alert severity={severity} sx={{ width: "100%" }}>
           {notificationMessage}

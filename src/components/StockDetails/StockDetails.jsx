@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-// mui
+// Libraries
 import { Container, Grid, Typography, Card } from "@mui/material";
 
-// webapp components
-import ChallengeContext from "./ChallengeContext";
-import StockSelector from "components/StockSelector/StockSelector";
-
-// tradingView embeds
 import {
   TechnicalAnalysis,
   CompanyProfile,
   FundamentalData,
   SymbolOverview,
 } from "react-tradingview-embed";
+
+// Custom Components
+import ChallengeContext from "./ChallengeContext";
+import StockSelector from "../StockSelector/StockSelector";
 
 import { useStyles } from "./styles";
 
@@ -24,10 +23,22 @@ export default function StockDetails() {
   const [symbol, setSymbol] = useState();
 
   useEffect(() => {
-    // split stock string
-    const split = stock.split(".");
-    if (split.length > 1) setSymbol(`${split[1]}:${split[0]}`);
-    else setSymbol(`${split[0]}`);
+    const securityCode = stock.split(".")[0];
+
+    if (!isNaN(securityCode)) {
+      fetch(
+        `${process.env.REACT_APP_API_SERVER}/api/lookup/code/${securityCode}`,
+        {}
+      )
+        .then((res) => res.json())
+        .then((response) => {
+          const securityId = response[0].securityId;
+          setSymbol(securityId);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setSymbol(securityCode);
+    }
   }, [stock]);
 
   return (

@@ -24,6 +24,9 @@ import Challenge from "components/Challenge/Challenge";
 import Header from "components/Header/Header";
 import StockDetails from "components/StockDetails/StockDetails";
 import Profile from "components/Profile/Profile";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUserPortfolio } from "store-features/user";
 
 // scroll to top
 function ScrollTop(props) {
@@ -64,27 +67,37 @@ export default function ChallengeList(props) {
   const classes = useStyles();
   const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
-
+  const [filter, setFilter] = useState("all");
+  const uid = useSelector((state) => state.user.uid);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch data from REST API
-        const response = await fetch(
-          `${process.env.REACT_APP_API_SERVER}/api/challenge/all`
-        );
-        if (response.status === 200) {
-          // Extract json
-          const rawData = await response.json();
-          setChallenges(rawData);
-        } else {
-          console.error(`Error ${response.status} ${response.statusText}`);
-        }
-      } catch (error) {
-        console.error(`Error ${error}`);
+    try {
+      let api = "";
+      if (filter === "all") {
+        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/all`;
+      } else {
+        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`;
       }
-    };
-    fetchData();
-  }, []);
+      // Fetch data from REST API
+      fetch(api)
+        .then((res) => res.json())
+        .then((response) => {
+          setChallenges(response);
+        });
+    } catch (error) {
+      console.error(`Error ${error}`);
+    }
+
+    fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.length > 0) dispatch(setUserPortfolio(response));
+      });
+  }, [filter, uid, dispatch]);
+
+  const changeFilter = (filterValue) => {
+    setFilter(filterValue);
+  };
 
   return (
     <React.Fragment>
@@ -96,7 +109,7 @@ export default function ChallengeList(props) {
           <Container className={classes.root}>
             <Grid container direction="row" spacing={5}>
               <Grid item xs={12} lg={3} md={12} elevation={10}>
-                <ChallengeFilter />
+                <ChallengeFilter changeFilter={changeFilter} />
               </Grid>
               <Grid item xs={12} lg={9} md={12}>
                 <Grid container direction="column">
@@ -116,13 +129,22 @@ export default function ChallengeList(props) {
                       spacing={3}
                       className={classes.challengeList}
                     >
-                      {challenges.map((item, index) => {
-                        return (
-                          <Grid item xs={12} md={12} lg={6} key={index}>
-                            <ChallengeCard challenge={item} />
-                          </Grid>
-                        );
-                      })}
+                      {challenges.length > 0 ? (
+                        challenges.map((item, index) => {
+                          return (
+                            <Grid item xs={12} md={12} lg={6} key={index}>
+                              <ChallengeCard challenge={item} />
+                            </Grid>
+                          );
+                        })
+                      ) : (
+                        <Typography
+                          variant="p"
+                          className={classes.errorBoundry}
+                        >
+                          No Challenges. Check for other filters
+                        </Typography>
+                      )}
                     </Grid>
                   </Grid>
                 </Grid>
