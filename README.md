@@ -51,8 +51,7 @@ Dashboard/Performance Page |  As an admin I should be able to view the performan
 
 ### Workflow Walkthrough
 
-[![Walkthrough](https://youtu.be/PihX0ARCFGU.png)](https://youtu.be/PihX0ARCFGU)
-
+Walkthrough](https://youtu.be/PihX0ARCFGU.png)
 
 ## Demo Credentials 
 app : Fantasy Portfolio League https://fpleague.netlify.app \
