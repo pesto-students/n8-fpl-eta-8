@@ -34,6 +34,24 @@ To participate in the challenge the users will have to subscribe to the app. Onc
 
 ## Features 
 
+## Documents 
+
+## Tech
+1. React (Frontend Library)
+2. Redux (State Management Library)
+3. Material UI (Base UI framework)
+4. Sentry (Capture logs of the site)
+5. Trading view (Charting and Stock Details Application)
+6. Alphavantage ( Stock Search and Base Price Data) 
+7. Firebase - Authenticate ( User and Login Management)
+8. Firebase - Firestore ( Application Database)
+9. Firebase - Realtime ( Live calculations)
+10. Nodejs - Application Server 
+
+
+
+
+
 
 
 
