@@ -87,7 +87,7 @@ UI Design : [Figma](https://www.figma.com/proto/8FqBYcwDPaKWRtAwmGl0nt/FPL?node-
 
 
 ### Env variables
-> **_Please Note:_**  All env variables to be prenended with `REACT_APP`
+> **_Please Note:_**  All env variables to be prepended with `REACT_APP`
 
 | Variable  | Description |
 | ------------- | ------------- |
