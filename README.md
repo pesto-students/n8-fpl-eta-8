@@ -2,9 +2,9 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a95a6607-715b-465d-a86d-f39f6e86a094/deploy-status)](https://app.netlify.com/sites/fpleague/deploys)
 
-## Table of Content 
+## Table of Contents 
 1. [Introduction](#introduction)
-3. [Demo Credentials](#demo)
+3. [Demo ](#demo)
 4. [Technical Details ](#technical-details)
 5. [Installation](#installation)
 6. [Contact](#contact)
@@ -19,8 +19,7 @@ Fantasy Premier League (FPL) is a stock portfolio challenge platform. Each chall
 
 To participate in the challenge the users will have to subscribe to the app. Once subscribed, they will be provided with more tickets each month for the challenges that month. With 1 ticket they can participate in 1 challenge.
 
-### Workflow Walkthrough
-
+### Workflow Walkthrough - Demo
 [Walkthrough](https://youtu.be/PihX0ARCFGU)
 
 ## Demo Credentials 
