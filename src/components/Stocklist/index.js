@@ -7,16 +7,20 @@ import { ref, onValue } from "firebase/database";
 import Firebase from "../../firebase";
 
 import { setPortfolio } from "store-features/portfolio";
+import { Typography } from "@mui/material";
 export default function Stocklist({ portfolio, challengeStatus, state }) {
   const [stocks, setStocks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
   // fetching all the stock names
   useEffect(() => {
+
+    console.log(`Portfolio - ${JSON.stringify(portfolio, 0, 2)}`)
     // fetch the stock names
     if (state === "VIEW") {
       const { id, challengeId, stocks, submitTimestamp, username, uid } =
-        portfolio[0];
+        portfolio;
       const p = { id, challengeId, submitTimestamp, username, uid };
       dispatch(setPortfolio(p));
       const _s = async () => {
@@ -44,6 +48,7 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
       _s().then(
         (data) => {
           setStocks(data);
+          setIsLoading(false);
         },
         (error) => {
           console.log(error);
@@ -53,12 +58,13 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
 
     if (state === "LIVE_VIEW") {
       const db = Firebase.realTimeDB;
-      const r = ref(db, `FPL/Portfolios/${portfolio[0].id}/l`);
-
+      const r = ref(db, `FPL/Portfolios/${portfolio.id}/l`);
+      console.log(`${portfolio.id}`)
       onValue(
         r,
         (snapshot) => {
           setStocks(snapshot.val());
+          setIsLoading(false);
         },
         {
           onlyOnce: false,
@@ -80,14 +86,24 @@ export default function Stocklist({ portfolio, challengeStatus, state }) {
           </>
         );
       case "VIEW":
-        return stocks.map((s) => {
-          return <StockPicker stockName={s} state={state} />;
-        });
+        if (!isLoading) {
+          return stocks.map((s) => {
+            return <StockPicker stockName={s} state={state} />;
+          });
+        }
+        else {
+          return <Typography variant="p">Fetching stock details ....</Typography>
+        }
       case "LIVE_VIEW":
       default:
-        return stocks.map((s) => {
-          return <StockPicker stockName={s} stockChange={s} state={state} />;
-        });
+        if (!isLoading) {
+          return stocks.map((s) => {
+            return <StockPicker stockName={s} stockChange={s} state={state} />;
+          });
+        }
+        else {
+          return <Typography variant="p">Fetching stock details ....</Typography>
+        }
     }
   };
 

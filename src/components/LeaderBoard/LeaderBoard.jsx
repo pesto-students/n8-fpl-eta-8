@@ -52,7 +52,7 @@ export default function LeaderBoard(props) {
                     _1_day_change="0"
                     _1_day_position_change={r.changeInPosition}
                     isTitle={false}
-                    position={i}
+                    position={i+1}
                   />
                 </Grid>
               )

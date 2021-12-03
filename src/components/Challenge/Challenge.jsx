@@ -50,10 +50,15 @@ export default function Challenge() {
         const c = { ...response, lbView: view };
         dispatch(setChallengeToStore(c));
         setChallenge(c);
-        setIsLoading(false);
         dispatch(resetPortfolio());
-        const p = portfolios.filter((p) => p.challengeId === challengeId);
-        setPortfolio(p);
+        for (let p = 0; p < portfolios.length; p++) {
+          if (portfolios[p].challengeId === challengeId) {
+            setPortfolio(portfolios[p]);
+          }
+        }
+        setIsLoading(false);
+        
+
       })
       .catch((error) => console.log(error));
   }, [challengeId, dispatch, portfolios]);
