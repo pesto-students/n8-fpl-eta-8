@@ -19,7 +19,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function EditProfile() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.users.users);
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
   const [open, setOpen] = useState(false);

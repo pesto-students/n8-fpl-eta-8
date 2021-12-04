@@ -13,24 +13,27 @@ export default function users(state = initialState, action ){
                 ...state,
                 loading:true
             }
+
         case type.GET_USERS_SUCCESS:
             return {
                 ...state,
                 loading:false,
-                users:action.users
+                 users:action.users
             }
+
         case type.GET_USERS_FAILED:
             return{
                 ...state,
                 loading:false,
                 error:action.message
             }
-        case type.GET_USERS:
+
+        case type.SET_LOGGEDIN_USER:
             return{
                 ...state, 
                 users:action.payload
             }
-        
+            
             default:
                 return state;
     }

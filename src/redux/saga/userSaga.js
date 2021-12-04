@@ -24,6 +24,7 @@ function* fetchUsers(action) {
     }
 }
 
+
 function* userSaga(){
     yield takeEvery('GET_USERS_REQUESTED', fetchUsers)
 }

@@ -16,7 +16,7 @@ import { useStyles } from "./styles";
 
 export default function Header() {
   const classes = useStyles();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.users.users);
 
   return (
     <AppBar>

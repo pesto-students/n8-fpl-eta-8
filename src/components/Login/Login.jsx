@@ -15,7 +15,8 @@ import {
   GoogleButton,
   BackButton,
 } from "./LoginStlye";
-import { setUser} from "store-features/user";
+
+import { setLoggedInUser } from "../../redux/actions/users";
 
 export default function Login() {
   const { url, path } = useRouteMatch();
@@ -27,7 +28,7 @@ export default function Login() {
     try {
       await firebase.loginGoogle().then(({ user }) => {
         dispatch(
-          setUser({
+          setLoggedInUser({
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,
@@ -46,7 +47,7 @@ export default function Login() {
       await firebase.login("demo@presto.com", "demopresto").then(({ user }) => {
         
         dispatch(
-          setUser({
+          setLoggedInUser({
             email: user.email,
             name: user.displayName,
             profileImage: user.photoURL,

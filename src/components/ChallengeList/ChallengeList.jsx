@@ -68,7 +68,7 @@ export default function ChallengeList(props) {
   const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
   const [filter, setFilter] = useState("all");
-  const uid = useSelector((state) => state.user.uid);
+  const uid = useSelector((state) => state.users.users.uid);
   const dispatch = useDispatch();
   useEffect(() => {
     try {

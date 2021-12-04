@@ -26,7 +26,7 @@ export default function Challenge() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.challenge.lbView);
-  const portfolios = useSelector((state) => state.user.portfolios);
+  const portfolios = useSelector((state) => state.users.users.portfolios);
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_SERVER}/api/challenge/${challengeId}`,

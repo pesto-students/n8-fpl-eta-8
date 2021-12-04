@@ -23,7 +23,7 @@ export default function Portfolio({ portfolio, challengeStatus }) {
   const [open, setOpen] = useState(false);
 
   let { challengeId } = useParams();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.users.users);
   const currentPortfolio = useSelector((state) => state.portfolio);
 
   const [portfolioState, setPortfolioState] = useState();

@@ -16,7 +16,10 @@ import {
 } from "./ProfileSidebarStyle";
 
 export default function ProfileSidebar(props) {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => {
+    console.log(state.users.users)
+    return state.users.users
+  });
   const history = useHistory();
   const { url } = useRouteMatch();
 

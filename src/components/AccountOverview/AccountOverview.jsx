@@ -11,7 +11,7 @@ import {
 import PlanSubscription from "components/PlanSubscription/PlanSubscription";
 
 export default function AccountOverview() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.users.users);
 
   return (
     <AccountOverviewWrapper>

@@ -5,3 +5,9 @@ export function getUsers(){
         type: type.GET_USERS_REQUESTED,
     }
 }
+
+export function setLoggedInUser(){
+    return{
+        type: type.SET_LOGGEDIN_USER
+    }
+}

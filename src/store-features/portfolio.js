@@ -21,7 +21,7 @@ export const portfolio = createSlice({
       state.challengeId = challengeId;
       state.submitTimestamp = submitTimestamp;
       state.uid = uid;
-      state.username = username;
+      state.users.usersname = username;
       return state;
     },
     addStock: (state, action) => {

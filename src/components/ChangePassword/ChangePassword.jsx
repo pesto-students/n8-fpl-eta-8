@@ -19,7 +19,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function Changepassword() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.users.users);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
