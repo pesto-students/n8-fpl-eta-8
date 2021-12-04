@@ -11,7 +11,7 @@ export default function challenges(state = initialState, action ){
         case type.GET_CHALLENGES_REQUESTED:
             return {
                 ...state,
-                loading:true
+                loading:true,
             }
         case type.GET_CHALLENGES_SUCCESS:
             return {

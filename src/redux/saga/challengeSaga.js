@@ -1,9 +1,12 @@
 import { call, put, takeEvery} from 'redux-saga/effects';
 
-const apiUrl = `${process.env.REACT_APP_API_SERVER}/api/challenge/all`;
+const apiUrl = `${process.env.REACT_APP_API_SERVER}/api/challenge/`;
 
-function getApi(){
-    return fetch(apiUrl,{
+function getApi(filter){
+
+    const url = filter === 'all' ? apiUrl+'all': apiUrl+'filter/'+filter;  
+    console.log('getChallenges api', url);
+    return fetch(url,{
         method:'get',
         headers :{
             'Content-Type':'application/json',
@@ -16,8 +19,9 @@ function getApi(){
 }
 
 function* fetchChallenges(action) {
+    
     try{
-        const challenges = yield call(getApi);
+        const challenges = yield call(() => getApi(action.filter));
         yield put({type:'GET_CHALLENGES_SUCCESS', challenges:challenges});
     } catch(e) {
         yield put({type: 'GET_CHALLENGES_ADDED', message: e.messages});

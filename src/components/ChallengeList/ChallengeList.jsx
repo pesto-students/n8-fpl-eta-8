@@ -26,7 +26,9 @@ import StockDetails from "components/StockDetails/StockDetails";
 import Profile from "components/Profile/Profile";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setUserPortfolio } from "store-features/user";
+import { getChallenges } from "redux/actions/challenges";
+// import { setUserPortfolio } from "store-features/user";
+// import { startAfter } from "@firebase/firestore";
 
 // scroll to top
 function ScrollTop(props) {
@@ -65,35 +67,19 @@ function ScrollTop(props) {
 
 export default function ChallengeList(props) {
   const classes = useStyles();
-  const [challenges, setChallenges] = useState([]);
   const { path } = useRouteMatch();
   const [filter, setFilter] = useState("all");
-  const uid = useSelector((state) => state.users.users.uid);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    try {
-      let api = "";
-      if (filter === "all") {
-        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/all`;
-      } else {
-        api = `${process.env.REACT_APP_API_SERVER}/api/challenge/filter/${filter}`;
-      }
-      // Fetch data from REST API
-      fetch(api)
-        .then((res) => res.json())
-        .then((response) => {
-          setChallenges(response);
-        });
-    } catch (error) {
-      console.error(`Error ${error}`);
-    }
 
-    fetch(`${process.env.REACT_APP_API_SERVER}/api/portfolio/user/${uid}`)
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.length > 0) dispatch(setUserPortfolio(response));
-      });
-  }, [filter, uid, dispatch]);
+  const dispatch = useDispatch();
+  const challenges = useSelector(state => state.challenges.challenges);
+  const loading = useSelector(state => state.challenges.loading);
+  const error = useSelector(state => state.challenges.error);
+
+  useEffect(() => {
+
+    dispatch(getChallenges(filter));
+
+  }, [filter, dispatch]);
 
   const changeFilter = (filterValue) => {
     setFilter(filterValue);
@@ -129,7 +115,7 @@ export default function ChallengeList(props) {
                       spacing={3}
                       className={classes.challengeList}
                     >
-                      {challenges.length > 0 ? (
+                      {!loading && error === null ? (
                         challenges.map((item, index) => {
                           return (
                             <Grid item xs={12} md={12} lg={6} key={index}>
@@ -142,9 +128,17 @@ export default function ChallengeList(props) {
                           variant="p"
                           className={classes.errorBoundry}
                         >
-                          No Challenges. Check for other filters
+                          Loading Challenges...
                         </Typography>
                       )}
+                      {!loading && error !== null &&
+                        <Typography
+                          variant="p"
+                          className={classes.errorBoundry}
+                        >
+                          {error}
+                        </Typography>
+                      }
                     </Grid>
                   </Grid>
                 </Grid>
