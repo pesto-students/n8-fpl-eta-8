@@ -7,13 +7,8 @@ import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 
 // state - redux 
-import store from './store';
+import store from './redux/store';
 import { Provider } from 'react-redux';
-
-// persist redux
-import { PersistGate } from "redux-persist/es/integration/react";
-import { persistStore } from "redux-persist";
-
 
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -30,17 +25,14 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
-const persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
       <React.StrictMode>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </React.StrictMode>
-    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
