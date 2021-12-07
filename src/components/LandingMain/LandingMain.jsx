@@ -21,9 +21,14 @@ export default function LandingMain() {
             <TextSection>
               <h1>New to Investing ?</h1>
               <ul>
-                <li>Learn to Invest by building your Portfolio</li>
-                <li>Analyse Stocks to make right decsion</li>
+                <li>Learn to invest by building your Portfolio</li>
+                <li>Analyse stocks to make right decisions</li>
                 <li>Submit your portfolio and win rewards</li>
+                <li>
+                  <a href="https://youtu.be/PihX0ARCFGU" target="_blank" rel="noreferrer">
+                    How to Participate
+                  </a>
+                </li>
               </ul>
               <StyledLink to="/login">
                 <Button
