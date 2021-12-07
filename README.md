@@ -85,7 +85,7 @@ npm start
 
 ## Contact 
 [Madan Patro](https://in.linkedin.com/in/madan-patro-1434916a) \
-[Neil Doshi](https://in.linkedin.com/?trk=guest_homepage-basic_nav-header-logo)
+[Neil Doshi](https://www.linkedin.com/in/neil-doshi-a919ba69)
 
 ## License
 [MIT](https://opensource.org/licenses/MIT) \
