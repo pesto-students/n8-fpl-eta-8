@@ -26,6 +26,7 @@ export default function ChallengeFilter(props) {
           <FormControlLabel value="CLOSED" control={<Radio />} label="Closed Challenges" />
           <FormControlLabel value="all" control={<Radio />} label="All Challenges" />
         </RadioGroup>
+        <div><a href="https://youtu.be/PihX0ARCFGU" target="_blank" rel="noreferrer"><h6>How to Participate</h6></a></div>
       </Card>
     </>
   );
