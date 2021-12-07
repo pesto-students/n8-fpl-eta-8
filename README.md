@@ -73,14 +73,6 @@ password: demopresto
 
 ## Installation 
 
-### Deploy fpl-backend app 
-```
-git clone https://github.com/pesto-students/n8-fpl-eta-be.git
-cd n8-fpl-eta-be
-npm install
-npm start
-```
-
 ### Deloy fpl-frontend app
 ```
 git clone https://github.com/pesto-students/n8-fpl-eta-fe.git
