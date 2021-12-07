@@ -89,4 +89,4 @@ npm start
 
 ## License
 [MIT](https://opensource.org/licenses/MIT) \
-The code has been opensourced for others to view and fork
+The code has been opensourced for others to view and fork .
